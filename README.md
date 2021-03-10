@@ -1,4 +1,4 @@
-# Dự án thực tập Javaa
+# Dự án thực tập Java
 TMA Innovation Park
 Quy Nhơn
 
