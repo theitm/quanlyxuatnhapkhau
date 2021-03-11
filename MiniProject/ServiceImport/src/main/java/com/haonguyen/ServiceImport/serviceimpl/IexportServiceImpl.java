@@ -1,8 +1,11 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
-import com.haonguyen.ServiceImport.entity.I_exportEntity;
 import com.haonguyen.ServiceImport.repository.IexportRepository;
 import com.haonguyen.ServiceImport.service.IexportService;
+import com.mini_project.Coremodule.entity.CommodityEntity;
+import com.mini_project.Coremodule.entity.CountryEntity;
+import com.mini_project.Coremodule.entity.I_exportEntity;
+import com.mini_project.Coremodule.entity.WarehouseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +44,30 @@ public class IexportServiceImpl implements IexportService {
     @Override
     public List<I_exportEntity> searchI_export(String key) {
         if(key != null){
-        return iexportRepository.searchI_exportQuery(key);
+        return iexportRepository.searchI_exportQueryIgnoreCase(key);
         }
         return iexportRepository.findAll();
+    }
+
+    @Override
+    public WarehouseEntity findWarehouseById(UUID id) {
+        return iexportRepository.findByIdWarehouse(id);
+    }
+
+    @Override
+    public CountryEntity findCountryById(UUID id) {
+        return iexportRepository.findByIdCountry(id);
+    }
+
+    @Override
+    public CommodityEntity findCommodityById(UUID id) {
+
+        return iexportRepository.findByIdCommodity(id);
+    }
+
+    @Override
+    public List<WarehouseEntity> findAllWarehouse() {
+
+        return iexportRepository.findAllWarehouse();
     }
 }

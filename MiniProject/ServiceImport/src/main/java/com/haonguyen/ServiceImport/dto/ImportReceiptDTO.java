@@ -16,8 +16,8 @@ import java.util.UUID;
 @Builder
 public class ImportReceiptDTO {
     private UUID idIexport;
-    private String nameCountry;
-    private String nameWarehouse;
+    private UUID idCountry;
+    private UUID idWarehouse;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date dateReceipt;
     private int type;

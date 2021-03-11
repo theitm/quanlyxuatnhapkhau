@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -27,5 +28,9 @@ public class CountryEntity {
     private String country_name;
     private Double tax;
     private Double transport_fee;
+
+//    @OneToMany( cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id_country")
+//    private Collection<I_exportEntity> i_exportEntities;
 
 }

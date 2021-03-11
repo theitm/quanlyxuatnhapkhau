@@ -27,7 +27,7 @@ public class I_exportEntity {
     private int type;
 
     @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_iexport", referencedColumnName = "id")
+    @JoinColumn(name = "id_iexport")
     private Collection<DocumentEntity> documentEntities;
 
 
@@ -43,11 +43,11 @@ public class I_exportEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_country", referencedColumnName = "id")
-    private CountryEntity countryEntity;
+    private CountryEntity id_country;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_warehouse", referencedColumnName = "id")
-    private WarehouseEntity warehouseEntity;
+    private WarehouseEntity id_warehouse;
 
 
 }

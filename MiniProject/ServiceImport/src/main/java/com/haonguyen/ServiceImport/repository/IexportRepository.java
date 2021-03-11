@@ -1,7 +1,6 @@
 package com.haonguyen.ServiceImport.repository;
 
-import com.haonguyen.ServiceImport.dto.WarehouseDTO;
-import com.haonguyen.ServiceImport.entity.*;
+import com.mini_project.Coremodule.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,23 +12,26 @@ import java.util.UUID;
 @Repository
 public interface IexportRepository extends JpaRepository<I_exportEntity, UUID> {
 
-    @Query(value = "select distinct ie.id_iexport, ie.id_country, ie.id_warehouse, ie.date_receipt, ie.type\n" +
-            " from tb_iexport as ie\n" +
-            "inner join tb_details_iexport as de on ie.id_iexport = de.id_iexport\n" +
-            "inner join tb_warehouse as wa on ie.id_warehouse = wa.id_warehouse\n" +
-            "inner join tb_commodity as co on de.id_commodity = co.id_commodity\n" +
-            "where concat(wa.warehouse_name, '', co.commodity_name)\n" +
-            "like %?1%", nativeQuery = true)
-    List<I_exportEntity> searchI_exportQuery(String key);
+    @Query( "select distinct ie\n" +
+            " from I_exportEntity ie\n" +
+            "inner join DetailsI_exportEntity de on ie.id = de.id_iexport\n" +
+            "inner join WarehouseEntity wa on ie.id_warehouse = wa.id\n" +
+            "inner join CommodityEntity co on de.id_commodity = co.id\n" +
+            "inner join CountryEntity cou on ie.id_country = cou.id\n" +
+            "where concat(wa.warehouse_name, '', co.commodity_name, '', cou.country_name)\n" +
+            "like %?1%")
+    List<I_exportEntity> searchI_exportQueryIgnoreCase(String key);
 
-    @Query(value = "SELECT new com.haonguyen.ServiceImport.dto.WarehouseEntityDTO(w.idWarehouse, w.warehouseName, w.description, w.capacity) FROM WarehouseEntity w WHERE w.warehouseName = :name")
-    WarehouseDTO findByWarehouseNameDTO(@Param("name") String name);
+    @Query(value = "SELECT w FROM WarehouseEntity w WHERE w.id = :id")
+    WarehouseEntity findByIdWarehouse(@Param("id") UUID id);
 
+    @Query(value = "select c from CountryEntity c where c.id = :id")
+    CountryEntity findByIdCountry(@Param("id") UUID id);
 
-//    CountryEntityDTO findByCountryNameIgnoreCase(String name);
-//
-//    @Query(value = "SELECT tb from tb_warehouse_commodity as tb WHERE tb.id_warehouse = :idWarehouse AND tb.id_commodity = :idCommodity ", nativeQuery = true)
-//    List<CommodityWarehouseDTO> findAllCommodityWarehouseEntitiesQuery(@Param("idWarehouse") String idWarehouse, @Param("idCommodity") String idCommodity);
-//
-//    CommodityEntity findByCommodityNameIgnoreCase(String name);
+    @Query(value = "select co from CommodityEntity co where co.id = :id")
+    CommodityEntity findByIdCommodity(@Param("id") UUID id);
+
+    @Query(value = "select w FROM WarehouseEntity w")
+    List<WarehouseEntity> findAllWarehouse();
+
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ItemReceiptDTO {
-    private String NameCommodity;
+    private String idCommodity;
     private String description;
     private Double quantity;
     private Double total;

@@ -37,4 +37,8 @@ public class WarehouseEntity {
     @JsonManagedReference
     Collection<WarehouseCommodityEntity> commodityEntities;
 
+//    @OneToMany( cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id_warehouse")
+//    private Collection<I_exportEntity> i_exportEntities;
+
 }
