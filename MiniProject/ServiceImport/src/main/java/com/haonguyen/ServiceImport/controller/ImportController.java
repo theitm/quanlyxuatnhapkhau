@@ -8,7 +8,8 @@ import com.haonguyen.ServiceImport.mapper.ItemReceiptMapper;
 import com.haonguyen.ServiceImport.mapper.ItemReceiptMapperImpl;
 import com.haonguyen.ServiceImport.service.IexportService;
 import com.haonguyen.ServiceImport.service.ReceiptService;
-import com.mini_project.Coremodule.entity.*;
+import com.mini_project.CoreModule.entity.Import_ExportEntity;
+import com.mini_project.CoreModule.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,14 +42,14 @@ public class ImportController {
 
     @GetMapping("/allReceipt")
     public ResponseEntity getAllReceipt() {
-        List<I_exportEntity> iExportEntityList = iexportService.getAllReceipt();
+        List<Import_ExportEntity> iExportEntityList = iexportService.getAllReceipt();
 
         return ResponseEntity.ok().body(iExportEntityList);
     }
 
     @GetMapping("/searchReceipt/{key}")
     public ResponseEntity searchReceipt(@PathVariable(name = "key") String key) {
-        List<I_exportEntity> iExportEntityList = iexportService.searchI_export(key);
+        List<Import_ExportEntity> iExportEntityList = iexportService.searchI_export(key);
 
 
         return ResponseEntity.ok().body(iExportEntityList);
@@ -57,7 +58,7 @@ public class ImportController {
     @GetMapping("/getReceipt/{idReceipt}")
     public ResponseEntity getReceiptById(@PathVariable(name = "idReceipt") String idReceipt) {
 
-        List<I_exportEntity> exportEntityList = iexportService.getByIdI_Export(UUID.fromString(idReceipt));
+        List<Import_ExportEntity> exportEntityList = iexportService.getByIdI_Export(UUID.fromString(idReceipt));
 
         return ResponseEntity.ok().body(exportEntityList);
     }
