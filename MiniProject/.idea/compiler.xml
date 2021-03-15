@@ -10,8 +10,8 @@
         <module name="Coremodule" />
         <module name="StatementModule" />
         <module name="DiscoveryServer" />
-        <module name="hystrixDashBoard" />
         <module name="CommodityModule" />
+        <module name="HystrixDashBoard" />
         <module name="APIGateWay" />
         <module name="ExportModule" />
         <module name="ImportModule" />
@@ -23,7 +23,7 @@
       <module name="Coremodule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportModule" target="11" />
-      <module name="hystrixDashBoard" target="11" />
+      <module name="HystrixDashBoard" target="11" />
       <module name="ImportModule" target="11" />
       <module name="StatementModule" target="11" />
     </bytecodeTargetLevel>
@@ -35,9 +35,9 @@
       <module name="Coremodule" options="-parameters" />
       <module name="DiscoveryServer" options="-parameters" />
       <module name="ExportModule" options="-parameters" />
+      <module name="HystrixDashBoard" options="-parameters" />
       <module name="ImportModule" options="-parameters" />
       <module name="StatementModule" options="-parameters" />
-      <module name="hystrixDashBoard" options="-parameters" />
     </option>
   </component>
 </project>
