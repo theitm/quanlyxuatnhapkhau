@@ -2,9 +2,9 @@ package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
-import com.mini_project.Coremodule.entity.CommodityEntity;
-import com.mini_project.Coremodule.entity.DetailsI_exportEntity;
-import com.mini_project.Coremodule.entity.I_exportEntity;
+import com.mini_project.CoreModule.entity.DetailsImport_ExportEntity;
+import com.mini_project.CoreModule.entity.Import_ExportEntity;
+import com.mini_project.CoreModule.entity.CommodityEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
 public class ImportReceiptMapperImpl implements ImportReceiptMapper {
 
     @Override
-    public I_exportEntity importReceiptDTOToi_exportEntity(ImportReceiptDTO importReceiptDTO) {
+    public Import_ExportEntity importReceiptDTOToi_exportEntity(ImportReceiptDTO importReceiptDTO) {
         if (importReceiptDTO == null) {
             return null;
         }
 
-        I_exportEntity iExportEntity = new I_exportEntity();
+        Import_ExportEntity iExportEntity = new Import_ExportEntity();
         iExportEntity.setDate(importReceiptDTO.getDateReceipt());
         iExportEntity.setType(importReceiptDTO.getType());
 
@@ -25,14 +25,14 @@ public class ImportReceiptMapperImpl implements ImportReceiptMapper {
     }
 
     @Override
-    public List<DetailsI_exportEntity> importReceiptDTOToDetailsEntity(ImportReceiptDTO importReceiptDTO) {
+    public List<DetailsImport_ExportEntity> importReceiptDTOToDetailsEntity(ImportReceiptDTO importReceiptDTO) {
         if (importReceiptDTO == null) {
             return null;
         }
         List<ItemReceiptDTO> itemReceiptDTOList = importReceiptDTO.getItem();
-        List<DetailsI_exportEntity> detailsIExportEntityList = new ArrayList<>();
+        List<DetailsImport_ExportEntity> detailsIExportEntityList = new ArrayList<>();
         for (ItemReceiptDTO list : itemReceiptDTOList) {
-            DetailsI_exportEntity detailsIExportEntity = new DetailsI_exportEntity();
+            DetailsImport_ExportEntity detailsIExportEntity = new DetailsImport_ExportEntity();
             detailsIExportEntity.setDescription(list.getDescription());
             detailsIExportEntity.setQuantity(list.getQuantity());
             detailsIExportEntity.setTotal(list.getTotal());

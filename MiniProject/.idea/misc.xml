@@ -7,11 +7,11 @@
         <option value="$PROJECT_DIR$/APIGateWay/pom.xml" />
         <option value="$PROJECT_DIR$/hystrixDashBoard/pom.xml" />
         <option value="$PROJECT_DIR$/ServiceIssue/pom.xml" />
-        <option value="$PROJECT_DIR$/ServiceImport/pom.xml" />
         <option value="$PROJECT_DIR$/Coremodule/pom.xml" />
         <option value="$PROJECT_DIR$/CommodityService/pom.xml" />
         <option value="$PROJECT_DIR$/ExportService/pom.xml" />
         <option value="$PROJECT_DIR$/StatementService/pom.xml" />
+        <option value="$PROJECT_DIR$/ServiceImport/pom.xml" />
       </list>
     </option>
   </component>

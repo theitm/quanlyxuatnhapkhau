@@ -8,7 +8,7 @@ import com.haonguyen.ServiceImport.mapper.ItemReceiptMapper;
 import com.haonguyen.ServiceImport.mapper.ItemReceiptMapperImpl;
 import com.haonguyen.ServiceImport.service.IexportService;
 import com.haonguyen.ServiceImport.service.ReceiptService;
-import com.mini_project.Coremodule.entity.*;
+import com.mini_project.CoreModule.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,11 +38,11 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         WarehouseEntity warehouseEntity = iexportService.findWarehouseById(importReceiptDTO.getIdWarehouse());
 
-        I_exportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
+        Import_ExportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
 
         List<DocumentEntity> documentEntityList = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
 
-        List<DetailsI_exportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
+        List<DetailsImport_ExportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
 
         List<CommodityEntity> commodityEntityList = new ArrayList<>();
 
@@ -54,12 +54,12 @@ public class ReceiptServiceImpl implements ReceiptService {
             commodityEntityList.add(commodityEntity);
         }
 
-        for (DocumentEntity listDocument: documentEntityList){
-            listDocument.setId_iexport(iExportEntity);
-        }
+//        for (DocumentEntity listDocument: documentEntityList){
+//            listDocument.set(iExportEntity);
+//        }
 
         if (Max < warehouseEntity.getCapacity()) {
-            for (DetailsI_exportEntity listDetails : detailsIExportEntityList) {
+            for (DetailsImport_ExportEntity listDetails : detailsIExportEntityList) {
                 for (CommodityEntity listCommodity : commodityEntityList) {
                     Double total = listDetails.getQuantity() * listCommodity.getPrice();
                     listDetails.setId_commodity(listCommodity);
@@ -70,12 +70,12 @@ public class ReceiptServiceImpl implements ReceiptService {
                 }
             }
 
-            iExportEntity.setId_country(countryEntity);
-            iExportEntity.setId_warehouse(warehouseEntity);
+            iExportEntity.setCountryEntity(countryEntity);
+            iExportEntity.setWarehouseEntity(warehouseEntity);
             iExportEntity.setDocumentEntities(documentEntityList);
             iExportEntity.setCommodityEntities(detailsIExportEntityList);
 
-            I_exportEntity iExportEntityNew = iexportService.saveI_export(iExportEntity);
+            Import_ExportEntity iExportEntityNew = iexportService.saveI_export(iExportEntity);
 
             return ResponseEntity.ok().body(iExportEntityNew);
         } else {

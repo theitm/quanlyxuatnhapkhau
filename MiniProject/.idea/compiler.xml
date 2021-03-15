@@ -7,24 +7,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Coremodule" />
         <module name="DiscoveryServer" />
         <module name="hystrixDashBoard" />
         <module name="CommodityService" />
         <module name="APIGateWay" />
         <module name="ExportService" />
+        <module name="CoreModule" />
         <module name="StatementService" />
         <module name="ServiceImport" />
+        <module name="ServiceIssue" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="APIGateWay" target="11" />
       <module name="CommodityService" target="11" />
       <module name="Coremodule" target="11" />
+      <module name="CoreModule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportService" target="11" />
       <module name="hystrixDashBoard" target="11" />
       <module name="ServiceImport" target="11" />
+      <module name="ServiceIssue" target="11" />
       <module name="StatementService" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -32,10 +35,12 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateWay" options="-parameters" />
       <module name="CommodityService" options="-parameters" />
+      <module name="CoreModule" options="-parameters" />
       <module name="Coremodule" options="-parameters" />
       <module name="DiscoveryServer" options="-parameters" />
       <module name="ExportService" options="-parameters" />
       <module name="ServiceImport" options="-parameters" />
+      <module name="ServiceIssue" options="-parameters" />
       <module name="StatementService" options="-parameters" />
       <module name="hystrixDashBoard" options="-parameters" />
     </option>
