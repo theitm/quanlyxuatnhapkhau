@@ -1,9 +1,6 @@
 server:
   port: 9005
 
-
-
-
 spring:
   application:
     name: EXPORT-SERVICE

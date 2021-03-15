@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -16,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "tb_iexport")
-public class I_exportEntity {
+public class Import_ExportEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -39,7 +39,7 @@ public class I_exportEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    Collection<DetailsI_exportEntity> commodityEntities;
+    Collection<DetailsImport_ExportEntity> commodityEntities;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_country", referencedColumnName = "id")

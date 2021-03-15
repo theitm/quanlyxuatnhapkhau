@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;

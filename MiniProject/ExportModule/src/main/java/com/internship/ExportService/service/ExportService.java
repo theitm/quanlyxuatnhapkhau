@@ -9,17 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class ExportService  {
-
+public class ExportService implements IExportService  {
     private final IExportMapper exportMapper;
     private final IExportRepository iExportRepository;
-
     public ExportService(IExportMapper exportMapper, IExportRepository iExportRepository) {
         this.exportMapper = exportMapper;
         this.iExportRepository = iExportRepository;
     }
-
     public ExportDTO getExport(UUID id){
-        return exportMapper.toExportDTO(iExportRepository.getOne(id));
+        return exportMapper.mapToExportDTO(iExportRepository.getOne(id));
     }
 }

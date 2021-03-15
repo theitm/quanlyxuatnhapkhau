@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "tb_details_iexport")
-public class DetailsI_exportEntity {
+public class DetailsImport_ExportEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class DetailsI_exportEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
-    I_exportEntity id_iexport;
+    Import_ExportEntity id_iexport;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

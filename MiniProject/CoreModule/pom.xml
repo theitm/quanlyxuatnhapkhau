@@ -8,11 +8,11 @@
 		<version>2.3.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.haonguyen</groupId>
-	<artifactId>Coremodule</artifactId>
+	<groupId>com.mini_project</groupId>
+	<artifactId>CoreModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Coremodule</name>
-	<description>Core modul</description>
+	<name>Core-Module</name>
+	<description>Core-Module</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>

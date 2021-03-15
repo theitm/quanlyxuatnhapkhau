@@ -13,17 +13,17 @@ import java.util.List;
 import java.util.UUID;
 
 
+
 @RestController
 @RequestMapping("/v1/api/export")
 public class ExportController {
 
     private final IExportService iExportService;
-
     public ExportController(IExportService iExportService) {
         this.iExportService = iExportService;
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",produces = "application/json;charset=UTF-8",method = RequestMethod.GET)
     public ExportDTO getExport(@PathVariable("id") UUID id){
         return iExportService.getExport(id);
     }

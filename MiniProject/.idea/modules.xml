@@ -3,14 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APIGateWay/APIGateWay.iml" filepath="$PROJECT_DIR$/APIGateWay/APIGateWay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CommodityService/CommodityService.iml" filepath="$PROJECT_DIR$/CommodityService/CommodityService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Coremodule/Coremodule.iml" filepath="$PROJECT_DIR$/Coremodule/Coremodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CommodityModule/CommodityModule.iml" filepath="$PROJECT_DIR$/CommodityModule/CommodityModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CoreModule/CoreModule.iml" filepath="$PROJECT_DIR$/CoreModule/CoreModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/DiscoveryServer/DiscoveryServer.iml" filepath="$PROJECT_DIR$/DiscoveryServer/DiscoveryServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ExportService/ExportService.iml" filepath="$PROJECT_DIR$/ExportService/ExportService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExportModule/ExportModule.iml" filepath="$PROJECT_DIR$/ExportModule/ExportModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HystrixDashBoard/HystrixDashBoard.iml" filepath="$PROJECT_DIR$/HystrixDashBoard/HystrixDashBoard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImportModule/ImportModule.iml" filepath="$PROJECT_DIR$/ImportModule/ImportModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MiniProject.iml" filepath="$PROJECT_DIR$/.idea/MiniProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ServiceImport/ServiceImport.iml" filepath="$PROJECT_DIR$/ServiceImport/ServiceImport.iml" />
-      <module fileurl="file://$PROJECT_DIR$/StatementService/StatementService.iml" filepath="$PROJECT_DIR$/StatementService/StatementService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hystrixDashBoard/hystrixDashBoard.iml" filepath="$PROJECT_DIR$/hystrixDashBoard/hystrixDashBoard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImportModule/ServiceImport.iml" filepath="$PROJECT_DIR$/ImportModule/ServiceImport.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StatementModule/StatementModule.iml" filepath="$PROJECT_DIR$/StatementModule/StatementModule.iml" />
     </modules>
   </component>
 </project>
