@@ -1,0 +1,35 @@
+server:
+  port: 8112
+
+
+
+
+spring:
+  application:
+    name: EXPORT-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/import_export_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: false
+  jpa:
+    properites:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-register: true
+    service url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost

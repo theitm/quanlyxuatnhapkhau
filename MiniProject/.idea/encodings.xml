@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/APIGateWay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/APIGateWay/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CommodityService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CommodityService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Coremodule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Coremodule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DiscoveryServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DiscoveryServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExportService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExportService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServiceImport/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServiceImport/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StatementService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/StatementService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hystrixDashBoard/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hystrixDashBoard/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
