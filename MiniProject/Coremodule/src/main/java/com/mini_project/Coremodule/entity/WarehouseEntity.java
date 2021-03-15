@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -36,9 +36,5 @@ public class WarehouseEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     Collection<WarehouseCommodityEntity> commodityEntities;
-
-//    @OneToMany( cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_warehouse")
-//    private Collection<I_exportEntity> i_exportEntities;
 
 }

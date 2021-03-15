@@ -1,7 +1,9 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -21,15 +23,6 @@ public class DocumentEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_iexport")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @JsonBackReference
-    I_exportEntity id_iexport;
-
     private String image_url;
-
 
 }
