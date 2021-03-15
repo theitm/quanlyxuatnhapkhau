@@ -2,18 +2,12 @@ package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
-import com.haonguyen.ServiceImport.service.IexportService;
-import com.haonguyen.ServiceImport.serviceimpl.IexportServiceImpl;
 import com.mini_project.Coremodule.entity.CommodityEntity;
 import com.mini_project.Coremodule.entity.DetailsI_exportEntity;
 import com.mini_project.Coremodule.entity.I_exportEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class ImportReceiptMapperImpl implements ImportReceiptMapper {
 

@@ -12,15 +12,15 @@ import java.util.UUID;
 @Repository
 public interface IexportRepository extends JpaRepository<I_exportEntity, UUID> {
 
-    @Query( "select distinct ie\n" +
-            " from I_exportEntity ie\n" +
-            "inner join DetailsI_exportEntity de on ie.id = de.id_iexport\n" +
-            "inner join WarehouseEntity wa on ie.id_warehouse = wa.id\n" +
-            "inner join CommodityEntity co on de.id_commodity = co.id\n" +
-            "inner join CountryEntity cou on ie.id_country = cou.id\n" +
-            "where concat(wa.warehouse_name, '', co.commodity_name, '', cou.country_name)\n" +
-            "like %?1%")
-    List<I_exportEntity> searchI_exportQueryIgnoreCase(String key);
+    @Query( "select distinct ie from I_exportEntity ie " +
+            "inner join DetailsI_exportEntity de on ie.id = de.id_iexport " +
+            "inner join WarehouseEntity wa on ie.id_warehouse = wa.id " +
+            "inner join CommodityEntity co on de.id_commodity = co.id " +
+            "inner join CountryEntity cou on ie.id_country = cou.id " +
+            "where (wa.warehouse_name like trim(:key))" +
+            "or (co.commodity_name like trim(:key))" +
+            "or (cou.country_name like trim(:key))")
+    List<I_exportEntity> searchI_exportQueryIgnoreCase(@Param("key") String key);
 
     @Query(value = "SELECT w FROM WarehouseEntity w WHERE w.id = :id")
     WarehouseEntity findByIdWarehouse(@Param("id") UUID id);
@@ -33,5 +33,8 @@ public interface IexportRepository extends JpaRepository<I_exportEntity, UUID> {
 
     @Query(value = "select w FROM WarehouseEntity w")
     List<WarehouseEntity> findAllWarehouse();
+
+    @Query(value = "select d from DocumentEntity d")
+    List<DocumentEntity> findAllDocument();
 
 }

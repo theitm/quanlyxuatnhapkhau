@@ -5,6 +5,7 @@ import com.haonguyen.ServiceImport.service.IexportService;
 import com.haonguyen.ServiceImport.serviceimpl.IexportServiceImpl;
 import com.mini_project.Coremodule.entity.CommodityEntity;
 import com.mini_project.Coremodule.entity.DocumentEntity;
+import com.mini_project.Coremodule.entity.I_exportEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

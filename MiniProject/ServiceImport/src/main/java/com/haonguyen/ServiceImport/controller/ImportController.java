@@ -6,10 +6,9 @@ import com.haonguyen.ServiceImport.mapper.ImportReceiptMapper;
 import com.haonguyen.ServiceImport.mapper.ImportReceiptMapperImpl;
 import com.haonguyen.ServiceImport.mapper.ItemReceiptMapper;
 import com.haonguyen.ServiceImport.mapper.ItemReceiptMapperImpl;
-import com.haonguyen.ServiceImport.repository.IexportRepository;
 import com.haonguyen.ServiceImport.service.IexportService;
+import com.haonguyen.ServiceImport.service.ReceiptService;
 import com.mini_project.Coremodule.entity.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +22,8 @@ public class ImportController {
 
     @Autowired
     private IexportService iexportService;
+    @Autowired
+    private ReceiptService receiptService;
 
     public ImportController() {
     }
@@ -30,54 +31,7 @@ public class ImportController {
     @PostMapping("/addReceipt")
     public ResponseEntity addReceipt(@RequestBody ImportReceiptDTO importReceiptDTO) {
 
-        List<ItemReceiptDTO> itemReceiptDTOList = importReceiptDTO.getItem();
-        ImportReceiptMapper importReceiptMapper = new ImportReceiptMapperImpl();
-        ItemReceiptMapper itemReceiptMapper = new ItemReceiptMapperImpl();
-        CountryEntity countryEntity = iexportService.findCountryById(importReceiptDTO.getIdCountry());
-        WarehouseEntity warehouseEntity = iexportService.findWarehouseById(importReceiptDTO.getIdWarehouse());
-        I_exportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
-        List<DocumentEntity> documentEntity = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
-        List<DetailsI_exportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
-        List<CommodityEntity> commodityEntityList = new ArrayList<>();
-        int Max = 0;
-
-        for (ItemReceiptDTO list : itemReceiptDTOList) {
-            CommodityEntity commodityEntity = iexportService.findCommodityById(UUID.fromString(list.getIdCommodity()));
-            Max += list.getQuantity();
-            commodityEntityList.add(commodityEntity);
-        }
-        if (Max < warehouseEntity.getCapacity()) {
-            for (DetailsI_exportEntity listDetails : detailsIExportEntityList) {
-                for (CommodityEntity listCommodity : commodityEntityList) {
-                    if (listDetails.getId_commodity() == null) {
-                        Double total = listDetails.getQuantity() * listCommodity.getPrice();
-                        listDetails.setId_commodity(listCommodity);
-                        listDetails.setId_iexport(iExportEntity);
-                        listDetails.setTotal(total);
-                        commodityEntityList.remove(listCommodity);
-                    }
-                    break;
-                }
-            }
-
-            iExportEntity.setId_country(countryEntity);
-            iExportEntity.setId_warehouse(warehouseEntity);
-            iExportEntity.setDocumentEntities(documentEntity);
-            iExportEntity.setCommodityEntities(detailsIExportEntityList);
-
-            I_exportEntity iExportEntityNew = iexportService.saveI_export(iExportEntity);
-
-            return ResponseEntity.ok().body(iExportEntityNew);
-        }
-        else {
-            List<WarehouseEntity> warehouseEntityList = iexportService.findAllWarehouse();
-            List<WarehouseEntity> recommendWarehouse = new ArrayList<>();
-            for (WarehouseEntity list: warehouseEntityList){
-                if(list.getCapacity() > Max)
-                    recommendWarehouse.add(list);
-            }
-            return ResponseEntity.ok().body(recommendWarehouse);
-        }
+      return receiptService.getReceipt(importReceiptDTO);
     }
 
     @PutMapping("/updateReceipt/{idReceipt}")
@@ -87,9 +41,9 @@ public class ImportController {
 
     @GetMapping("/allReceipt")
     public ResponseEntity getAllReceipt() {
-        List<I_exportEntity> exportEntityList = iexportService.getAllReceipt();
+        List<I_exportEntity> iExportEntityList = iexportService.getAllReceipt();
 
-        return ResponseEntity.ok().body(exportEntityList);
+        return ResponseEntity.ok().body(iExportEntityList);
     }
 
     @GetMapping("/searchReceipt/{key}")

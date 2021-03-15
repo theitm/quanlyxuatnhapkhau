@@ -1,6 +1,7 @@
 package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
+import com.mini_project.Coremodule.entity.CommodityEntity;
 import com.mini_project.Coremodule.entity.DetailsI_exportEntity;
 import com.mini_project.Coremodule.entity.I_exportEntity;
 import org.mapstruct.Mapper;

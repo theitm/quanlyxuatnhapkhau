@@ -22,6 +22,7 @@ public class CommodityEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
+    private UUID id_sectors;
     private String commodity_name;
     private String description;
     private Float price;
@@ -29,13 +30,13 @@ public class CommodityEntity {
 
 
     @OneToMany(
-            mappedBy = "id_commodity",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            fetch = FetchType.LAZY
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
+    @JoinColumn(name = "id_commodity")
     Collection<DetailsI_exportEntity> iExportEntities;
 
 

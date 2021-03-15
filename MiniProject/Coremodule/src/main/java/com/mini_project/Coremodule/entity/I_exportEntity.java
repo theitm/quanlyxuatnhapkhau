@@ -26,16 +26,20 @@ public class I_exportEntity {
     private Date date;
     private int type;
 
-    @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_iexport")
+    @OneToMany(
+            mappedBy = "id_iexport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonManagedReference
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Collection<DocumentEntity> documentEntities;
 
 
     @OneToMany(
             mappedBy = "id_iexport",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+            orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
