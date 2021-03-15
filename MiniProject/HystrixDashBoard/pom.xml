@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.haonguyen</groupId>
-	<artifactId>hystrixDashBoard</artifactId>
+	<artifactId>HystrixDashBoard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hystrixDashBoard</name>
-	<description>hystrixDashBoard</description>
+	<name>HystrixDashBoard</name>
+	<description>HystrixDashBoard</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
