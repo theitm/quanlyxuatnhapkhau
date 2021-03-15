@@ -12,6 +12,10 @@
         <option value="$PROJECT_DIR$/CommodityService/pom.xml" />
         <option value="$PROJECT_DIR$/ExportService/pom.xml" />
         <option value="$PROJECT_DIR$/StatementService/pom.xml" />
+        <option value="$PROJECT_DIR$/ImportModule/pom.xml" />
+        <option value="$PROJECT_DIR$/ExportModule/pom.xml" />
+        <option value="$PROJECT_DIR$/CommodityModule/pom.xml" />
+        <option value="$PROJECT_DIR$/StatementModule/pom.xml" />
       </list>
     </option>
   </component>
