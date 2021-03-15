@@ -7,12 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Coremodule" />
         <module name="StatementModule" />
         <module name="DiscoveryServer" />
         <module name="hystrixDashBoard" />
         <module name="CommodityModule" />
         <module name="APIGateWay" />
-        <module name="CoreModule" />
         <module name="ExportModule" />
         <module name="ImportModule" />
       </profile>
@@ -20,7 +20,7 @@
     <bytecodeTargetLevel>
       <module name="APIGateWay" target="11" />
       <module name="CommodityModule" target="11" />
-      <module name="CoreModule" target="11" />
+      <module name="Coremodule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportModule" target="11" />
       <module name="hystrixDashBoard" target="11" />
@@ -32,7 +32,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateWay" options="-parameters" />
       <module name="CommodityModule" options="-parameters" />
-      <module name="CoreModule" options="-parameters" />
+      <module name="Coremodule" options="-parameters" />
       <module name="DiscoveryServer" options="-parameters" />
       <module name="ExportModule" options="-parameters" />
       <module name="ImportModule" options="-parameters" />
