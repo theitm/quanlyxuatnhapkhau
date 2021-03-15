@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Coremodule" />
+        <module name="DiscoveryServer" />
+        <module name="hystrixDashBoard" />
+        <module name="CommodityService" />
+        <module name="APIGateWay" />
+        <module name="ExportService" />
+        <module name="StatementService" />
+        <module name="ServiceImport" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="APIGateWay" target="11" />
+      <module name="CommodityService" target="11" />
+      <module name="Coremodule" target="11" />
+      <module name="DiscoveryServer" target="11" />
+      <module name="ExportService" target="11" />
+      <module name="hystrixDashBoard" target="11" />
+      <module name="ServiceImport" target="11" />
+      <module name="StatementService" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="APIGateWay" options="-parameters" />
+      <module name="CommodityService" options="-parameters" />
+      <module name="Coremodule" options="-parameters" />
+      <module name="DiscoveryServer" options="-parameters" />
+      <module name="ExportService" options="-parameters" />
+      <module name="ServiceImport" options="-parameters" />
+      <module name="StatementService" options="-parameters" />
+      <module name="hystrixDashBoard" options="-parameters" />
+    </option>
+  </component>
+</project>
