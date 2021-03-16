@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.haonguyen</groupId>
-	<artifactId>CommodityService</artifactId>
+	<artifactId>CommodityModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CommodityService</name>
+	<name>CommodityModule</name>
 	<description>service-commodity</description>
 	<properties>
 		<java.version>11</java.version>

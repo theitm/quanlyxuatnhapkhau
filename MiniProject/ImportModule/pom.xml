@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.haonguyen</groupId>
-    <artifactId>ImportService</artifactId>
+    <artifactId>ImportModule</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ImportService</name>
-    <description>ImportService</description>
+    <name>ImportModule</name>
+    <description>Import-Service</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.0</spring-cloud.version>

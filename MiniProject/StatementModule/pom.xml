@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.haonguyen</groupId>
-	<artifactId>StatementService</artifactId>
+	<artifactId>StatementModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>StatementService</name>
+	<name>StatementModule</name>
 	<description>service-statement</description>
 	<properties>
 		<java.version>11</java.version>
