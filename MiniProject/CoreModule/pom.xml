@@ -12,7 +12,7 @@
 	<artifactId>CoreModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CoreModule</name>
-	<description>core-module</description>
+	<description>CoreModul</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
