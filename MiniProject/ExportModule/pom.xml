@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.haonguyen</groupId>
-	<artifactId>ExportService</artifactId>
+	<artifactId>ExportModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ExportService</name>
-	<description> service-export</description>
+	<name>ExportModule</name>
+	<description>service-export</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
