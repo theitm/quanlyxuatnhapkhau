@@ -13,6 +13,7 @@
         <module name="CommodityModule" />
         <module name="HystrixDashBoard" />
         <module name="APIGateWay" />
+        <module name="CoreModule" />
         <module name="ExportModule" />
         <module name="ImportModule" />
       </profile>
@@ -21,6 +22,7 @@
       <module name="APIGateWay" target="11" />
       <module name="CommodityModule" target="11" />
       <module name="Coremodule" target="11" />
+      <module name="CoreModule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportModule" target="11" />
       <module name="HystrixDashBoard" target="11" />
@@ -32,6 +34,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateWay" options="-parameters" />
       <module name="CommodityModule" options="-parameters" />
+      <module name="CoreModule" options="-parameters" />
       <module name="Coremodule" options="-parameters" />
       <module name="DiscoveryServer" options="-parameters" />
       <module name="ExportModule" options="-parameters" />

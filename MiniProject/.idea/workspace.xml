@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2f37295-7fcd-4dc3-9a4c-47f2e1578813" name="Default Changelist" comment="" />
+    <list default="true" id="f2f37295-7fcd-4dc3-9a4c-47f2e1578813" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/CoreModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CoreModule/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
