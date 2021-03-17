@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -22,6 +23,7 @@ public class CommodityEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
+    @Type(type = "uuid-char")
     private UUID id_sectors;
     private String commodity_name;
     private String description;
@@ -37,7 +39,7 @@ public class CommodityEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     @JoinColumn(name = "id_commodity")
-    Collection<DetailsImport_ExportEntity> iExportEntities;
+    Collection<DetailsImportExportEntity> iExportEntities;
 
 
     @OneToMany(
@@ -50,4 +52,6 @@ public class CommodityEntity {
     @JsonManagedReference
     Collection<WarehouseCommodityEntity> warehouseEntity;
 
+    public CommodityEntity(Object save, HttpStatus ok) {
+    }
 }

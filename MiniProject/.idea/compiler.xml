@@ -2,23 +2,33 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="StatementModule" />
         <module name="DiscoveryServer" />
-        <module name="CommodityModule" />
         <module name="HystrixDashBoard" />
         <module name="APIGateWay" />
         <module name="CoreModule" />
         <module name="ExportModule" />
         <module name="ImportModule" />
       </profile>
+      <profile name="Annotation profile for CommodityModule" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.1.Final/mapstruct-processor-1.4.1.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.1.Final/mapstruct-1.4.1.Final.jar" />
+        </processorPath>
+        <module name="CommodityModule" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="APIGateWay" target="11" />
-      <module name="CommodityModule" target="11" />
+      <module name="CommodityModule" target="1.8" />
       <module name="CoreModule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportModule" target="11" />

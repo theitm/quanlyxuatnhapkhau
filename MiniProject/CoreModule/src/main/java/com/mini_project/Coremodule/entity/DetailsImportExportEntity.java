@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "tb_details_iexport")
-public class DetailsImport_ExportEntity {
+public class DetailsImportExportEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
