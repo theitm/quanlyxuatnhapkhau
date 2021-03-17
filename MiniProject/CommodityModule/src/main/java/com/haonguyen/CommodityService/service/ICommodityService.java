@@ -8,11 +8,8 @@ import java.util.UUID;
 
 public interface ICommodityService {
 //    CommodityEntity updateCommodity(CommodityEntity commodityEntity);
-//    CommodityEntity addCommodity(CommodityEntity commodityEntity);
 //    CommodityEntity findCommodityById(UUID id);
 //    void deleteCommodity(UUID id);
 //    List<CommodityEntity> findCommodityById_Sectors(UUID id_Sectors);
-
-
-    Object save(CommodityCreateDto commodityCreateDto);
+    CommodityEntity addCommodity(CommodityCreateDto commodityCreateDto);
 }

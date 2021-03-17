@@ -43,7 +43,7 @@ public class Import_ExportEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    Collection<DetailsImport_ExportEntity> commodityEntities;
+    Collection<DetailsImportExportEntity> commodityEntities;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_country", referencedColumnName = "id")

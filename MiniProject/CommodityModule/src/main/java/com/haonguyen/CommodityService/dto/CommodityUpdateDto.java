@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import java.util.UUID;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CommodityCreateDto {
+public class CommodityUpdateDto {
 
 
     private String commodity_name;
@@ -20,6 +19,7 @@ public class CommodityCreateDto {
     private String unit;
     @Type(type = "uuid-char")
     private UUID id_sectors;
+
 
 
     public String getCommodity_name() {

@@ -11,8 +11,9 @@ import java.util.UUID;
 
 @Repository
 public interface ICommodityRepository extends JpaRepository<CommodityEntity,UUID> {
+//    CommodityEntity findCommodityById(UUID id);
 
-    CommodityEntity findCommodityById(UUID id);
+//    CommodityEntity findCommodityById(UUID id);
 
-    List<CommodityEntity> findCommodityById_Sectors(UUID id_sectors);
+//    List<CommodityEntity> findCommodityById_Sectors(UUID id_Sectors);
 }

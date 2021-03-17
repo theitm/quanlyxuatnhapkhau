@@ -17,4 +17,5 @@ public interface ICommodityMapper {
 
     List<CommodityEntity> fromCreateToEntity(List<CommodityCreateDto> createDto);
 
+
 }

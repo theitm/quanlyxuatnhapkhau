@@ -4,7 +4,7 @@ package com.haonguyen.CommodityService.controller;
 import com.haonguyen.CommodityService.dto.CommodityCreateDto;
 import com.haonguyen.CommodityService.service.ICommodityService;
 import com.mini_project.Coremodule.entity.CommodityEntity;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,8 +46,8 @@ public class CommodityController {
 //        return iCommodityService.findCommodityById_Sectors(id_Sectors);
 //    }
     @PostMapping("/save")
-    public CommodityEntity saveUser(@RequestBody CommodityCreateDto commodityCreateDto) {
-        return new CommodityEntity(this.iCommodityService.save(commodityCreateDto), HttpStatus.OK);
+    public CommodityEntity addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
+        return iCommodityService.addCommodity(commodityCreateDto);
     }
 //    @GetMapping("/check")
 //    public List<CommodityWarehouseDTO> checkCommodityInWarehouse() {

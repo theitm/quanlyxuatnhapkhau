@@ -2,7 +2,7 @@ package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
-import com.mini_project.Coremodule.entity.DetailsImport_ExportEntity;
+import com.mini_project.Coremodule.entity.DetailsImportExportEntity;
 import com.mini_project.Coremodule.entity.Import_ExportEntity;
 
 import java.util.ArrayList;
@@ -24,14 +24,14 @@ public class ImportReceiptMapperImpl implements ImportReceiptMapper {
     }
 
     @Override
-    public List<DetailsImport_ExportEntity> importReceiptDTOToDetailsEntity(ImportReceiptDTO importReceiptDTO) {
+    public List<DetailsImportExportEntity> importReceiptDTOToDetailsEntity(ImportReceiptDTO importReceiptDTO) {
         if (importReceiptDTO == null) {
             return null;
         }
         List<ItemReceiptDTO> itemReceiptDTOList = importReceiptDTO.getItem();
-        List<DetailsImport_ExportEntity> detailsIExportEntityList = new ArrayList<>();
+        List<DetailsImportExportEntity> detailsIExportEntityList = new ArrayList<>();
         for (ItemReceiptDTO list : itemReceiptDTOList) {
-            DetailsImport_ExportEntity detailsIExportEntity = new DetailsImport_ExportEntity();
+            DetailsImportExportEntity detailsIExportEntity = new DetailsImportExportEntity();
             detailsIExportEntity.setDescription(list.getDescription());
             detailsIExportEntity.setQuantity(list.getQuantity());
             detailsIExportEntity.setTotal(list.getTotal());

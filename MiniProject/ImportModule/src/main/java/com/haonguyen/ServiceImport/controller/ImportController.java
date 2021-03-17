@@ -31,7 +31,8 @@ public class ImportController {
 
     @PutMapping("/updateReceipt/{idReceipt}")
     public ResponseEntity updateReceipt() {
-        return ResponseEntity.ok().body("success");
+        return
+                ResponseEntity.ok().body("success");
     }
 
     @GetMapping("/allReceipt")

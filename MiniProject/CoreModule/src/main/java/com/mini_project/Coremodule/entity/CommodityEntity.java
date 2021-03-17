@@ -23,7 +23,8 @@ public class CommodityEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private UUID id_Sectors;
+    @Type(type = "uuid-char")
+    private UUID id_sectors;
     private String commodity_name;
     private String description;
     private Float price;
@@ -38,7 +39,7 @@ public class CommodityEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     @JoinColumn(name = "id_commodity")
-    Collection<DetailsImport_ExportEntity> iExportEntities;
+    Collection<DetailsImportExportEntity> iExportEntities;
 
 
     @OneToMany(

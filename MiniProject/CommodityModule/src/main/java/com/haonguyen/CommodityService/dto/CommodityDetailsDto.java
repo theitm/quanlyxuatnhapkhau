@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import java.util.UUID;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CommodityCreateDto {
+public class CommodityDetailsDto {
 
-
+//    @Type(type = "uuid-char")
+    private UUID id;
     private String commodity_name;
     private String description;
     private Float price;
@@ -21,6 +21,13 @@ public class CommodityCreateDto {
     @Type(type = "uuid-char")
     private UUID id_sectors;
 
+//    public UUID getId() {
+//        return id;
+//    }
+//
+//    public void setId(UUID id) {
+//        this.id = id;
+//    }
 
     public String getCommodity_name() {
         return commodity_name;

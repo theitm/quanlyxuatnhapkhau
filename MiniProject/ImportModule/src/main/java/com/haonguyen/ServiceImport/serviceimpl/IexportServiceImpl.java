@@ -1,6 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
-import com.haonguyen.ServiceImport.repository.IexportRepository;
+import com.haonguyen.ServiceImport.repository.IImportExportRepository;
 import com.haonguyen.ServiceImport.service.IexportService;
 import com.mini_project.Coremodule.entity.CommodityEntity;
 import com.mini_project.Coremodule.entity.CountryEntity;
@@ -19,55 +19,55 @@ public class IexportServiceImpl implements IexportService {
     public IexportServiceImpl(){};
 
     @Autowired
-    private IexportRepository iexportRepository;
+    private IImportExportRepository IImportExportRepository;
 
     @Override
     public Import_ExportEntity saveI_export(Import_ExportEntity iExportEntity) {
-        return iexportRepository.saveAndFlush(iExportEntity);
+        return IImportExportRepository.saveAndFlush(iExportEntity);
     }
 
     @Override
     public List<Import_ExportEntity> getAllReceipt(){
-        return iexportRepository.findAll();
+        return IImportExportRepository.findAll();
     }
 
     @Override
     public List<Import_ExportEntity> getByIdI_Export(UUID idI_Export){
-        return iexportRepository.findAllById(Collections.singleton(idI_Export));
+        return IImportExportRepository.findAllById(Collections.singleton(idI_Export));
     }
 
     @Override
     public void deleteById(UUID idI_Export){
-        iexportRepository.deleteById(idI_Export);
+        IImportExportRepository.deleteById(idI_Export);
     }
 
     @Override
     public List<Import_ExportEntity> searchI_export(String key) {
         if(key != null){
-        return iexportRepository.searchI_exportQueryIgnoreCase(key);
+        return IImportExportRepository.searchI_exportQueryIgnoreCase(key);
         }
-        return iexportRepository.findAll();
+        return IImportExportRepository.findAll();
     }
 
     @Override
     public WarehouseEntity findWarehouseById(UUID id) {
-        return iexportRepository.findByIdWarehouse(id);
+        return IImportExportRepository.findByIdWarehouse(id);
     }
 
     @Override
     public CountryEntity findCountryById(UUID id) {
-        return iexportRepository.findByIdCountry(id);
+        return IImportExportRepository.findByIdCountry(id);
     }
 
     @Override
     public CommodityEntity findCommodityById(UUID id) {
 
-        return iexportRepository.findByIdCommodity(id);
+        return IImportExportRepository.findByIdCommodity(id);
     }
 
     @Override
     public List<WarehouseEntity> findAllWarehouse() {
 
-        return iexportRepository.findAllWarehouse();
+        return IImportExportRepository.findAllWarehouse();
     }
 }

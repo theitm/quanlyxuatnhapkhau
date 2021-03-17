@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface IexportRepository extends JpaRepository<Import_ExportEntity, UUID> {
+public interface IImportExportRepository extends JpaRepository<Import_ExportEntity, UUID> {
 
     @Query( "select distinct ie from I_exportEntity ie " +
             "inner join DetailsI_exportEntity de on ie.id = de.id_iexport " +

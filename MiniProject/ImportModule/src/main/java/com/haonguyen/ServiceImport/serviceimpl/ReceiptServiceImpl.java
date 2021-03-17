@@ -42,7 +42,7 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         List<DocumentEntity> documentEntityList = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
 
-        List<DetailsImport_ExportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
+        List<DetailsImportExportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
 
         List<CommodityEntity> commodityEntityList = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class ReceiptServiceImpl implements ReceiptService {
         }
 
         if (Max < warehouseEntity.getCapacity()) {
-            for (DetailsImport_ExportEntity listDetails : detailsIExportEntityList) {
+            for (DetailsImportExportEntity listDetails : detailsIExportEntityList) {
                 for (CommodityEntity listCommodity : commodityEntityList) {
                     Double total = listDetails.getQuantity() * listCommodity.getPrice();
                     listDetails.setId_commodity(listCommodity);

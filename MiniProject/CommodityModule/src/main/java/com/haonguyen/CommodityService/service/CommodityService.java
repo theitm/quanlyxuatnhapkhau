@@ -4,11 +4,11 @@ package com.haonguyen.CommodityService.service;
 
 import com.haonguyen.CommodityService.dto.CommodityCreateDto;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
+import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
 import com.mini_project.Coremodule.entity.CommodityEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 
@@ -24,16 +24,18 @@ public class CommodityService implements ICommodityService {
     }
 
 
-//    @Override
-//    public CommodityEntity updateCommodity(CommodityEntity commodityEntity) {
-//
-//     return iCommodityRepository.save(commodityEntity);
-//    }
-//
-//    @Override
-//    public CommodityEntity addCommodity(CommodityEntity commodityEntity) {
-//        return iCommodityRepository.save(commodityEntity);
-//    }
+    @Override
+      public CommodityEntity addCommodity(CommodityCreateDto commodityCreateDto) {
+        if (commodityCreateDto == null) {
+            return null;
+        }
+        ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
+        CommodityEntity commodityEntity = iCommodityMapper.fromCreateToEntity(commodityCreateDto);
+        iCommodityRepository.saveAndFlush(commodityEntity);
+        return commodityEntity;
+    }
+
+
 //
 //    @Override
 //    public void deleteCommodity(UUID id) {
@@ -42,9 +44,10 @@ public class CommodityService implements ICommodityService {
 //
 //    @Override
 //    public CommodityEntity findCommodityById(UUID id) {
-//        return this.commodityMapper.toCreateDto(this.iCommodityRepository.findCommodityById(id));
+//        return iCommodityRepository.findCommodityById(id);
 //
 //    }
+
 //
 //    @Override
 //    public List<CommodityEntity> findCommodityById_Sectors(UUID id_Sectors) {
@@ -52,11 +55,6 @@ public class CommodityService implements ICommodityService {
 //
 //    }
 
-    @Override
-    public Object save(CommodityCreateDto commodityCreateDto) {
-      CommodityEntity commodityEntity =this.iCommodityRepository.save(this.commodityMapper.fromCreateToEntity(commodityCreateDto));
-      return this.commodityMapper.toCreateDto(commodityEntity);
-    }
 
 
 }
