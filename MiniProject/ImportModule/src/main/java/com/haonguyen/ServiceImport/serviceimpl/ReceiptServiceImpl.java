@@ -8,7 +8,7 @@ import com.haonguyen.ServiceImport.mapper.ItemReceiptMapper;
 import com.haonguyen.ServiceImport.mapper.ItemReceiptMapperImpl;
 import com.haonguyen.ServiceImport.service.IexportService;
 import com.haonguyen.ServiceImport.service.ReceiptService;
-import com.mini_project.Coremodule.entity.*;
+import com.mini_project.CoreModule.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         WarehouseEntity warehouseEntity = iexportService.findWarehouseById(importReceiptDTO.getIdWarehouse());
 
-        Import_ExportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
+        ImportExportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
 
         List<DocumentEntity> documentEntityList = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
 
@@ -75,7 +75,7 @@ public class ReceiptServiceImpl implements ReceiptService {
             iExportEntity.setDocumentEntities(documentEntityList);
             iExportEntity.setCommodityEntities(detailsIExportEntityList);
 
-            Import_ExportEntity iExportEntityNew = iexportService.saveI_export(iExportEntity);
+            ImportExportEntity iExportEntityNew = iexportService.saveI_export(iExportEntity);
 
             return ResponseEntity.ok().body(iExportEntityNew);
         } else {

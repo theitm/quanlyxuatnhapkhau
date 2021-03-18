@@ -3,12 +3,9 @@ package com.haonguyen.CommodityService.controller;
 
 import com.haonguyen.CommodityService.dto.CommodityCreateDto;
 import com.haonguyen.CommodityService.service.ICommodityService;
-import com.mini_project.Coremodule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.CommodityEntity;
 
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 
 @RestController

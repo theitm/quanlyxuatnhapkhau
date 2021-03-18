@@ -2,8 +2,8 @@ package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
-import com.mini_project.Coremodule.entity.DetailsImportExportEntity;
-import com.mini_project.Coremodule.entity.Import_ExportEntity;
+import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
+import com.mini_project.CoreModule.entity.ImportExportEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.List;
 public class ImportReceiptMapperImpl implements ImportReceiptMapper {
 
     @Override
-    public Import_ExportEntity importReceiptDTOToi_exportEntity(ImportReceiptDTO importReceiptDTO) {
+    public ImportExportEntity importReceiptDTOToi_exportEntity(ImportReceiptDTO importReceiptDTO) {
         if (importReceiptDTO == null) {
             return null;
         }
 
-        Import_ExportEntity iExportEntity = new Import_ExportEntity();
+        ImportExportEntity iExportEntity = new ImportExportEntity();
         iExportEntity.setDate(importReceiptDTO.getDateReceipt());
         iExportEntity.setType(importReceiptDTO.getType());
 

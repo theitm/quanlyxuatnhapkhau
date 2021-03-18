@@ -1,10 +1,10 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -23,35 +23,45 @@ public class CommodityEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    @Type(type = "uuid-char")
-    private UUID id_sectors;
-    private String commodity_name;
+
+    @Column(name = "commodity_name")
+    private String commodityName;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "price")
     private Float price;
+
+    @Column(name = "unit")
     private String unit;
 
-
     @OneToMany(
+            mappedBy = "commodityEntity",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    @JoinColumn(name = "id_commodity")
-    Collection<DetailsImportExportEntity> iExportEntities;
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities;
 
 
     @OneToMany(
-            mappedBy = "id_commodity",
+            mappedBy = "commodityEntity",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    Collection<WarehouseCommodityEntity> warehouseEntity;
+    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities;
 
-    public CommodityEntity(Object save, HttpStatus ok) {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_of_commodity")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private TypeOfCommodityEntity typeOfCommodityEntity;
+
 }

@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -22,23 +22,26 @@ public class WarehouseEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private String warehouse_name;
+
+    @Column(name = "warehouse_name")
+    private String warehouseName;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "capacity")
     private Double capacity;
 
-
     @OneToMany(
-            mappedBy = "id_warehouse",
+            mappedBy = "warehouseEntity",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    Collection<WarehouseCommodityEntity> commodityEntities;
+    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities;
 
-//    @OneToMany( cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_warehouse")
-//    private Collection<I_exportEntity> i_exportEntities;
+
 
 }

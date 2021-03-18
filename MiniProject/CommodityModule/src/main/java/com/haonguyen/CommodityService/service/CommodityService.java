@@ -6,10 +6,8 @@ import com.haonguyen.CommodityService.dto.CommodityCreateDto;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
-import com.mini_project.Coremodule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 
 @Service

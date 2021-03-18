@@ -1,7 +1,7 @@
 package com.haonguyen.CommodityService.mapper;
 
 import com.haonguyen.CommodityService.dto.CommodityCreateDto;
-import com.mini_project.Coremodule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;

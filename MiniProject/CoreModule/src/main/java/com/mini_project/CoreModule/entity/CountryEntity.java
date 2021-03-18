@@ -1,9 +1,7 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -25,12 +23,21 @@ public class CountryEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private String country_name;
-    private Double tax;
-    private Double transport_fee;
 
-//    @OneToMany( cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_country")
-//    private Collection<I_exportEntity> i_exportEntities;
+    @Column(name = "country_name")
+    private String countryName;
+    @Column(name = "tax")
+    private Double tax;
+    @Column(name = "transport_fee")
+    private Double transportFee;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "countryEntity"
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonManagedReference
+    private Collection<EmbargoEntity> embargoEntities;
 
 }

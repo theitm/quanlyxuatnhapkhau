@@ -28,7 +28,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="APIGateWay" target="11" />
-      <module name="CommodityModule" target="1.8" />
+      <module name="CommodityModule" target="11" />
       <module name="CoreModule" target="11" />
       <module name="DiscoveryServer" target="11" />
       <module name="ExportModule" target="11" />

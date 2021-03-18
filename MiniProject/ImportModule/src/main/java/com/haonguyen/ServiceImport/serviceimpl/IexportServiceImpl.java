@@ -2,10 +2,10 @@ package com.haonguyen.ServiceImport.serviceimpl;
 
 import com.haonguyen.ServiceImport.repository.IImportExportRepository;
 import com.haonguyen.ServiceImport.service.IexportService;
-import com.mini_project.Coremodule.entity.CommodityEntity;
-import com.mini_project.Coremodule.entity.CountryEntity;
-import com.mini_project.Coremodule.entity.Import_ExportEntity;
-import com.mini_project.Coremodule.entity.WarehouseEntity;
+import com.mini_project.CoreModule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.CountryEntity;
+import com.mini_project.CoreModule.entity.ImportExportEntity;
+import com.mini_project.CoreModule.entity.WarehouseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,17 @@ public class IexportServiceImpl implements IexportService {
     private IImportExportRepository IImportExportRepository;
 
     @Override
-    public Import_ExportEntity saveI_export(Import_ExportEntity iExportEntity) {
+    public ImportExportEntity saveI_export(ImportExportEntity iExportEntity) {
         return IImportExportRepository.saveAndFlush(iExportEntity);
     }
 
     @Override
-    public List<Import_ExportEntity> getAllReceipt(){
+    public List<ImportExportEntity> getAllReceipt(){
         return IImportExportRepository.findAll();
     }
 
     @Override
-    public List<Import_ExportEntity> getByIdI_Export(UUID idI_Export){
+    public List<ImportExportEntity> getByIdI_Export(UUID idI_Export){
         return IImportExportRepository.findAllById(Collections.singleton(idI_Export));
     }
 
@@ -42,7 +42,7 @@ public class IexportServiceImpl implements IexportService {
     }
 
     @Override
-    public List<Import_ExportEntity> searchI_export(String key) {
+    public List<ImportExportEntity> searchI_export(String key) {
         if(key != null){
         return IImportExportRepository.searchI_exportQueryIgnoreCase(key);
         }

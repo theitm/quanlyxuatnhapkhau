@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule;
+package com.mini_project.CoreModule;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

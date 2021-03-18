@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -13,8 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tb_document")
-public class DocumentEntity {
+@Table(name = "tb_embargo")
+public class EmbargoEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -22,14 +22,25 @@ public class DocumentEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_iexport")
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "activate")
+    private Integer activate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_of_commodity")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
-    Import_ExportEntity id_iexport;
+    private TypeOfCommodityEntity typeOfCommodityEntity;
 
-    private String image_url;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_country")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private CountryEntity countryEntity;
 
-
+    
 }
