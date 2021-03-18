@@ -23,11 +23,15 @@ public class DocumentEntity {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "id_import_export")
+    @JoinColumn(name = "id_import_export",insertable = false,updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
     private ImportExportEntity importExportEntity;
+
+    @Column( name = "id_import_export")
+    @Type( type = "uuid-char")
+    private UUID idImportExport;
 
     @Column(name = "image_url")
     private String imageUrl;

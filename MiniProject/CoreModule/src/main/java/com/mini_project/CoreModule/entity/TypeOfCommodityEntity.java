@@ -1,12 +1,14 @@
 package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -36,7 +38,9 @@ public class TypeOfCommodityEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
-    private Collection<CommodityEntity> commodityEntities;
+    @JsonIgnore
+    private Collection<CommodityEntity> commodityEntities
+            = new ArrayList<CommodityEntity>();
 
     @OneToMany(cascade =CascadeType.ALL,
             mappedBy = "typeOfCommodityEntity"
@@ -44,14 +48,20 @@ public class TypeOfCommodityEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
-    private Collection<EmbargoEntity> embargoEntity;
+    @JsonIgnore
+    private Collection<EmbargoEntity> embargoEntity
+            = new ArrayList<EmbargoEntity>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_tax_bracket")
+    @JoinColumn(name = "id_tax_bracket",insertable = false , updatable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
     private TaxBracketEntity taxBracketEntity;
+
+    @Column( name = "id_tax_bracket")
+    @Type( type = "uuid-char")
+    private UUID idTaxBracket;
 
 
 }

@@ -24,18 +24,27 @@ public class DetailsImportExportEntity {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_import_export")
+    @JoinColumn(name = "id_import_export",insertable = false,updatable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
     private ImportExportEntity importExportEntity;
 
+    @Column( name = "id_import_export")
+    @Type( type = "uuid-char")
+    private UUID idImportExport;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_commodity")
+    @JoinColumn(name = "id_commodity" ,insertable = false,updatable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
     private CommodityEntity commodityEntity;
+
+    @Column( name = "id_commodity")
+    @Type( type = "uuid-char")
+    private UUID idCommodity;
+
 
     @Column(name = "description")
     private String description;

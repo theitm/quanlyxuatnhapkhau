@@ -29,18 +29,27 @@ public class EmbargoEntity {
     private Integer activate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_type_of_commodity")
+    @JoinColumn(name = "id_type_of_commodity",insertable = false , updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
     private TypeOfCommodityEntity typeOfCommodityEntity;
 
+    @Column( name = "id_type_of_commodity")
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_country")
+    @JoinColumn(name = "id_country",insertable = false , updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
     private CountryEntity countryEntity;
 
-    
+    @Column( name = "id_country")
+    @Type( type = "uuid-char")
+    private UUID idCountry;
+
+
 }
