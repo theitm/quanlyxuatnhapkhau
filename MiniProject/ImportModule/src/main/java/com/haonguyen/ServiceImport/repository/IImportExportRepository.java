@@ -1,6 +1,6 @@
 package com.haonguyen.ServiceImport.repository;
 
-import com.mini_project.Coremodule.entity.*;
+import com.mini_project.CoreModule.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface IImportExportRepository extends JpaRepository<Import_ExportEntity, UUID> {
+public interface IImportExportRepository extends JpaRepository<ImportExportEntity, UUID> {
 
     @Query( "select distinct ie from I_exportEntity ie " +
             "inner join DetailsI_exportEntity de on ie.id = de.id_iexport " +
@@ -20,7 +20,7 @@ public interface IImportExportRepository extends JpaRepository<Import_ExportEnti
             "where (wa.warehouse_name like trim(:key))" +
             "or (co.commodity_name like trim(:key))" +
             "or (cou.country_name like trim(:key))")
-    List<Import_ExportEntity> searchI_exportQueryIgnoreCase(@Param("key") String key);
+    List<ImportExportEntity> searchI_exportQueryIgnoreCase(@Param("key") String key);
 
     @Query(value = "SELECT w FROM WarehouseEntity w WHERE w.id = :id")
     WarehouseEntity findByIdWarehouse(@Param("id") UUID id);

@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -16,18 +16,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "tb_iexport")
-public class Import_ExportEntity {
+public class ImportExportEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
+    @Column(name = "date")
     private Date date;
+    @Column(name = "type")
     private int type;
 
     @OneToMany(
-            mappedBy = "id_iexport",
+            mappedBy = "importExportEntity",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonManagedReference
@@ -35,23 +37,23 @@ public class Import_ExportEntity {
     @EqualsAndHashCode.Exclude
     private Collection<DocumentEntity> documentEntities;
 
-
     @OneToMany(
-            mappedBy = "id_iexport",
+            mappedBy = "importExportEntity",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    Collection<DetailsImportExportEntity> commodityEntities;
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_country", referencedColumnName = "id")
-    private CountryEntity id_country;
+    private CountryEntity countryEntity;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_warehouse", referencedColumnName = "id")
-    private WarehouseEntity id_warehouse;
+    private WarehouseEntity warehouseEntity;
 
 
 }

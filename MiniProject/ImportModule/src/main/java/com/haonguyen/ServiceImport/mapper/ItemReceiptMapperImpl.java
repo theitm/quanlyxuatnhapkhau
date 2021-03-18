@@ -1,7 +1,7 @@
 package com.haonguyen.ServiceImport.mapper;
 
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
-import com.mini_project.Coremodule.entity.DocumentEntity;
+import com.mini_project.CoreModule.entity.DocumentEntity;
 
 import java.util.ArrayList;
 import java.util.List;

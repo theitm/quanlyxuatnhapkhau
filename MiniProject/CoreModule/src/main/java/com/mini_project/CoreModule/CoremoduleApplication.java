@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule;
+package com.mini_project.CoreModule;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

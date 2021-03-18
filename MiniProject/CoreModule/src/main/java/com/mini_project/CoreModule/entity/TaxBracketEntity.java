@@ -1,9 +1,7 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -25,11 +23,20 @@ public class TaxBracketEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String tax_bracket_name;
-    private String description;
-    private Float cofficient;
+    @Column(name = "tax_bracket_name")
+    private String taxBracketName;
 
-    @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_tax_bracket")
-    private Collection<SectorsEntity> sectorsEntities;
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "coefficient")
+    private Float coefficient;
+
+    @OneToMany( cascade = CascadeType.ALL,
+            mappedBy = "taxBracketEntity"
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonManagedReference
+    private Collection<TypeOfCommodityEntity> typeOfCommodityEntities;
 }

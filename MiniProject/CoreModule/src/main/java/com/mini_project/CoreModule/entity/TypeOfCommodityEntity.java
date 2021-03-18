@@ -16,34 +16,35 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "tb_type_of_commodity")
-public class SectorsEntity {
+public class TypeOfCommodityEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private String sectors_name;
+
+    @Column(name = "type_of_commodity_name")
+    private String typeName;
+
+    @Column(name = "description")
     private String description;
 
-
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "sectorsEntity"
+            mappedBy = "typeOfCommodityEntity"
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
     private Collection<CommodityEntity> commodityEntities;
 
-
     @OneToMany(cascade =CascadeType.ALL,
-            mappedBy = "sectorsEntity"
+            mappedBy = "typeOfCommodityEntity"
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
     private Collection<EmbargoEntity> embargoEntity;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tax_bracket")

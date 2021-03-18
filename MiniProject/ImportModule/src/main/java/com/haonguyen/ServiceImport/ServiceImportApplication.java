@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 
 @SpringBootApplication(scanBasePackages = "com.haonguyen.ServiceImport")
-@EntityScan(basePackages = "com.mini_project.Coremodule.entity")
+@EntityScan(basePackages = "com.mini_project.CoreModule.entity")
 public class ServiceImportApplication {
 
 	public static void main(String[] args) {

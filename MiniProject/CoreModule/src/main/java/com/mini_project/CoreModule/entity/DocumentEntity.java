@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -23,13 +23,14 @@ public class DocumentEntity {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "id_iexport")
+    @JoinColumn(name = "id_import_export")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
-    Import_ExportEntity id_iexport;
+    private ImportExportEntity importExportEntity;
 
-    private String image_url;
+    @Column(name = "image_url")
+    private String imageUrl;
 
 
 }

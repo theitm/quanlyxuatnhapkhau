@@ -1,9 +1,7 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -24,4 +22,25 @@ public class EmbargoEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "activate")
+    private Integer activate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_of_commodity")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private TypeOfCommodityEntity typeOfCommodityEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_country")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private CountryEntity countryEntity;
+
+    
 }

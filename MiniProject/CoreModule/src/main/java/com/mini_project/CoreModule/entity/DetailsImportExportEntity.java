@@ -1,4 +1,4 @@
-package com.mini_project.Coremodule.entity;
+package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tb_details_iexport")
+@Table(name = "tb_details_import_export")
 public class DetailsImportExportEntity {
 
     @Id
@@ -23,25 +23,29 @@ public class DetailsImportExportEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_iexport")
+    @JoinColumn(name = "id_import_export")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
-    Import_ExportEntity id_iexport;
-
+    private ImportExportEntity importExportEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_commodity")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonBackReference
-    CommodityEntity id_commodity;
+    private CommodityEntity commodityEntity;
 
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "quantity")
     private Double quantity;
+
+    @Column(name = "total")
     private Double total;
+
 }
 
 
