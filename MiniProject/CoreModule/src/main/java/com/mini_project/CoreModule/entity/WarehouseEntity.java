@@ -22,8 +22,14 @@ public class WarehouseEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private String warehouse_name;
+
+    @Column(name = "warehouse_name")
+    private String warehouseName;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "capacity")
     private Double capacity;
 
     @OneToMany(
