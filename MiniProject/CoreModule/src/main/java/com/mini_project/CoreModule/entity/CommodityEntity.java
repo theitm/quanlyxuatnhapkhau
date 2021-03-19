@@ -1,12 +1,14 @@
 package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -44,7 +46,9 @@ public class CommodityEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    private Collection<DetailsImportExportEntity> detailsImportExportEntities;
+    @JsonIgnore
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities
+            = new ArrayList<DetailsImportExportEntity>();
 
 
     @OneToMany(
@@ -55,13 +59,19 @@ public class CommodityEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities;
+    @JsonIgnore
+    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities
+            = new ArrayList<WarehouseCommodityEntity>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_type_of_commodity")
+    @JoinColumn(name = "id_type_of_commodity",insertable = false,updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
     private TypeOfCommodityEntity typeOfCommodityEntity;
+
+    @Column( name = "id_type_of_commodity")
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
 
 }

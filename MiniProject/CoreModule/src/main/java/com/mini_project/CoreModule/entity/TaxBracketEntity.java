@@ -1,11 +1,13 @@
 package com.mini_project.CoreModule.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -38,5 +40,7 @@ public class TaxBracketEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
-    private Collection<TypeOfCommodityEntity> typeOfCommodityEntities;
+    @JsonIgnore
+    private Collection<TypeOfCommodityEntity> typeOfCommodityEntities
+            = new ArrayList<TypeOfCommodityEntity>();
 }

@@ -3,9 +3,9 @@
 -- Host: localhost    Database: import_export_db
 -- ------------------------------------------------------
 -- Server version	8.0.23
-DROP database IF EXISTS `import_export_db_test`;
-create database import_export_db_test;
-use import_export_db_test;
+DROP database IF EXISTS `import_export_db`;
+create database import_export_db;
+use import_export_db;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
