@@ -37,7 +37,7 @@ public class ImportExportEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonIgnore
-    private List<DocumentEntity> documentEntities
+    private Collection<DocumentEntity> documentEntities
             = new ArrayList<DocumentEntity>();
 
     @OneToMany(
@@ -49,7 +49,7 @@ public class ImportExportEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     @JsonIgnore
-    private List<DetailsImportExportEntity> detailsImportExportEntities
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities
             = new ArrayList<DetailsImportExportEntity>() ;
 
     @OneToOne(cascade = CascadeType.ALL)
