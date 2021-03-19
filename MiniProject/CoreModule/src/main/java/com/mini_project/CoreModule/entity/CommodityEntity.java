@@ -54,7 +54,7 @@ public class CommodityEntity {
     @OneToMany(
             mappedBy = "commodityEntity",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            fetch = FetchType.LAZY
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

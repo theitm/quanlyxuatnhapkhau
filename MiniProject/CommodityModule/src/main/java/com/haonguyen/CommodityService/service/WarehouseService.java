@@ -4,7 +4,6 @@ import com.haonguyen.CommodityService.dto.CommodityInWarehouseDto;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
-import com.mini_project.Coremodule.entity.CommodityEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +21,7 @@ public class WarehouseService implements IWarehouseService{
 
     @Override
     public List<CommodityInWarehouseDto> checkCommodityInWarehouse() {
-        ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-        List<CommodityInWarehouseDto> commodityInWarehouseDtos = iCommodityMapper.
-                toCommodityInWarehouse(iCommodityRepository.CommodityInWarehouse());
+        List<CommodityInWarehouseDto> commodityInWarehouseDtos = iCommodityRepository.CommodityInWarehouse();
         return commodityInWarehouseDtos;
     }
 }

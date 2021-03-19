@@ -1,14 +1,9 @@
 package com.haonguyen.CommodityService.mapper;
 
-<<<<<<< HEAD
-import com.haonguyen.CommodityService.Entity.CheckWarehouseCommodity;
+
 import com.haonguyen.CommodityService.dto.*;
-import com.mini_project.Coremodule.entity.CommodityEntity;
-import com.mini_project.Coremodule.entity.WarehouseCommodityEntity;
-=======
-import com.haonguyen.CommodityService.dto.CommodityCreateDto;
+
 import com.mini_project.CoreModule.entity.CommodityEntity;
->>>>>>> origin/develop
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -24,9 +19,8 @@ public interface ICommodityMapper {
     CommodityUpdateDto toUpdateDto(CommodityEntity commodityEntity);
     CommodityEntity fromUpdateToEntity(CommodityUpdateDto searchDto);
 
-    List<StyleOfCommodityDto> toFindSectorId(List<CommodityEntity> commodityEntities);
+    List<TypeOfCommodityDto> toFindSectorId(List<CommodityEntity> commodityEntities);
 
-    List<CommodityInWarehouseDto> toCommodityInWarehouse(List<CheckWarehouseCommodity> checkWarehouseCommodities);
 
 
 

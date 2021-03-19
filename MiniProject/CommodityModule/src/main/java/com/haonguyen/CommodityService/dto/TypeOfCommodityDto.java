@@ -5,18 +5,19 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class StyleOfCommodityDto {
-    private String commodity_name;
+public class TypeOfCommodityDto {
+    private String commodityName;
     private String description;
     private Float price;
     private String unit;
 
-    public String getCommodity_name() {
-        return commodity_name;
+
+    public String getCommodityName() {
+        return commodityName;
     }
 
-    public void setCommodity_name(String commodity_name) {
-        this.commodity_name = commodity_name;
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName;
     }
 
     public String getDescription() {
