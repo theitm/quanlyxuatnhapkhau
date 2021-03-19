@@ -2,39 +2,20 @@ package com.haonguyen.CommodityService.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
-
-import java.util.UUID;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class CommodityUpdateDto {
-    @Type(type = "uuid-char")
-    private UUID id;
+public class StyleOfCommodityDto {
     private String commodity_name;
     private String description;
     private Float price;
     private String unit;
-    @Type(type = "uuid-char")
-    private UUID id_sectors;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getCommodity_name() {
-
         return commodity_name;
     }
 
     public void setCommodity_name(String commodity_name) {
-
         this.commodity_name = commodity_name;
     }
 
@@ -60,13 +41,5 @@ public class CommodityUpdateDto {
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public UUID getId_sectors() {
-        return id_sectors;
-    }
-
-    public void setId_sectors(UUID id_sectors) {
-        this.id_sectors = id_sectors;
     }
 }
