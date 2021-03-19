@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import java.util.UUID;
 
 
@@ -14,20 +13,19 @@ import java.util.UUID;
 public class CommodityCreateDto {
 
 
-    private String commodity_name;
+    private String commodityName;
     private String description;
     private Float price;
     private String unit;
     @Type(type = "uuid-char")
-    private UUID id_sectors;
+    private UUID idTypeOfCommodity;
 
-
-    public String getCommodity_name() {
-        return commodity_name;
+    public String getCommodityName() {
+        return commodityName;
     }
 
-    public void setCommodity_name(String commodity_name) {
-        this.commodity_name = commodity_name;
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName;
     }
 
     public String getDescription() {
@@ -54,11 +52,11 @@ public class CommodityCreateDto {
         this.unit = unit;
     }
 
-    public UUID getId_sectors() {
-        return id_sectors;
+    public UUID getIdTypeOfCommodity() {
+        return idTypeOfCommodity;
     }
 
-    public void setId_sectors(UUID id_sectors) {
-        this.id_sectors = id_sectors;
+    public void setIdTypeOfCommodity(UUID idTypeOfCommodity) {
+        this.idTypeOfCommodity = idTypeOfCommodity;
     }
 }

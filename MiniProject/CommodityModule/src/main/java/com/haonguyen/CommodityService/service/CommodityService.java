@@ -1,23 +1,21 @@
 package com.haonguyen.CommodityService.service;
 
 
-
 import com.haonguyen.CommodityService.dto.CommodityCreateDto;
 import com.haonguyen.CommodityService.dto.CommoditySearchDto;
 import com.haonguyen.CommodityService.dto.CommodityUpdateDto;
-import com.haonguyen.CommodityService.dto.StyleOfCommodityDto;
+import com.haonguyen.CommodityService.dto.TypeOfCommodityDto;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
+
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
 import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.UUID;
 
-=======
->>>>>>> origin/develop
+
 
 @Service
 public class CommodityService implements ICommodityService {
@@ -43,7 +41,7 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
-    public CommodityEntity updateCommodity(CommodityUpdateDto commodityUpdateDto){
+    public CommodityUpdateDto updateCommodity(CommodityUpdateDto commodityUpdateDto){
         if (commodityUpdateDto == null){
             return null;
         }
@@ -53,7 +51,9 @@ public class CommodityService implements ICommodityService {
 
         iCommodityRepository.save(commodityEntity);
 
-        return commodityEntity;
+        CommodityUpdateDto commodityUpdateDto1 =iCommodityMapper.toUpdateDto(commodityEntity);
+
+        return commodityUpdateDto1;
     }
 
     @Override
@@ -63,24 +63,25 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public List<CommoditySearchDto> searchCommodity(String key) {
-        if (key != null) {
+        if (key==null) {
             ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.searchCommodity(key));
+            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.findAll());
             return commoditySearchDtos;
         }
         else {
+
             ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.findAll());
+            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.searchCommodity(key));
             return commoditySearchDtos;
         }
     }
 
     @Override
-    public List<StyleOfCommodityDto> findCommodityBySectorId(UUID id_sectors) {
+    public List<TypeOfCommodityDto> findCommodityByIdTypeOfCommodity(UUID idTypeOfCommodity) {
         ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-        List<StyleOfCommodityDto> styleOfCommodityDto = iCommodityMapper
-                .toFindSectorId(iCommodityRepository.findCommodityById_Sectors(id_sectors));
-        return styleOfCommodityDto;
+        List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityMapper
+                .toFindSectorId(iCommodityRepository.findCommodityByIdTypeOfCommodity(idTypeOfCommodity));
+        return typeOfCommodityDto;
 
     }
 }

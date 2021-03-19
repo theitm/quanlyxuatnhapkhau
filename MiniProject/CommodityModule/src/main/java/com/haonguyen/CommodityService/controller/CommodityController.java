@@ -4,11 +4,11 @@ package com.haonguyen.CommodityService.controller;
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.service.ICommodityService;
 import com.haonguyen.CommodityService.service.IWarehouseService;
-import com.mini_project.Coremodule.entity.CommodityEntity;
 import com.mini_project.CoreModule.entity.CommodityEntity;
-
-
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -35,27 +35,28 @@ public class CommodityController {
     }
 
 
-    @GetMapping("/search/{key}")
-    public List<CommoditySearchDto> searchCommodity(@PathVariable("key") String key) {
-
-        List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(key);
-
+    @PostMapping("/search")
+    public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) {
+        List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(keySearchDto.getKey());
         return commoditySearchDtos;
     }
 
-    @GetMapping("/get/{id_sector}")
-    public List<StyleOfCommodityDto> getCommodityBySectorId(@PathVariable("id_sector") UUID idSector){
-        List<StyleOfCommodityDto> styleOfCommodityDto = iCommodityService.findCommodityBySectorId(idSector);
-        return styleOfCommodityDto;
+
+
+
+    @GetMapping("/get/{idTypeOfCommodity}")
+    public List<TypeOfCommodityDto> getCommodityByIdTypeOfCommodity(@PathVariable("idTypeOfCommodity") UUID idTypeOfCommodity){
+        List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityService.findCommodityByIdTypeOfCommodity(idTypeOfCommodity);
+        return typeOfCommodityDto;
 
     }
 
     @PutMapping("/update")
-    public CommodityEntity updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto){
+    public CommodityUpdateDto updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto){
         return iCommodityService.updateCommodity(commodityUpdateDto);
     }
 
-    @GetMapping("/check")
+    @PostMapping("/check")
     public List<CommodityInWarehouseDto> checkCommodityInWarehouse() {
         return iWarehouseService.checkCommodityInWarehouse();
 

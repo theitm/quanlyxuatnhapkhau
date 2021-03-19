@@ -13,12 +13,12 @@ import java.util.UUID;
 public class CommodityUpdateDto {
     @Type(type = "uuid-char")
     private UUID id;
-    private String commodity_name;
+    private String commodityName;
     private String description;
     private Float price;
     private String unit;
     @Type(type = "uuid-char")
-    private UUID id_sectors;
+    private UUID idTypeOfCommodity;
 
     public UUID getId() {
         return id;
@@ -28,14 +28,20 @@ public class CommodityUpdateDto {
         this.id = id;
     }
 
-    public String getCommodity_name() {
-
-        return commodity_name;
+    public String getCommodityName() {
+        return commodityName;
     }
 
-    public void setCommodity_name(String commodity_name) {
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName;
+    }
 
-        this.commodity_name = commodity_name;
+    public UUID getIdTypeOfCommodity() {
+        return idTypeOfCommodity;
+    }
+
+    public void setIdTypeOfCommodity(UUID idTypeOfCommodity) {
+        this.idTypeOfCommodity = idTypeOfCommodity;
     }
 
     public String getDescription() {
@@ -62,11 +68,5 @@ public class CommodityUpdateDto {
         this.unit = unit;
     }
 
-    public UUID getId_sectors() {
-        return id_sectors;
-    }
 
-    public void setId_sectors(UUID id_sectors) {
-        this.id_sectors = id_sectors;
-    }
 }
