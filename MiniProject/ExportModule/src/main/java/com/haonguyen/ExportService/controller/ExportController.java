@@ -1,10 +1,11 @@
 package com.haonguyen.ExportService.controller;
 
 
-import com.haonguyen.ExportService.repository.IDetailsImportExportRepository;
+import com.haonguyen.ExportService.dto.ExcelDocumentDTO;
+import com.haonguyen.ExportService.dto.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
 import com.haonguyen.ExportService.service.IDocumentService;
 import com.haonguyen.ExportService.service.IImportExportService;
-import com.haonguyen.ExportService.service.ImportExportService;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,27 +17,41 @@ import java.util.UUID;
 public class ExportController {
 
     private final IDocumentService iDocumentService;
-    private final IDetailsImportExportRepository iDetailsImportExportRepository;
     private final IImportExportService iImportExportService;
 
     public ExportController(IDocumentService iDocumentService,
-                            IDetailsImportExportRepository iDetailsImportExportRepository,
                             IImportExportService iImportExportService) {
         this.iDocumentService = iDocumentService;
-        this.iDetailsImportExportRepository = iDetailsImportExportRepository;
         this.iImportExportService = iImportExportService;
     }
-
     @RequestMapping(value = "/get-export",method = RequestMethod.GET)
     public List<ImportExportEntity> getExport(){
         return iImportExportService.getExport();
     }
-    @RequestMapping(value = "/getexportbycountry/{id}")
+    @RequestMapping(value = "/get-export-by-country/{id}")
     public List<ImportExportEntity> getExportByCountry(@PathVariable("id") UUID id){
-        return iImportExportService.getExportByCountryId(id);
+        return iImportExportService
+                .getExportByCountryId(id);
     }
     @RequestMapping(value = "/update-export",method = RequestMethod.PUT)
     public ImportExportEntity updateExport(@RequestBody ImportExportEntity importExportEntity){
-        return iImportExportService.updateExport(importExportEntity);
+        return iImportExportService
+                .updateExport(importExportEntity);
+    }
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
+    public ExportFindByIdDTO findByIdExport(@PathVariable("id") UUID idExport){
+        return iImportExportService.findByIdExport(idExport);
+    }
+    @RequestMapping(value = "/list-export-excel/",method = RequestMethod.GET)
+    public List<ExcelExportDTO> findByIdExportExcel(){
+        return iImportExportService.findAllExport();
+    }
+    @RequestMapping(value = "/get-document/{id}")
+    public ExcelDocumentDTO findDocumentByIdExport(@PathVariable("id") UUID idExport){
+        return iDocumentService.findDocumentByIdExport(idExport);
+    }
+    @RequestMapping(value = "/get-all-document/{id}")
+    public List<ExcelDocumentDTO> findAllDocumentByIdExport(@PathVariable("id") UUID idExport){
+        return iDocumentService.findAllDocumentByIdExport(idExport);
     }
 }

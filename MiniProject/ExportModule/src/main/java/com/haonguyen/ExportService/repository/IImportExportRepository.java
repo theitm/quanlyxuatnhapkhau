@@ -15,4 +15,6 @@ public interface IImportExportRepository extends JpaRepository<ImportExportEntit
     @Query(value = "Select e from ImportExportEntity e " +
             "where e.countryEntity.id = :idCountry")
     List<ImportExportEntity> getExportByCountry(@Param("idCountry") UUID idCountry);
+
+    ImportExportEntity getById(UUID idExport);
 }
