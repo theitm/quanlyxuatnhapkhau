@@ -34,7 +34,6 @@ public class CommodityController {
         iCommodityService.deleteCommodity(id);
     }
 
-
     @PostMapping("/search")
     public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) {
         List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(keySearchDto.getKey());
@@ -42,13 +41,10 @@ public class CommodityController {
     }
 
 
-
-
     @GetMapping("/get/{idTypeOfCommodity}")
     public List<TypeOfCommodityDto> getCommodityByIdTypeOfCommodity(@PathVariable("idTypeOfCommodity") UUID idTypeOfCommodity){
         List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityService.findCommodityByIdTypeOfCommodity(idTypeOfCommodity);
         return typeOfCommodityDto;
-
     }
 
     @PutMapping("/update")
@@ -61,5 +57,16 @@ public class CommodityController {
         return iWarehouseService.checkCommodityInWarehouse();
 
     }
+    @GetMapping("/getId/{id}")
+    public CommodityEntity getCommodityById(@PathVariable("id") UUID id){
+
+        return iCommodityService.CommodityById(id);
+    }
+
+    @RequestMapping(value = "/get-type-tax/{id}")
+    public TypeAndTaxCommodityAPI getTypeTaxCommodity(@PathVariable("id") UUID idCommodity){
+        return iCommodityService.getTypeTaxCommodity(idCommodity);
+    }
+
 }
 

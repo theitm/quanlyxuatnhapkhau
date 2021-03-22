@@ -2,9 +2,11 @@ package com.haonguyen.CommodityService.repository;
 
 
 import com.haonguyen.CommodityService.dto.CommodityInWarehouseDto;
+import com.haonguyen.CommodityService.dto.TypeAndTaxCommodityAPI;
 import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +28,16 @@ public interface ICommodityRepository extends JpaRepository<CommodityEntity,UUID
             "where wc.inventoryNumber > 0 " +
             "order by wa.warehouseName asc")
     List<CommodityInWarehouseDto> CommodityInWarehouse();
+
+    @Query(value = "SELECT new com.haonguyen.CommodityService.dto.TypeAndTaxCommodityAPI(" +
+            " ty.id,ty.typeName," +
+            " co.id,co.commodityName,co.price,co.unit," +
+            " tax.id,tax.taxBracketName,tax.coefficient) " +
+            " FROM CommodityEntity co" +
+            " inner join TypeOfCommodityEntity ty" +
+            " on co.idTypeOfCommodity = ty.id" +
+            " inner join TaxBracketEntity tax" +
+            " on tax.id = ty.idTaxBracket" +
+            " where co.id = :idCommodity" )
+    TypeAndTaxCommodityAPI getTypeTaxCommodity(@Param(value = "idCommodity") UUID idCommodity);
 }

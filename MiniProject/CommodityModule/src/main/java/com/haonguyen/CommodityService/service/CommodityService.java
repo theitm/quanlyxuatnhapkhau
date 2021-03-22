@@ -1,10 +1,7 @@
 package com.haonguyen.CommodityService.service;
 
 
-import com.haonguyen.CommodityService.dto.CommodityCreateDto;
-import com.haonguyen.CommodityService.dto.CommoditySearchDto;
-import com.haonguyen.CommodityService.dto.CommodityUpdateDto;
-import com.haonguyen.CommodityService.dto.TypeOfCommodityDto;
+import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
 
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
@@ -37,6 +34,7 @@ public class CommodityService implements ICommodityService {
         ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
         CommodityEntity commodityEntity = iCommodityMapper.fromCreateToEntity(commodityCreateDto);
         iCommodityRepository.saveAndFlush(commodityEntity);
+        CommodityCreateDto createDto =iCommodityMapper.toCreateDto(commodityEntity);
         return commodityEntity;
     }
 
@@ -83,5 +81,14 @@ public class CommodityService implements ICommodityService {
                 .toFindSectorId(iCommodityRepository.findCommodityByIdTypeOfCommodity(idTypeOfCommodity));
         return typeOfCommodityDto;
 
+    }
+    @Override
+    public TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity) {
+        return iCommodityRepository.getTypeTaxCommodity(idCommodity);
+    }
+
+    @Override
+    public CommodityEntity CommodityById(UUID id) {
+        return iCommodityRepository.findById(id).get();
     }
 }
