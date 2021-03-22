@@ -13,7 +13,8 @@ import java.util.UUID;
 public class DocumentDTO {
 
     @Type(type = "uuid-char")
+    private UUID id;
+    @Type(type = "uuid-char")
     private UUID idImportExport;
     private String imageUrl;
-
 }

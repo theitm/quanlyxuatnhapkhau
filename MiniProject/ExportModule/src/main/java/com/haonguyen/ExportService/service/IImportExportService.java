@@ -2,6 +2,8 @@ package com.haonguyen.ExportService.service;
 
 import com.haonguyen.ExportService.dto.ExcelExportDTO;
 import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
+import com.haonguyen.ExportService.dto.FormInsertDataExport;
+import com.haonguyen.ExportService.dto.ShowAddExportDTO;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 
 import java.util.List;
@@ -20,4 +22,6 @@ public interface IImportExportService {
     ImportExportEntity findByIdExportExcel(UUID idExport);
 
     List<ExcelExportDTO> findAllExport();
+
+    ShowAddExportDTO addInfoExport(FormInsertDataExport formInsertDataExport);
 }

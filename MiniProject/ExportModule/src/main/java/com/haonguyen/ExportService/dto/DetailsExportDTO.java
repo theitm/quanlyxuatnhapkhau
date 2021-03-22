@@ -11,8 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetailsExportDTO {
-    @Type(type = "uuid-char")
-    private UUID idImportExport;
+
     @Type(type = "uuid-char")
     private UUID idCommodity;
     private Double quantity;

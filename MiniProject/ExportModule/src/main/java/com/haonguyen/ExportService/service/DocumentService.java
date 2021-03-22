@@ -1,8 +1,10 @@
 package com.haonguyen.ExportService.service;
 
 
+import com.haonguyen.ExportService.dto.DocumentDTO;
 import com.haonguyen.ExportService.dto.ExcelDocumentDTO;
 import com.haonguyen.ExportService.dto.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.FormInsertDataExport;
 import com.haonguyen.ExportService.mapper.IDocumentMapper;
 import com.haonguyen.ExportService.repository.IDocumentRepository;
 import org.springframework.stereotype.Service;
@@ -29,5 +31,10 @@ public class DocumentService implements IDocumentService {
     @Override
     public List<ExcelDocumentDTO> findAllDocumentByIdExport(UUID idExport) {
         return iDocumentMapper.toExcelDocumentDTOs(iDocumentRepository.findByIdImportExport(idExport));
+    }
+
+    @Override
+    public List<DocumentDTO> addDocument(FormInsertDataExport formInsertDataExport) {
+        return null;
     }
 }
