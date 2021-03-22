@@ -5,6 +5,7 @@ import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.service.ICommodityService;
 import com.haonguyen.CommodityService.service.IWarehouseService;
 import com.mini_project.CoreModule.entity.CommodityEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,9 +59,9 @@ public class CommodityController {
 
     }
     @GetMapping("/getId/{id}")
-    public CommodityEntity getCommodityById(@PathVariable("id") UUID id){
-
-        return iCommodityService.CommodityById(id);
+    public CommodityCreateDto getCommodityById(@PathVariable("id") UUID id){
+         CommodityCreateDto commodityCreateDto = iCommodityService.CommodityById(id);
+        return commodityCreateDto;
     }
 
     @RequestMapping(value = "/get-type-tax/{id}")

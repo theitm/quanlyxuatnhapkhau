@@ -1,19 +1,13 @@
-package com.haonguyen.CommodityService.dto;
+package com.haonguyen.ServiceImport.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
-
-public class CommodityCreateDto {
+public class CommodityDTO {
 
     @Type(type = "uuid-char")
-    private  UUID id;
+    private UUID id;
     private String commodityName;
     private String description;
     private Float price;
@@ -69,5 +63,4 @@ public class CommodityCreateDto {
     public void setId(UUID id) {
         this.id = id;
     }
-
 }

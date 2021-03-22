@@ -21,7 +21,7 @@ public class WarehouseCommodityEntity {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    private Long id;
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_warehouse",insertable = false , updatable = false)

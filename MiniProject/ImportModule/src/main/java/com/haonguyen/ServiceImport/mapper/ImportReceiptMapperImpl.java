@@ -17,7 +17,9 @@ public class ImportReceiptMapperImpl implements ImportReceiptMapper {
         }
 
         ImportExportEntity iExportEntity = new ImportExportEntity();
-        iExportEntity.setDate(importReceiptDTO.getDateReceipt());
+        iExportEntity.setIdCountry(importReceiptDTO.getIdCountry());
+        iExportEntity.setIdWarehouse(importReceiptDTO.getIdWarehouse());
+        iExportEntity.setDate(importReceiptDTO.getDate());
         iExportEntity.setType(importReceiptDTO.getType());
 
         return iExportEntity;
@@ -32,6 +34,7 @@ public class ImportReceiptMapperImpl implements ImportReceiptMapper {
         List<DetailsImportExportEntity> detailsIExportEntityList = new ArrayList<>();
         for (ItemReceiptDTO list : itemReceiptDTOList) {
             DetailsImportExportEntity detailsIExportEntity = new DetailsImportExportEntity();
+            detailsIExportEntity.setIdCommodity(list.getIdCommodity());
             detailsIExportEntity.setDescription(list.getDescription());
             detailsIExportEntity.setQuantity(list.getQuantity());
             detailsIExportEntity.setTotal(list.getTotal());

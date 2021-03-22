@@ -16,8 +16,7 @@ public class ItemReceiptMapperImpl implements ItemReceiptMapper{
 
         for (ItemReceiptDTO list: itemReceiptDTOList){
         DocumentEntity documentEntity = new DocumentEntity();
-        documentEntity.setImage_url(list.getImageUrl().toString());
-
+        documentEntity.setImageUrl(list.getImageUrl().toString());
         documentEntityList.add(documentEntity);
         }
         return documentEntityList;
