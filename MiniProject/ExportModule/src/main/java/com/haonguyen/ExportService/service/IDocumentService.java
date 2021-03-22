@@ -15,5 +15,5 @@ public interface IDocumentService {
 
     List<ExcelDocumentDTO> findAllDocumentByIdExport(UUID idExport);
 
-    List<DocumentDTO> addDocument(FormInsertDataExport formInsertDataExport);
+    List<DocumentDTO> infoDocument(FormInsertDataExport formInsertDataExport);
 }

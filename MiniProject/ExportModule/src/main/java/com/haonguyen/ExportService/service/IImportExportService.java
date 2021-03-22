@@ -23,5 +23,7 @@ public interface IImportExportService {
 
     List<ExcelExportDTO> findAllExport();
 
-    ShowAddExportDTO addInfoExport(FormInsertDataExport formInsertDataExport);
+    ShowAddExportDTO infoExport(FormInsertDataExport formInsertDataExport);
+
+
 }

@@ -16,6 +16,8 @@ import java.util.UUID;
 public class FormInsertDataExport {
 
     @Type(type = "uuid-char")
+    private UUID id;
+    @Type(type = "uuid-char")
     private UUID warehouseId;
     @Type(type = "uuid-char")
     private UUID countryId;

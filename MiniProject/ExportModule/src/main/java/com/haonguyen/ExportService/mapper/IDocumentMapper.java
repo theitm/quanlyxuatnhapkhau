@@ -1,6 +1,7 @@
 package com.haonguyen.ExportService.mapper;
 
 
+import com.haonguyen.ExportService.dto.DocumentDTO;
 import com.haonguyen.ExportService.dto.ExcelDocumentDTO;
 import com.haonguyen.ExportService.dto.ExcelExportDTO;
 import com.mini_project.CoreModule.entity.DocumentEntity;
@@ -12,6 +13,8 @@ import java.util.List;
 public interface IDocumentMapper {
 
     ExcelDocumentDTO toExcelDocumentDTO(DocumentEntity documentEntity);
-
     List<ExcelDocumentDTO> toExcelDocumentDTOs(List<DocumentEntity> documentEntities);
+
+    DocumentDTO toDocumentDTO(DocumentEntity documentEntity);
+    List<DocumentDTO> toDocumentDTOs(List<DocumentEntity> documentEntities);
 }

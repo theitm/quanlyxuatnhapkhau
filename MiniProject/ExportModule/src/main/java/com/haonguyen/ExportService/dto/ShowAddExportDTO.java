@@ -24,7 +24,7 @@ public class ShowAddExportDTO {
     private List<DocumentDTO> documentDTOList;
     private List<DetailsExportDTO> detailsExportDTOList;
     private Double transportationCosts;
-    private Double SubTotal;
+    private Double subTotal;
 
 
 }

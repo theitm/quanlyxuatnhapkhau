@@ -2,6 +2,8 @@ package com.haonguyen.ExportService.controller;
 
 
 import com.haonguyen.ExportService.dto.*;
+import com.haonguyen.ExportService.repository.IDetailsImportExportRepository;
+import com.haonguyen.ExportService.service.IDetailsImportExportService;
 import com.haonguyen.ExportService.service.IDocumentService;
 import com.haonguyen.ExportService.service.IImportExportService;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
@@ -16,12 +18,14 @@ public class ExportController {
 
     private final IDocumentService iDocumentService;
     private final IImportExportService iImportExportService;
+    private final IDetailsImportExportService iDetailsImportExportService;
 
-    public ExportController(IDocumentService iDocumentService,
-                            IImportExportService iImportExportService) {
+    public ExportController(IDocumentService iDocumentService, IImportExportService iImportExportService, IDetailsImportExportService iDetailsImportExportService) {
         this.iDocumentService = iDocumentService;
         this.iImportExportService = iImportExportService;
+        this.iDetailsImportExportService = iDetailsImportExportService;
     }
+
     @RequestMapping(value = "/get-export",method = RequestMethod.GET)
     public List<ImportExportEntity> getExport(){
         return iImportExportService.getExport();
@@ -58,8 +62,12 @@ public class ExportController {
      * @param formInsertDataExport
      * @return thông tin vừa nhập hàng + chi phí vận chuyển + tổng tiền hóa đơn
      */
-    @RequestMapping(value = "/add-info-export", method = RequestMethod.POST)
-    public ShowAddExportDTO addInfoExport(@RequestBody FormInsertDataExport formInsertDataExport){
-        return iImportExportService.addInfoExport(formInsertDataExport);
+    @RequestMapping(value = "/info-export", method = RequestMethod.POST)
+    public ShowAddExportDTO infoExport(@RequestBody FormInsertDataExport formInsertDataExport){
+        return iImportExportService.infoExport(formInsertDataExport);
+    }
+    @RequestMapping(value = "/check-id-commodity/{id}",method = RequestMethod.GET)
+    public Boolean checkIdCommodity(@PathVariable("id") UUID idCommodity){
+        return iDetailsImportExportService.checkIdCommodity(idCommodity);
     }
 }
