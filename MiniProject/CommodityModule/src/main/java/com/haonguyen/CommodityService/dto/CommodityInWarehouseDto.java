@@ -1,8 +1,5 @@
 package com.haonguyen.CommodityService.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 
 public class CommodityInWarehouseDto {
 

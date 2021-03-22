@@ -1,7 +1,6 @@
 package com.haonguyen.CommodityService.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

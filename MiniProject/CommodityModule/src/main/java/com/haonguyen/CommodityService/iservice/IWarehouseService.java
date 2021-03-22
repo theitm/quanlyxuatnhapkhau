@@ -1,4 +1,4 @@
-package com.haonguyen.CommodityService.service;
+package com.haonguyen.CommodityService.iservice;
 
 import com.haonguyen.CommodityService.dto.CommodityInWarehouseDto;
 
