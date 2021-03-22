@@ -13,6 +13,6 @@ public interface ICommodityService {
     List<TypeOfCommodityDto> findCommodityByIdTypeOfCommodity(UUID idTypeOfCommodity);
     List<CommoditySearchDto> searchCommodity(String key);
     CommodityUpdateDto updateCommodity(CommodityUpdateDto commodityUpdateDto);
-    CommodityEntity CommodityById(UUID id);
+    CommodityCreateDto CommodityById(UUID id);
     TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity);
 }

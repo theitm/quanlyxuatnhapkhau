@@ -1,13 +1,15 @@
 package com.haonguyen.ServiceImport.service;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
+import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 
 public interface ReceiptService {
 
-      ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO);
+    ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO);
+
+    CommodityEntity getCommodityEntityFromCommodityDto(ItemReceiptDTO list);
 
 }
