@@ -1,9 +1,6 @@
 package com.haonguyen.CommodityService.service;
 
-import com.haonguyen.CommodityService.dto.CommodityCreateDto;
-import com.haonguyen.CommodityService.dto.CommoditySearchDto;
-import com.haonguyen.CommodityService.dto.CommodityUpdateDto;
-import com.haonguyen.CommodityService.dto.TypeOfCommodityDto;
+import com.haonguyen.CommodityService.dto.*;
 import com.mini_project.CoreModule.entity.CommodityEntity;
 
 import java.util.List;
@@ -16,5 +13,6 @@ public interface ICommodityService {
     List<TypeOfCommodityDto> findCommodityByIdTypeOfCommodity(UUID idTypeOfCommodity);
     List<CommoditySearchDto> searchCommodity(String key);
     CommodityUpdateDto updateCommodity(CommodityUpdateDto commodityUpdateDto);
-
+    CommodityEntity CommodityById(UUID id);
+    TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity);
 }

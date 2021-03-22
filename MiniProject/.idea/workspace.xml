@@ -5,47 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86059914-7d22-496a-837f-94f266f1393a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_infix_0_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_jxpath_commons_jxpath_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr_runtime_3_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_stringtemplate_3_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityInWarehouseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/TypeOfCommodityDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/keySearchDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/IWarehouseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/WarehouseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/TypeAndTaxCommodityAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/controller/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/controller/CommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityCreateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityDetailsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommoditySearchDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/dto/CommodityUpdateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/mapper/ICommodityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/mapper/ICommodityMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/repository/ICommodityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/repository/ICommodityRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/CommodityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/ICommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service/ICommodityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CoreModule/src/main/java/com/mini_project/CoreModule/entity/CommodityEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/CoreModule/src/main/java/com/mini_project/CoreModule/entity/CommodityEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_4_2_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ExcelDocumentDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ExcelExportDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ExportFindByIdDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ResultAPICommodityInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IDocumentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IImportExportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/controller/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/controller/ExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IDocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IDocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IImportExportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IImportExportRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IImportExportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/ImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/ImportExportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CommodityModule/src/main/java/com/haonguyen/CommodityService/service" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Microsoft.SkypeApp_kzf8qxf38zg5c!App/All/CommodityService" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -99,11 +64,11 @@
       <recent name="D:\Project\quanlyxuatnhapkhau_v2\quanlyxuatnhapkhau\MiniProject\CommodityModule\src\main\java\com\haonguyen\CommodityService" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.haonguyen.CommodityService.dto" />
       <recent name="com.haonguyen.CommodityService.table" />
       <recent name="com.haonguyen.CommodityService.controller" />
       <recent name="com.haonguyen.CommodityService.repository" />
       <recent name="com.haonguyen.CommodityService.mapper" />
-      <recent name="com.haonguyen.CommodityService.dto" />
     </key>
   </component>
   <component name="RunManager" selected="Application.CommodityServiceApplication">
