@@ -1,8 +1,10 @@
 package com.haonguyen.CommodityService.mapper;
 
 
-import com.haonguyen.CommodityService.dto.*;
-
+import com.haonguyen.CommodityService.dto.CommodityCreateDto;
+import com.haonguyen.CommodityService.dto.CommoditySearchDto;
+import com.haonguyen.CommodityService.dto.CommodityUpdateDto;
+import com.haonguyen.CommodityService.dto.TypeOfCommodityDto;
 import com.mini_project.CoreModule.entity.CommodityEntity;
 import org.mapstruct.Mapper;
 

@@ -2,10 +2,8 @@ package com.haonguyen.CommodityService.controller;
 
 
 import com.haonguyen.CommodityService.dto.*;
-import com.haonguyen.CommodityService.service.ICommodityService;
-import com.haonguyen.CommodityService.service.IWarehouseService;
-import com.mini_project.CoreModule.entity.CommodityEntity;
-import org.springframework.http.ResponseEntity;
+import com.haonguyen.CommodityService.iservice.ICommodityService;
+import com.haonguyen.CommodityService.iservice.IWarehouseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/commodity")
+@RequestMapping("/v1/api/commodity")
 public class CommodityController {
     private final ICommodityService iCommodityService;
     private final IWarehouseService iWarehouseService;
@@ -24,14 +22,15 @@ public class CommodityController {
         this.iWarehouseService = iWarehouseService;
     }
 
-
     @PostMapping("/add")
-    public CommodityEntity addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
-        return iCommodityService.addCommodity(commodityCreateDto);
+    public CommodityCreateDto addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
+         CommodityCreateDto commodityCreateDto1= iCommodityService.addCommodity(commodityCreateDto);
+        return commodityCreateDto1;
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteCommodity(@PathVariable("id") UUID id){
+
         iCommodityService.deleteCommodity(id);
     }
 
