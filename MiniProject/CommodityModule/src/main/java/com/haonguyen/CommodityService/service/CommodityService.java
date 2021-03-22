@@ -88,7 +88,10 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
-    public CommodityEntity CommodityById(UUID id) {
-        return iCommodityRepository.findById(id).get();
+    public CommodityCreateDto CommodityById(UUID id) {
+        ICommodityMapper iCommodityMapper= new ICommodityMapperImpl();
+        CommodityCreateDto commodityCreateDto = iCommodityMapper.toCreateDto(iCommodityRepository.findById(id).get());
+        iCommodityRepository.findById(id).get();
+        return commodityCreateDto;
     }
 }

@@ -12,17 +12,6 @@
         <module name="DiscoveryServer" />
         <module name="APIGateWay" />
         <module name="CoreModule" />
-        <module name="ImportModule" />
-      </profile>
-      <profile name="Annotation profile for CommodityModule" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.1.Final/mapstruct-processor-1.4.1.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.1.Final/mapstruct-1.4.1.Final.jar" />
-        </processorPath>
-        <module name="CommodityModule" />
       </profile>
       <profile name="Annotation profile for ExportModule" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -35,6 +24,17 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
         <module name="ExportModule" />
+      </profile>
+      <profile name="Annotation profile for ImportModule" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.1.Final/mapstruct-processor-1.4.1.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.1.Final/mapstruct-1.4.1.Final.jar" />
+        </processorPath>
+        <module name="ImportModule" />
+        <module name="CommodityModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
