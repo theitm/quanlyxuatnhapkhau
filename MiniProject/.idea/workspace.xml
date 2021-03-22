@@ -5,6 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86059914-7d22-496a-837f-94f266f1393a" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommodityModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommodityModule/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/CommodityModule/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/ExportServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/ExportServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/controller/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/controller/ExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ApiAllCommodityInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ApiAllCommodityInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/DetailsExportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/DetailsExportDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/DocumentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/DocumentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/FormInsertDataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/FormInsertDataExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ShowAddExportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/dto/ShowAddExportDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IDetailsExportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IDetailsExportMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IDocumentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/mapper/IDocumentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IDetailsImportExportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IDetailsImportExportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IImportExportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/repository/IImportExportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DetailsImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DetailsImportExportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/DocumentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDetailsImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDetailsImportExportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IDocumentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/IImportExportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/ImportExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService/service/ImportExportService.java" afterDir="false" />
+=======
       <change afterPath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/dto/CommodityDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/dto/ExcelReceiptImportDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/dto/KeySearchDTO.java" afterDir="false" />
@@ -47,6 +70,7 @@
       <change beforePath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/serviceimpl/IexportServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/serviceimpl/ReceiptServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport/serviceimpl/ReceiptServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImportModule/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ImportModule/src/main/resources/application.yml" afterDir="false" />
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,10 +108,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ExportModule/src/main/java/com/haonguyen/ExportService" />
+    <property name="project.structure.last.edited" value="Modules" />
+=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ImportModule/src/main/java/com/haonguyen/ServiceImport" />
     <property name="project.structure.last.edited" value="Project" />
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -95,7 +124,11 @@
       <recent name="com.haonguyen.CommodityService.dto" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
+      <recent name="C:\Users\Administrator\Documents\quanlyxuatnhapkhauv2\MiniProject\ExportModule\src\main\java\com\haonguyen\ExportService" />
+=======
       <recent name="D:\Project\quanlyxuatnhapkhau\quanlyxuatnhapkhau\MiniProject\ImportModule\src\main\java\com\haonguyen\ServiceImport" />
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
       <recent name="D:\Project\quanlyxuatnhapkhau\quanlyxuatnhapkhau\MiniProject\CommodityModule\src\main\java\com\haonguyen\CommodityService\service" />
       <recent name="D:\Project\quanlyxuatnhapkhau\quanlyxuatnhapkhau\MiniProject\CommodityModule\src\main\java\com\haonguyen\CommodityService\dto" />
       <recent name="D:\Project\quanlyxuatnhapkhau_v2\quanlyxuatnhapkhau\MiniProject\CommodityModule\src\main\java\com\haonguyen\CommodityService" />
@@ -108,7 +141,11 @@
       <recent name="com.haonguyen.CommodityService.repository" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Application.ExportServiceApplication">
+=======
   <component name="RunManager" selected="Application.ServiceImportApplication">
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
     <configuration name="CommodityServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.haonguyen.CommodityService.CommodityServiceApplication" />
       <module name="CommodityModule" />
@@ -148,6 +185,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+    <configuration name="All in DiscoveryServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DiscoveryServer" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+=======
     <configuration name="ServiceImportApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.haonguyen.ServiceImport.ServiceImportApplication" />
       <module name="ImportModule" />
@@ -204,6 +247,7 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="MAIN_CLASS_NAME" />
       <option name="WORKING_DIRECTORY" />
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -212,14 +256,22 @@
       <item itemvalue="Application.CommodityServiceApplication" />
       <item itemvalue="Application.DiscoveryServerApplication" />
       <item itemvalue="Application.ExportServiceApplication" />
+<<<<<<< HEAD
+      <item itemvalue="JUnit.All in DiscoveryServer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ExportServiceApplication" />
+=======
       <item itemvalue="Application.ServiceImportApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServiceImportApplication" />
+>>>>>>> b6d2dcd77006340236ad82c1c9e0ef4d3abc1736
         <item itemvalue="Application.CommodityServiceApplication" />
         <item itemvalue="Application.DiscoveryServerApplication" />
-        <item itemvalue="Application.ExportServiceApplication" />
+        <item itemvalue="JUnit.All in DiscoveryServer" />
       </list>
     </recent_temporary>
   </component>
