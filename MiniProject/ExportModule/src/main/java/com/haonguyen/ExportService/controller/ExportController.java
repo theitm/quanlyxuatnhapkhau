@@ -1,9 +1,7 @@
 package com.haonguyen.ExportService.controller;
 
 
-import com.haonguyen.ExportService.dto.ExcelDocumentDTO;
-import com.haonguyen.ExportService.dto.ExcelExportDTO;
-import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
+import com.haonguyen.ExportService.dto.*;
 import com.haonguyen.ExportService.service.IDocumentService;
 import com.haonguyen.ExportService.service.IImportExportService;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
@@ -53,5 +51,15 @@ public class ExportController {
     @RequestMapping(value = "/get-all-document/{id}")
     public List<ExcelDocumentDTO> findAllDocumentByIdExport(@PathVariable("id") UUID idExport){
         return iDocumentService.findAllDocumentByIdExport(idExport);
+    }
+
+    /**
+     * Thêm một phiếu xuất hàng vào cơ sở dữ liệu để quản lý
+     * @param formInsertDataExport
+     * @return thông tin vừa nhập hàng + chi phí vận chuyển + tổng tiền hóa đơn
+     */
+    @RequestMapping(value = "/add-info-export", method = RequestMethod.POST)
+    public ShowAddExportDTO addInfoExport(@RequestBody FormInsertDataExport formInsertDataExport){
+        return iImportExportService.addInfoExport(formInsertDataExport);
     }
 }

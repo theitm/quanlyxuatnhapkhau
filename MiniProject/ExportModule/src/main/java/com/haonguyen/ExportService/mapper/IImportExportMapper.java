@@ -2,6 +2,7 @@ package com.haonguyen.ExportService.mapper;
 
 
 import com.haonguyen.ExportService.dto.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.ExportDTO;
 import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 import org.mapstruct.Mapper;
@@ -21,5 +22,9 @@ public interface IImportExportMapper {
     ExcelExportDTO toExcelExportDTO(ImportExportEntity importExportEntities);
     // toExcelExportDTO neu ko co thi truong countryName and warehouseName se null;
     List<ExcelExportDTO> toExcelExportDTOs(List<ImportExportEntity> importExportEntities);
+
+
+    ExportDTO toExportDTO(ImportExportEntity importExportEntities);
+    List<ExportDTO> toExportDTOs(List<ImportExportEntity> importExportEntities);
 
 }
