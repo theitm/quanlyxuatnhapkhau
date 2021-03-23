@@ -2,7 +2,9 @@ package com.haonguyen.ExportService.controller;
 
 
 import com.haonguyen.ExportService.dto.*;
-import com.haonguyen.ExportService.repository.IDetailsImportExportRepository;
+import com.haonguyen.ExportService.dto.excel.ExcelDocumentDTO;
+import com.haonguyen.ExportService.dto.excel.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.excel.ReturnInfoExportAPI;
 import com.haonguyen.ExportService.service.IDetailsImportExportService;
 import com.haonguyen.ExportService.service.IDocumentService;
 import com.haonguyen.ExportService.service.IImportExportService;
@@ -69,5 +71,9 @@ public class ExportController {
     @RequestMapping(value = "/check-id-commodity/{id}",method = RequestMethod.GET)
     public Boolean checkIdCommodity(@PathVariable("id") UUID idCommodity){
         return iDetailsImportExportService.checkIdCommodity(idCommodity);
+    }
+    @RequestMapping(value = "/get-excel/{monthAndYear}",method = RequestMethod.GET)
+    public List<ReturnInfoExportAPI> getExcel(@PathVariable("monthAndYear") String monthAndYear){
+        return iImportExportService.getExcel(monthAndYear);
     }
 }

@@ -1,9 +1,10 @@
 package com.haonguyen.ExportService.service;
 
-import com.haonguyen.ExportService.dto.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.excel.ExcelExportDTO;
 import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
 import com.haonguyen.ExportService.dto.FormInsertDataExport;
 import com.haonguyen.ExportService.dto.ShowAddExportDTO;
+import com.haonguyen.ExportService.dto.excel.ReturnInfoExportAPI;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 
 import java.util.List;
@@ -26,4 +27,5 @@ public interface IImportExportService {
     ShowAddExportDTO infoExport(FormInsertDataExport formInsertDataExport);
 
 
+    List<ReturnInfoExportAPI> getExcel(String monthAndYear);
 }

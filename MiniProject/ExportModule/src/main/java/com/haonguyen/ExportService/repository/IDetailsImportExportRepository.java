@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -15,4 +16,6 @@ public interface IDetailsImportExportRepository extends JpaRepository<DetailsImp
     @Query(value = "select e from DetailsImportExportEntity e " +
             " where e.idCommodity = :idCommodity")
     DetailsImportExportEntity checkIdCommodity(@Param("idCommodity") UUID idCommodity);
+
+    List<DetailsImportExportEntity> findByIdImportExport(UUID idImportExport);
 }
