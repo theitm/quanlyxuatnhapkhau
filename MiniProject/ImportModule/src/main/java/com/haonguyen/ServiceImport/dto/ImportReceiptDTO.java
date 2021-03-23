@@ -15,7 +15,7 @@ public class ImportReceiptDTO {
     private UUID id;
     private UUID idCountry;
     private UUID idWarehouse;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private int type;
     private Double total;

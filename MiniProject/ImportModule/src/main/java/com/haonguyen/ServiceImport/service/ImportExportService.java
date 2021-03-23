@@ -1,16 +1,18 @@
 package com.haonguyen.ServiceImport.service;
 
 
+import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.mini_project.CoreModule.entity.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 
-public interface IexportService {
+public interface ImportExportService {
 
-    ImportExportEntity saveI_export(ImportExportEntity iExportEntity);
+    ImportExportEntity saveI_export(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO);
 
     List<ImportExportEntity> getAllReceipt();
 
@@ -18,7 +20,7 @@ public interface IexportService {
 
     void deleteById(UUID idI_Export);
 
-    List<ImportExportEntity> searchI_export(String key, Date date);
+    List<ImportExportEntity> searchImportExport(String key, Date date);
 
     WarehouseEntity findWarehouseById(UUID id);
 

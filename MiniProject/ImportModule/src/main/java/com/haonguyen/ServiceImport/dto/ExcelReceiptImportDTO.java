@@ -18,7 +18,7 @@ public class ExcelReceiptImportDTO {
     private String countryName;
     private String warehouseName;
     private Date date;
-    Collection<DetailsImportExportEntity> commodityEntities;
+    Collection<DetailsImportExportEntity> detailsImportExportEntities;
     Collection<DocumentEntity> documentEntities;
 
     public UUID getId() {
@@ -37,12 +37,12 @@ public class ExcelReceiptImportDTO {
         this.date = date;
     }
 
-    public Collection<DetailsImportExportEntity> getCommodityEntities() {
-        return commodityEntities;
+    public Collection<DetailsImportExportEntity> getDetailsImportExportEntities() {
+        return detailsImportExportEntities;
     }
 
-    public void setCommodityEntities(Collection<DetailsImportExportEntity> commodityEntities) {
-        this.commodityEntities = commodityEntities;
+    public void setDetailsImportExportEntities(Collection<DetailsImportExportEntity> detailsImportExportEntities) {
+        this.detailsImportExportEntities = detailsImportExportEntities;
     }
 
     public Collection<DocumentEntity> getDocumentEntities() {

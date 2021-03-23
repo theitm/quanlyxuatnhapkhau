@@ -3,7 +3,7 @@ package com.haonguyen.ServiceImport.serviceimpl;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
 import com.haonguyen.ServiceImport.dto.WarehouseCommodityDTO;
 import com.haonguyen.ServiceImport.repository.WarehouseCommodityRepository;
-import com.haonguyen.ServiceImport.service.IexportService;
+import com.haonguyen.ServiceImport.service.ImportExportService;
 import com.haonguyen.ServiceImport.service.WarehouseCommodityService;
 import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
@@ -23,7 +23,7 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
     @Autowired
     private WarehouseCommodityRepository warehouseCommodityRepository;
     @Autowired
-    private IexportService iexportService;
+    private ImportExportService importExportService;
 
     @Override
     public WarehouseCommodityEntity save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) {
@@ -33,7 +33,7 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
 
         for (WarehouseCommodityEntity listWarehouseCommodity : warehouseCommodityEntityList) {
             List<WarehouseCommodityEntity> listWarehouseCommodityByIdImExport
-                    = iexportService
+                    = importExportService
                     .findWarehouseCommodityByTwoId(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
             if (listWarehouseCommodityByIdImExport.size() == 0) {
                 warehouseCommodityRepository.save(listWarehouseCommodity);
