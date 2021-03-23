@@ -11,17 +11,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface IexportRepository extends JpaRepository<ImportExportEntity, UUID> {
+public interface ImportExportRepository extends JpaRepository<ImportExportEntity, UUID> {
 
-    @Query( "select distinct ie from ImportExportEntity ie " +
+    @Query("select distinct ie from ImportExportEntity ie " +
             "inner join DetailsImportExportEntity de on ie.id = de.idImportExport " +
             "inner join WarehouseEntity wa on ie.idWarehouse = wa.id " +
             "inner join CommodityEntity co on de.idCommodity = co.id " +
             "inner join CountryEntity cou on ie.idCountry = cou.id " +
-            "where (wa.warehouseName like trim('%',:key,'%') and ie.date = :date)" +
-            "or (co.commodityName like trim('%',:key,'%') and ie.date = :date)" +
-            "or (cou.countryName like trim('%',:key,'%') and ie.date = : date)")
-    List<ImportExportEntity> searchI_exportQueryIgnoreCase(@Param("key") String key, @Param("date") Date date);
+            "where " +
+            "(wa.warehouseName like trim('%',:key,'%') " +
+            "or co.commodityName like trim('%',:key,'%') " +
+            "or cou.countryName like trim('%',:key,'%')) " +
+            "and (:date is null or ie.date = :date)")
+    List<ImportExportEntity> searchImportExportQueryIgnoreCase(@Param("key") String key, @Param("date") Date date);
 
     @Query(value = "SELECT w FROM WarehouseEntity w WHERE w.id = :id")
     WarehouseEntity findByIdWarehouse(@Param("id") UUID id);
@@ -35,8 +37,6 @@ public interface IexportRepository extends JpaRepository<ImportExportEntity, UUI
     @Query(value = "select w FROM WarehouseEntity w")
     List<WarehouseEntity> findAllWarehouse();
 
-    @Query(value = "select d from DocumentEntity d")
-    List<DocumentEntity> findAllDocument();
 
     List<ImportExportEntity> findAllByDate(Date date);
 
