@@ -2,12 +2,11 @@ package com.haonguyen.ExportService.service;
 
 
 import com.haonguyen.ExportService.dto.*;
+import com.haonguyen.ExportService.dto.excel.ExcelDocumentDTO;
 import com.haonguyen.ExportService.mapper.IDocumentMapper;
 import com.haonguyen.ExportService.repository.IDocumentRepository;
 import com.mini_project.CoreModule.entity.DocumentEntity;
-import com.mini_project.CoreModule.entity.ImportExportEntity;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,7 @@ public class DocumentService implements IDocumentService {
     public DocumentDTO addExport(DocumentEntity documentEntity){
         return iDocumentMapper.toDocumentDTO(iDocumentRepository.save(documentEntity));
     }
+
     /**
      * Lấy thông tin trong danh sách hồ sơ và insert vào CSDL
      * @param formInsertDataExport
@@ -59,5 +59,15 @@ public class DocumentService implements IDocumentService {
                             .build()));
         }
         return documentDTO;
+    }
+    @Override
+    public List<ExcelDocumentDTO> toExcelDocumentDTOMapper(List<DocumentEntity> documentEntity){
+        return iDocumentMapper.toExcelDocumentDTOs(documentEntity);
+    }
+
+    @Override
+    public List<ExcelDocumentDTO> findByIdImportExport(UUID idImportExport) {
+        List<DocumentEntity> documentEntities = iDocumentRepository.findByIdImportExport(idImportExport);
+        return iDocumentMapper.toExcelDocumentDTOs(documentEntities);
     }
 }

@@ -3,6 +3,7 @@ package com.haonguyen.ExportService.service;
 import com.haonguyen.ExportService.dto.ApiAllCommodityInfo;
 import com.haonguyen.ExportService.dto.DetailsExportDTO;
 import com.haonguyen.ExportService.dto.FormInsertDataExport;
+import com.haonguyen.ExportService.dto.excel.ExcelDetailsExportDTO;
 import com.haonguyen.ExportService.mapper.IDetailsExportMapper;
 import com.haonguyen.ExportService.repository.IDetailsImportExportRepository;
 import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
@@ -33,7 +34,7 @@ public class DetailsImportExportService implements IDetailsImportExportService {
      */
     private ApiAllCommodityInfo getApiAllCommodityInfo(UUID idCommodity){
         return restTemplate
-                .getForObject("http://localhost:9001/commodity/get-type-tax/" + idCommodity
+                .getForObject("http://localhost:9002/v1/api/commodity/get-type-tax/" + idCommodity
                         ,ApiAllCommodityInfo.class);
     }
 
@@ -61,29 +62,51 @@ public class DetailsImportExportService implements IDetailsImportExportService {
             total = total + total * (apiAllCommodityInfo.getCoefficient()%100);
 
             detailsExportDTOList.add(addDetailsExport(
-                   DetailsImportExportEntity
-                    .builder()
-                    .idImportExport(formInsertDataExport.getId())
-                    .quantity(temp.getQuantity())
-                    .total(total)
-                    .idCommodity(temp.getIdCommodity())
-                    .build()));
-            sumTotal = sumTotal + total;
+                                           DetailsImportExportEntity
+                                            .builder()
+                                            .idImportExport(formInsertDataExport.getId())
+                                            .quantity(temp.getQuantity())
+                                            .total(total)
+                                            .idCommodity(temp.getIdCommodity())
+                                            .build()));
 
         }
-        //Uoc tinh chi phi van chuyen
 
-
-        //Tinh % thue nhap khau tai moi quoc gia ( tong tien + chi phi van chuyen)
-       // sumTotal = sumTotal + sumTotal * (formInsertDataExport.get)
-
-        return null;
+        return detailsExportDTOList;
     }
     @Override
     public Boolean checkIdCommodity(UUID idCommodity) {
-        DetailsImportExportEntity detailsImportExportEntity = iDetailsImportExportRepository.checkIdCommodity(idCommodity);
+        DetailsImportExportEntity detailsImportExportEntity
+                = iDetailsImportExportRepository.checkIdCommodity(idCommodity);
         if(detailsImportExportEntity == null)
             return true;
         return false;
+    }
+
+    @Override
+    public List<ExcelDetailsExportDTO> findByIdImportExport(UUID idImportExport) {
+
+        //Get tất cả danh sách theo Id Export
+        List<DetailsImportExportEntity> detailsImportExportEntities
+                = iDetailsImportExportRepository.findByIdImportExport(idImportExport);
+
+        List<ExcelDetailsExportDTO> excelDetailsExportDTOS = new ArrayList<>();
+        ApiAllCommodityInfo apiAllCommodityInfo;
+
+        for(DetailsImportExportEntity temp:detailsImportExportEntities){
+
+            apiAllCommodityInfo = getApiAllCommodityInfo(temp.getIdCommodity());
+
+            excelDetailsExportDTOS.add(ExcelDetailsExportDTO
+                    .builder()
+                    .idCommodity(temp.getIdCommodity())
+                    .commodityName(apiAllCommodityInfo.getCommodityName())
+                    .typeOfCommodityName(apiAllCommodityInfo.getTypeOfCommodityName())
+                    .price(apiAllCommodityInfo.getCommodityPrice())
+                    .total(temp.getTotal())
+                    .quantity(temp.getQuantity())
+                    .build());
+        }
+        return excelDetailsExportDTOS;
     }
 }

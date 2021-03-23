@@ -2,8 +2,7 @@ package com.haonguyen.ExportService.mapper;
 
 
 import com.haonguyen.ExportService.dto.DocumentDTO;
-import com.haonguyen.ExportService.dto.ExcelDocumentDTO;
-import com.haonguyen.ExportService.dto.ExcelExportDTO;
+import com.haonguyen.ExportService.dto.excel.ExcelDocumentDTO;
 import com.mini_project.CoreModule.entity.DocumentEntity;
 import org.mapstruct.Mapper;
 
@@ -17,4 +16,6 @@ public interface IDocumentMapper {
 
     DocumentDTO toDocumentDTO(DocumentEntity documentEntity);
     List<DocumentDTO> toDocumentDTOs(List<DocumentEntity> documentEntities);
+
+
 }
