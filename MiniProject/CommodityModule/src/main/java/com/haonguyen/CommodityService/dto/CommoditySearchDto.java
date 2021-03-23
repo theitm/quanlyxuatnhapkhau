@@ -1,11 +1,10 @@
 package com.haonguyen.CommodityService.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
+import org.hibernate.annotations.Type;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.UUID;
+
 
 public class CommoditySearchDto {
 
@@ -13,6 +12,16 @@ public class CommoditySearchDto {
     private String description;
     private Float price;
     private String unit;
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
+
+    public CommoditySearchDto(String commodityName, String description, Float price, String unit, UUID idTypeOfCommodity) {
+        this.commodityName = commodityName;
+        this.description = description;
+        this.price = price;
+        this.unit = unit;
+        this.idTypeOfCommodity = idTypeOfCommodity;
+    }
 
     public String getCommodityName() {
         return commodityName;
@@ -44,5 +53,13 @@ public class CommoditySearchDto {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public UUID getIdTypeOfCommodity() {
+        return idTypeOfCommodity;
+    }
+
+    public void setIdTypeOfCommodity(UUID idTypeOfCommodity) {
+        this.idTypeOfCommodity = idTypeOfCommodity;
     }
 }

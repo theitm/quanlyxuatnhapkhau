@@ -38,6 +38,10 @@ public class CommodityEntity {
     @Column(name = "unit")
     private String unit;
 
+    @Column( name = "id_type_of_commodity")
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
+
     @OneToMany(
             mappedBy = "commodityEntity",
             cascade = CascadeType.ALL,
@@ -70,8 +74,6 @@ public class CommodityEntity {
     @JsonBackReference
     private TypeOfCommodityEntity typeOfCommodityEntity;
 
-    @Column( name = "id_type_of_commodity")
-    @Type( type = "uuid-char")
-    private UUID idTypeOfCommodity;
+
 
 }

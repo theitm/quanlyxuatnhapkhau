@@ -16,7 +16,7 @@ public interface ICommodityMapper {
     CommodityCreateDto toCreateDto(CommodityEntity entity);
     CommodityEntity fromCreateToEntity(CommodityCreateDto createDto);
 
-    List<CommoditySearchDto> toSearchDto(List<CommodityEntity> commodityEntities);
+//    List<CommoditySearchDto> toSearchDto(List<CommodityEntity> commodityEntities);
 
     CommodityUpdateDto toUpdateDto(CommodityEntity commodityEntity);
     CommodityEntity fromUpdateToEntity(CommodityUpdateDto searchDto);
