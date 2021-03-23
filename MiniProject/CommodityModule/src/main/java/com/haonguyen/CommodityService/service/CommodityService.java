@@ -7,7 +7,9 @@ import com.haonguyen.CommodityService.mapper.ICommodityMapper;
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
 import com.mini_project.CoreModule.entity.CommodityEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,23 +54,32 @@ public class CommodityService implements ICommodityService {
 
         return commodityUpdateDto1;
     }
-
+    @Autowired
+    private RestTemplate restTemplate;
     @Override
     public void deleteCommodity(UUID id) {
+        String checkIdCommodityURL = "http://localhost:9002/v1/api/export/check-id-commodity/";
+        boolean ABC = restTemplate.getForObject(checkIdCommodityURL + id,Boolean.class);
         iCommodityRepository.deleteById(id);
     }
+//    @Override
+//    public CommodityEntity del(ItemReceiptDTO list) {
+//        String sourceCommodityURL = "http://COMMODITY-SERVICE/commodity/getId/";
+//        CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + list.getIdCommodity(), CommodityDTO.class);
+//        CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
+//        CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);
+//        return commodityEntity;
+//    }
 
     @Override
     public List<CommoditySearchDto> searchCommodity(String key) {
         if (key==null) {
-            ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.findAll());
+
+            List<CommoditySearchDto> commoditySearchDtos = iCommodityRepository.findAllSearchCommodity();
             return commoditySearchDtos;
         }
         else {
-
-            ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-            List<CommoditySearchDto> commoditySearchDtos = iCommodityMapper.toSearchDto(iCommodityRepository.searchCommodity(key));
+            List<CommoditySearchDto> commoditySearchDtos =iCommodityRepository.searchCommodity(key);
             return commoditySearchDtos;
         }
     }
