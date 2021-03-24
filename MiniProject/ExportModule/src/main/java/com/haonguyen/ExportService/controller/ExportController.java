@@ -69,9 +69,10 @@ public class ExportController {
         return iImportExportService.infoExport(formInsertDataExport);
     }
     @RequestMapping(value = "/check-id-commodity/{id}",method = RequestMethod.GET)
-    public Boolean checkIdCommodity(@PathVariable("id") UUID idCommodity){
-        return iDetailsImportExportService.checkIdCommodity(idCommodity);
+    public String checkIdCommodity(@PathVariable("id") UUID idCommodity){
+        return iDetailsImportExportService.checkIdCommodity(idCommodity).toString();
     }
+
     @RequestMapping(value = "/get-excel/{monthAndYear}",method = RequestMethod.GET)
     public List<ReturnInfoExportAPI> getExcel(@PathVariable("monthAndYear") String monthAndYear){
         return iImportExportService.getExcel(monthAndYear);

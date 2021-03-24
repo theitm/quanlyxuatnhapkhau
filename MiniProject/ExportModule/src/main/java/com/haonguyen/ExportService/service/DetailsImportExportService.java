@@ -34,7 +34,7 @@ public class DetailsImportExportService implements IDetailsImportExportService {
      */
     private ApiAllCommodityInfo getApiAllCommodityInfo(UUID idCommodity){
         return restTemplate
-                .getForObject("http://localhost:9002/v1/api/commodity/get-type-tax/" + idCommodity
+                .getForObject("http://localhost:9002/v1/api/commodity/getTypeTax/" + idCommodity
                         ,ApiAllCommodityInfo.class);
     }
 
