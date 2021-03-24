@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public interface ImportExportService {
 
-    ImportExportEntity saveI_export(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO);
+    ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO);
 
     List<ImportExportEntity> getAllReceipt();
 

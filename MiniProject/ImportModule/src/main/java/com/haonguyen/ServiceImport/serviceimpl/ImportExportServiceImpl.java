@@ -17,34 +17,44 @@ import java.util.UUID;
 @Service
 public class ImportExportServiceImpl implements ImportExportService {
 
-    public ImportExportServiceImpl(){};
+    public ImportExportServiceImpl() {
+    }
+
+    ;
 
     @Autowired
     private ImportExportRepository importExportRepository;
     @Autowired
     private ImportExportService importExportService;
 
+    /**
+     * method save importExportEntity mapper from ImportReceiptDTO set New id to iExportEntity
+     *
+     * @param iExportEntity
+     * @param importReceiptDTO
+     * @return iExportEntity set new idImportExport
+     */
     @Override
-    public ImportExportEntity saveI_export(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) {
+    public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) {
         ImportReceiptMapper importReceiptMapper = new ImportReceiptMapperImpl();
         ImportExportEntity importExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
-        ImportExportEntity importExportEntityNew =  importExportRepository.save(importExportEntity);
+        ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
         iExportEntity.setId(importExportEntityNew.getId());
         return iExportEntity;
     }
 
     @Override
-    public List<ImportExportEntity> getAllReceipt(){
+    public List<ImportExportEntity> getAllReceipt() {
         return importExportRepository.findAll();
     }
 
     @Override
-    public ImportExportEntity getByIdI_Export(UUID idI_Export){
+    public ImportExportEntity getByIdI_Export(UUID idI_Export) {
         return importExportRepository.findById(idI_Export).get();
     }
 
     @Override
-    public void deleteById(UUID idI_Export){
+    public void deleteById(UUID idI_Export) {
         importExportRepository.deleteById(idI_Export);
     }
 
@@ -82,7 +92,7 @@ public class ImportExportServiceImpl implements ImportExportService {
 
     @Override
     public List<WarehouseCommodityEntity> findWarehouseCommodityByTwoId(UUID idWarehouse, UUID idCommodity) {
-        return importExportRepository.findWarehouseCommodityByIdImportExport(idWarehouse , idCommodity);
+        return importExportRepository.findWarehouseCommodityByIdImportExport(idWarehouse, idCommodity);
     }
 
     @Override

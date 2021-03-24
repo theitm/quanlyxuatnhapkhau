@@ -51,6 +51,11 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
         return null;
     }
 
+    /**
+     * method create WarehouseCommodity from 
+     * @param warehouseCommodityDTO
+     * @return warehouseCommodityEntityList
+     */
     @Override
     public List<WarehouseCommodityEntity> getFromWarehouseCommodityDTO(WarehouseCommodityDTO warehouseCommodityDTO) {
         List<WarehouseCommodityEntity> warehouseCommodityEntityList = new ArrayList<>();

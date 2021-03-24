@@ -26,6 +26,13 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Autowired
     private RestTemplate restTemplate;
 
+    /**
+     * method to save Receipt Import
+     *
+     * @param importReceiptDTO
+     * @return iExportEntityNew if Max(amount in receipt) < warehouse capacity
+     * recommendWarehouse if Max > warehouse capacity
+     */
     @Override
     public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) {
         if (importReceiptDTO == null) {
@@ -42,7 +49,7 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         WarehouseEntity warehouseEntity = importExportService.findWarehouseById(importReceiptDTO.getIdWarehouse());
 
-        ImportExportEntity iExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
+        ImportExportEntity importExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
 
         List<DocumentEntity> documentEntityList = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
 
@@ -52,47 +59,61 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         int Max = 0;
 
-        for (ItemReceiptDTO list : itemReceiptDTOList) {
-            CommodityEntity commodityEntity = getCommodityEntityFromCommodityDto(list);
-            Max += list.getQuantity();
+        // get all the information commodity and Max
+        for (ItemReceiptDTO listItem : itemReceiptDTOList) {
+            CommodityEntity commodityEntity = getCommodityEntityFromCommodityModule(listItem);
+            Max += listItem.getQuantity();
             commodityEntityList.add(commodityEntity);
         }
 
-        documentService.setInfoDocument(iExportEntity, documentEntityList);
+        documentService.setInfoDocument(importExportEntity, documentEntityList);
 
         if (Max < warehouseEntity.getCapacity()) {
-            detailsImportExportService.setInfoDetailsImportExport(iExportEntity, detailsIExportEntityList, commodityEntityList);
+            detailsImportExportService.setInfoDetailsImportExport(importExportEntity, detailsIExportEntityList, commodityEntityList);
 
-            importExportService.setInfoImportExport(countryEntity, warehouseEntity, iExportEntity, documentEntityList, detailsIExportEntityList);
+            importExportService.setInfoImportExport(countryEntity, warehouseEntity, importExportEntity, documentEntityList, detailsIExportEntityList);
 
-            ImportExportEntity iExportEntityNew = importExportService.saveI_export(iExportEntity, importReceiptDTO);
-            detailsImportExportService.save(detailsIExportEntityList, iExportEntityNew);
-            documentService.save(documentEntityList, iExportEntityNew);
+            ImportExportEntity importExportEntityNew = importExportService.saveImportExportEntity(importExportEntity, importReceiptDTO);
+            detailsImportExportService.save(detailsIExportEntityList, importExportEntityNew);
+            documentService.save(documentEntityList, importExportEntityNew);
 
+            // create warehouseCommodityDTO
             WarehouseCommodityMapper warehouseCommodityMapper = new WarehouseCommodityMapperImpl();
-            WarehouseCommodityDTO warehouseCommodityDTO = warehouseCommodityMapper.ToWarehouseCommodityDto(iExportEntityNew, importReceiptDTO);
+            WarehouseCommodityDTO warehouseCommodityDTO = warehouseCommodityMapper.ToWarehouseCommodityDto(importExportEntity, importReceiptDTO);
 
             List<WarehouseCommodityEntity> warehouseCommodityEntityList = warehouseCommodityService.getFromWarehouseCommodityDTO(warehouseCommodityDTO);
 
-            warehouseCommodityService.save(warehouseCommodityEntityList, iExportEntityNew);
+            warehouseCommodityService.save(warehouseCommodityEntityList, importExportEntityNew);
 
-
-            return ResponseEntity.ok().body(iExportEntityNew);
+            return ResponseEntity.ok().body(importExportEntity);
         } else {
             List<WarehouseEntity> recommendWarehouse = importExportService.getWarehouseEntityList(Max);
             return ResponseEntity.ok().body(recommendWarehouse);
         }
     }
 
+    /**
+     * method get CommodityEntity from CommodityModule
+     *
+     * @param listItemDto
+     * @return commodityEntity
+     */
     @Override
-    public CommodityEntity getCommodityEntityFromCommodityDto(ItemReceiptDTO list) {
+    public CommodityEntity getCommodityEntityFromCommodityModule(ItemReceiptDTO listItemDto) {
         String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/getId/";
-        CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + list.getIdCommodity(), CommodityDTO.class);
+        CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + listItemDto.getIdCommodity(), CommodityDTO.class);
         CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
         CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);
         return commodityEntity;
     }
 
+    /**
+     * method search Receipt ImportExportEntity
+     *
+     * @param keySearchDTO
+     * @return iExportEntityList
+     * @throws ParseException
+     */
     @Override
     public List<ImportExportEntity> searchReceiptImportExport(KeySearchDTO keySearchDTO) throws ParseException {
         List<ImportExportEntity> iExportEntityList = new ArrayList<>();
@@ -103,6 +124,8 @@ public class ReceiptServiceImpl implements ReceiptService {
             } else {
                 iExportEntityList.addAll(importExportService.searchImportExport(keySearchDTO.getKey(), keySearchDTO.getDate()));
             }
+        } else {
+            iExportEntityList.addAll(importExportService.searchImportExport(keySearchDTO.getKey(), keySearchDTO.getDate()));
         }
         return iExportEntityList;
     }
