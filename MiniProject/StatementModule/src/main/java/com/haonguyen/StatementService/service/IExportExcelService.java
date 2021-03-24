@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface IExportExcelService {
-    void export(HttpServletResponse response) throws IOException;
+    void export(HttpServletResponse response, String monthAndYear) throws IOException;
 }

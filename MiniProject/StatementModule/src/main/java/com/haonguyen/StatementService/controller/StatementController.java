@@ -30,8 +30,8 @@ public class StatementController {
         return iStatementService.getInfoExportAPI(monthAndYear);
     }
 
-    @GetMapping("/details/excel")
-    public void ExportDetailsImEx(HttpServletResponse response) throws IOException {
-        iExportExcelService.export(response);
+    @GetMapping("/details/excel/{monthAndYear}")
+    public void ExportDetailsImEx(HttpServletResponse response,@PathVariable("monthAndYear") String monthAndYear) throws IOException {
+        iExportExcelService.export(response,monthAndYear);
     }
 }
