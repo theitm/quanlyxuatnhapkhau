@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -12,8 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImportReceiptDTO {
+    @NotNull
     private UUID id;
+    @NotNull
     private UUID idCountry;
+    @NotNull
     private UUID idWarehouse;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;

@@ -1,5 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.repository.DetailsImportExportRepository;
 import com.haonguyen.ServiceImport.service.DetailsImportExportService;
 import com.mini_project.CoreModule.entity.CommodityEntity;
@@ -16,11 +17,16 @@ public class DetailsImportExportServiceImpl implements DetailsImportExportServic
     private DetailsImportExportRepository detailsImportExportRepository;
 
     @Override
-    public void save(List<DetailsImportExportEntity> detailsIExportEntityList, ImportExportEntity importExportEntity) {
-        for(DetailsImportExportEntity listDetails: detailsIExportEntityList){
+    public DetailsImportExportEntity save(List<DetailsImportExportEntity> detailsIExportEntityList, ImportExportEntity importExportEntity) throws SaveException {
+        DetailsImportExportEntity detailsImportExportEntity = null;
+        for (DetailsImportExportEntity listDetails : detailsIExportEntityList) {
             listDetails.setIdImportExport(importExportEntity.getId());
-            detailsImportExportRepository.save(listDetails);
+            detailsImportExportEntity = detailsImportExportRepository.save(listDetails);
         }
+        if(detailsImportExportEntity == null){
+            throw new SaveException("Save Error Please Try Again");
+        }
+        return detailsImportExportEntity;
     }
 
     @Override

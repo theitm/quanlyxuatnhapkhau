@@ -1,5 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.repository.DocumentRepository;
 import com.haonguyen.ServiceImport.service.DocumentService;
 import com.mini_project.CoreModule.entity.DocumentEntity;
@@ -15,11 +16,16 @@ public class DocumentServiceImpl implements DocumentService {
     private DocumentRepository documentRepository;
 
     @Override
-    public void save(List<DocumentEntity> documentEntityList, ImportExportEntity iExportEntityNew) {
+    public DocumentEntity save(List<DocumentEntity> documentEntityList, ImportExportEntity iExportEntityNew) throws SaveException {
+        DocumentEntity documentEntity = null;
         for (DocumentEntity listDocument: documentEntityList){
             listDocument.setIdImportExport(iExportEntityNew.getId());
-            documentRepository.save(listDocument);
+           documentEntity = documentRepository.save(listDocument);
         }
+        if(documentEntity == null){
+            throw new SaveException("Save Error Please Try Again");
+        }
+        return documentEntity;
     }
 
     @Override

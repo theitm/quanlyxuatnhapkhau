@@ -1,5 +1,8 @@
 package com.haonguyen.ServiceImport.controller;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.GlobalRestExceptionHandler;
+import com.haonguyen.ServiceImport.CustomErrorMessage.ReceiptImportNotFoundException;
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.ExcelReceiptImportDTO;
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.KeySearchDTO;
@@ -9,9 +12,11 @@ import com.haonguyen.ServiceImport.service.ImportExportService;
 import com.haonguyen.ServiceImport.service.ReceiptService;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 import java.util.UUID;
@@ -25,21 +30,23 @@ public class ImportController {
     private ImportExportService importExportService;
     @Autowired
     private ReceiptService receiptService;
+    @Autowired
+    private GlobalRestExceptionHandler globalRestExceptionHandler;
 
     public ImportController() {
     }
 
     @PostMapping("/addReceipt")
-    public ResponseEntity addReceipt(@RequestBody ImportReceiptDTO importReceiptDTO) {
+    public ResponseEntity addReceipt(@RequestBody ImportReceiptDTO importReceiptDTO) throws SaveException {
 
         return receiptService.getReceipt(importReceiptDTO);
     }
 
     @GetMapping("/allReceipt")
-    public ResponseEntity getAllReceipt() {
+    public List<ImportExportEntity> getAllReceipt() {
         List<ImportExportEntity> iExportEntityList = importExportService.getAllReceipt();
 
-        return ResponseEntity.ok().body(iExportEntityList);
+        return iExportEntityList;
     }
 
     @PostMapping("/searchReceipt")
@@ -50,16 +57,17 @@ public class ImportController {
     }
 
     @GetMapping("/getReceipt/{idReceipt}")
-    public ResponseEntity getReceiptById(@PathVariable(name = "idReceipt") String idReceipt) {
+    public ResponseEntity getReceiptById(@PathVariable(name = "idReceipt") String idReceipt) throws ReceiptImportNotFoundException {
 
-        ImportExportEntity exportEntity = importExportService.getByIdI_Export(UUID.fromString(idReceipt));
+            ImportExportEntity importExportEntity = importExportService.getByIdImportExport(UUID.fromString(idReceipt));
+            return ResponseEntity.ok().body(importExportEntity);
 
-        return ResponseEntity.ok().body(exportEntity);
     }
 
+
     @GetMapping("/excelReceiptImport/{idReceipt}")
-    public ExcelReceiptImportDTO getExcel(@PathVariable(name = "idReceipt") String idReceipt) {
-        ImportExportEntity importExportEntity = importExportService.getByIdI_Export(UUID.fromString(idReceipt));
+    public ExcelReceiptImportDTO getExcel(@PathVariable(name = "idReceipt") String idReceipt) throws ReceiptImportNotFoundException{
+        ImportExportEntity importExportEntity = importExportService.getByIdImportExport(UUID.fromString(idReceipt));
 
         ExcelReceiptImportMapper excelReceiptImportMapper = new ExcelReceiptImportMapperImpl();
 
