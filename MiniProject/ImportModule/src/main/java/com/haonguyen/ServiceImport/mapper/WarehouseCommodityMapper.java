@@ -13,7 +13,7 @@ public interface WarehouseCommodityMapper {
             @Mapping(target = "id", source = "importExportEntity.id"),
             @Mapping(target = "idWarehouse", source ="importExportEntity.warehouseEntity"),
             @Mapping(target = "commodityEntities", source ="importExportEntity.detailsImportExportEntities"),
-            @Mapping(target = "inventoryNumber", source = "importReceiptDTO.item")
+            @Mapping(target = "itemReceiptDTOS", source = "importReceiptDTO.item")
     })
     WarehouseCommodityDTO ToWarehouseCommodityDto(ImportExportEntity importExportEntity, ImportReceiptDTO importReceiptDTO);
 }

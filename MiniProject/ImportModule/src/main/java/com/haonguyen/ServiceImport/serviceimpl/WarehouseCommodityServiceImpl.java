@@ -25,16 +25,20 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
     @Autowired
     private ImportExportService importExportService;
 
+    /**
+     * Method save into WarehouseCommodityEntity if in database no data
+     * update if there is data
+     *
+     * @param warehouseCommodityEntityList
+     * @param importExportEntityNew
+     */
     @Override
-    public WarehouseCommodityEntity save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) {
-        if (warehouseCommodityEntityList == null) {
-            return null;
-        }
+    public void save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) {
 
         for (WarehouseCommodityEntity listWarehouseCommodity : warehouseCommodityEntityList) {
             List<WarehouseCommodityEntity> listWarehouseCommodityByIdImExport
                     = importExportService
-                    .findWarehouseCommodityByTwoId(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
+                    .findWarehouseCommodityByIdWarehouseIdCommodity(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
             if (listWarehouseCommodityByIdImExport.size() == 0) {
                 warehouseCommodityRepository.save(listWarehouseCommodity);
             }
@@ -48,14 +52,19 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
                 warehouseCommodityRepository.save(listWarehouseCommodity);
             }
         }
-        return null;
     }
 
+    /**
+     * method create WarehouseCommodity from warehouseCommodityDTO
+     *
+     * @param warehouseCommodityDTO
+     * @return warehouseCommodityEntityList
+     */
     @Override
     public List<WarehouseCommodityEntity> getFromWarehouseCommodityDTO(WarehouseCommodityDTO warehouseCommodityDTO) {
         List<WarehouseCommodityEntity> warehouseCommodityEntityList = new ArrayList<>();
 
-        List<ItemReceiptDTO> itemReceiptDTOList = warehouseCommodityDTO.getInventoryNumber().stream().collect(Collectors.toList());
+        List<ItemReceiptDTO> itemReceiptDTOList = warehouseCommodityDTO.getItemReceiptDTOS().stream().collect(Collectors.toList());
 
         List<DetailsImportExportEntity> commodityList = warehouseCommodityDTO.getCommodityEntities().stream().collect(Collectors.toList());
 

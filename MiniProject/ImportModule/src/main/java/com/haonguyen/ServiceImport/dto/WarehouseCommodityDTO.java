@@ -19,7 +19,7 @@ public class WarehouseCommodityDTO {
     @Type(type = "uuid-char")
     Collection<DetailsImportExportEntity> commodityEntities;
 
-    private Collection<ItemReceiptDTO> inventoryNumber;
+    private Collection<ItemReceiptDTO> itemReceiptDTOS;
 
     public UUID getId() {
         return id;
@@ -45,11 +45,11 @@ public class WarehouseCommodityDTO {
         this.commodityEntities = commodityEntities;
     }
 
-    public Collection<ItemReceiptDTO> getInventoryNumber() {
-        return inventoryNumber;
+    public Collection<ItemReceiptDTO> getItemReceiptDTOS() {
+        return itemReceiptDTOS;
     }
 
-    public void setInventoryNumber(Collection<ItemReceiptDTO> inventoryNumber) {
-        this.inventoryNumber = inventoryNumber;
+    public void setItemReceiptDTOS(Collection<ItemReceiptDTO> itemReceiptDTOS) {
+        this.itemReceiptDTOS = itemReceiptDTOS;
     }
 }

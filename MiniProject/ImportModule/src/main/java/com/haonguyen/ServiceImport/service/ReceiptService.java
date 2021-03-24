@@ -15,7 +15,7 @@ public interface ReceiptService {
 
     ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO);
 
-    CommodityEntity getCommodityEntityFromCommodityDto(ItemReceiptDTO list);
+    CommodityEntity getCommodityEntityFromCommodityModule(ItemReceiptDTO list);
 
     List<ImportExportEntity> searchReceiptImportExport(KeySearchDTO keySearchDTO) throws ParseException;
 
