@@ -14,8 +14,8 @@ import java.util.UUID;
 public interface IDetailsImportExportRepository extends JpaRepository<DetailsImportExportEntity, UUID> {
 
     @Query(value = "select e from DetailsImportExportEntity e " +
-            " where e.idCommodity = :idCommodity")
-    DetailsImportExportEntity checkIdCommodity(@Param("idCommodity") UUID idCommodity);
+            " where e.idCommodity = :idCommodity ")
+    List<DetailsImportExportEntity> checkIdCommodity(@Param("idCommodity") UUID idCommodity);
 
     List<DetailsImportExportEntity> findByIdImportExport(UUID idImportExport);
 }

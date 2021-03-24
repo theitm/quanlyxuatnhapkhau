@@ -76,9 +76,9 @@ public class DetailsImportExportService implements IDetailsImportExportService {
     }
     @Override
     public Boolean checkIdCommodity(UUID idCommodity) {
-        DetailsImportExportEntity detailsImportExportEntity
+        List<DetailsImportExportEntity>  detailsImportExportEntities
                 = iDetailsImportExportRepository.checkIdCommodity(idCommodity);
-        if(detailsImportExportEntity == null)
+        if(detailsImportExportEntities == null)
             return true;
         return false;
     }
