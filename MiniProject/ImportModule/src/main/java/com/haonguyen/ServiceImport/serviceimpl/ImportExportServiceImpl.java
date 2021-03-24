@@ -1,8 +1,8 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
-import com.haonguyen.ServiceImport.mapper.ImportReceiptMapper;
-import com.haonguyen.ServiceImport.mapper.ImportReceiptMapperImpl;
+import com.haonguyen.ServiceImport.mapper.ImportExportMapper;
+import com.haonguyen.ServiceImport.mapper.ImportExportMapperImpl;
 import com.haonguyen.ServiceImport.repository.ImportExportRepository;
 import com.haonguyen.ServiceImport.service.ImportExportService;
 import com.mini_project.CoreModule.entity.*;
@@ -36,8 +36,8 @@ public class ImportExportServiceImpl implements ImportExportService {
      */
     @Override
     public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) {
-        ImportReceiptMapper importReceiptMapper = new ImportReceiptMapperImpl();
-        ImportExportEntity importExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
+        ImportExportMapper importExportMapper = new ImportExportMapperImpl();
+        ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
         ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
         iExportEntity.setId(importExportEntityNew.getId());
         return iExportEntity;
@@ -51,11 +51,6 @@ public class ImportExportServiceImpl implements ImportExportService {
     @Override
     public ImportExportEntity getByIdI_Export(UUID idI_Export) {
         return importExportRepository.findById(idI_Export).get();
-    }
-
-    @Override
-    public void deleteById(UUID idI_Export) {
-        importExportRepository.deleteById(idI_Export);
     }
 
     @Override
@@ -73,11 +68,6 @@ public class ImportExportServiceImpl implements ImportExportService {
         return importExportRepository.findByIdCountry(id);
     }
 
-    @Override
-    public CommodityEntity findCommodityById(UUID id) {
-
-        return importExportRepository.findByIdCommodity(id);
-    }
 
     @Override
     public List<WarehouseEntity> findAllWarehouse() {
@@ -91,8 +81,8 @@ public class ImportExportServiceImpl implements ImportExportService {
     }
 
     @Override
-    public List<WarehouseCommodityEntity> findWarehouseCommodityByTwoId(UUID idWarehouse, UUID idCommodity) {
-        return importExportRepository.findWarehouseCommodityByIdImportExport(idWarehouse, idCommodity);
+    public List<WarehouseCommodityEntity> findWarehouseCommodityByIdWarehouseIdCommodity(UUID idWarehouse, UUID idCommodity) {
+        return importExportRepository.findWarehouseCommodityByIdWarehouseIdCommodity(idWarehouse, idCommodity);
     }
 
     @Override

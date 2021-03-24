@@ -41,19 +41,21 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         List<ItemReceiptDTO> itemReceiptDTOList = importReceiptDTO.getItem();
 
-        ImportReceiptMapper importReceiptMapper = new ImportReceiptMapperImpl();
+        ImportExportMapper importExportMapper = new ImportExportMapperImpl();
 
         ItemReceiptMapper itemReceiptMapper = new ItemReceiptMapperImpl();
+
+        DetailsImportExportMapper detailsImportExportMapper = new DetailsImportExportMapperImpl();
 
         CountryEntity countryEntity = importExportService.findCountryById(importReceiptDTO.getIdCountry());
 
         WarehouseEntity warehouseEntity = importExportService.findWarehouseById(importReceiptDTO.getIdWarehouse());
 
-        ImportExportEntity importExportEntity = importReceiptMapper.importReceiptDTOToi_exportEntity(importReceiptDTO);
+        ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
 
         List<DocumentEntity> documentEntityList = itemReceiptMapper.itemReceiptToDocumentEntity(importReceiptDTO.getItem());
 
-        List<DetailsImportExportEntity> detailsIExportEntityList = importReceiptMapper.importReceiptDTOToDetailsEntity(importReceiptDTO);
+        List<DetailsImportExportEntity> detailsIExportEntityList = detailsImportExportMapper.importReceiptDTOToDetailsEntity(importReceiptDTO.getItem());
 
         List<CommodityEntity> commodityEntityList = new ArrayList<>();
 
@@ -100,7 +102,7 @@ public class ReceiptServiceImpl implements ReceiptService {
      */
     @Override
     public CommodityEntity getCommodityEntityFromCommodityModule(ItemReceiptDTO listItemDto) {
-        String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/getId/";
+        String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/";
         CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + listItemDto.getIdCommodity(), CommodityDTO.class);
         CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
         CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);

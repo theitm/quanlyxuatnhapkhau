@@ -1,6 +1,9 @@
 package com.haonguyen.ServiceImport.repository;
 
-import com.mini_project.CoreModule.entity.*;
+import com.mini_project.CoreModule.entity.CountryEntity;
+import com.mini_project.CoreModule.entity.ImportExportEntity;
+import com.mini_project.CoreModule.entity.WarehouseCommodityEntity;
+import com.mini_project.CoreModule.entity.WarehouseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,9 +34,6 @@ public interface ImportExportRepository extends JpaRepository<ImportExportEntity
     @Query(value = "select c from CountryEntity c where c.id = :id")
     CountryEntity findByIdCountry(@Param("id") UUID id);
 
-    @Query(value = "select co from CommodityEntity co where co.id = :id")
-    CommodityEntity findByIdCommodity(@Param("id") UUID id);
-
     @Query(value = "select w FROM WarehouseEntity w")
     List<WarehouseEntity> findAllWarehouse();
 
@@ -45,7 +45,7 @@ public interface ImportExportRepository extends JpaRepository<ImportExportEntity
             "inner join ImportExportEntity ie on waco.idWarehouse = ie.idWarehouse " +
             "inner join DetailsImportExportEntity de on waco.idCommodity = de.idCommodity " +
             "Where ie.idWarehouse = :idWarehouse and de.idCommodity = :idCommodity")
-    List<WarehouseCommodityEntity> findWarehouseCommodityByIdImportExport(@Param("idWarehouse") UUID idWarehouse, @Param("idCommodity") UUID idCommodity);
+    List<WarehouseCommodityEntity> findWarehouseCommodityByIdWarehouseIdCommodity(@Param("idWarehouse") UUID idWarehouse, @Param("idCommodity") UUID idCommodity);
 
 
 }
