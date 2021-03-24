@@ -1,6 +1,8 @@
 package com.haonguyen.ServiceImport.service;
 
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.ReceiptImportNotFoundException;
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.mini_project.CoreModule.entity.*;
 
@@ -11,11 +13,11 @@ import java.util.UUID;
 
 public interface ImportExportService {
 
-    ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO);
+    ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) throws SaveException;
 
     List<ImportExportEntity> getAllReceipt();
 
-    ImportExportEntity getByIdI_Export(UUID idI_Export);
+    ImportExportEntity getByIdImportExport(UUID idImportExport) throws ReceiptImportNotFoundException;
 
     List<ImportExportEntity> searchImportExport(String key, Date date);
 

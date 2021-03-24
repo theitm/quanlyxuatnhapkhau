@@ -1,5 +1,7 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.ReceiptImportNotFoundException;
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.mapper.ImportExportMapper;
 import com.haonguyen.ServiceImport.mapper.ImportExportMapperImpl;
@@ -35,10 +37,13 @@ public class ImportExportServiceImpl implements ImportExportService {
      * @return iExportEntity set new idImportExport
      */
     @Override
-    public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) {
+    public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) throws SaveException {
         ImportExportMapper importExportMapper = new ImportExportMapperImpl();
         ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
         ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
+        if(importExportEntity == null){
+            throw new SaveException("Save Error Please Try Again");
+        }
         iExportEntity.setId(importExportEntityNew.getId());
         return iExportEntity;
     }
@@ -49,8 +54,13 @@ public class ImportExportServiceImpl implements ImportExportService {
     }
 
     @Override
-    public ImportExportEntity getByIdI_Export(UUID idI_Export) {
-        return importExportRepository.findById(idI_Export).get();
+    public ImportExportEntity getByIdImportExport(UUID idImportExport) throws ReceiptImportNotFoundException{
+
+        ImportExportEntity importExportEntity = importExportRepository.findById(idImportExport).orElse(null);
+        if(importExportEntity == null){
+            throw new ReceiptImportNotFoundException("Not found id:" + idImportExport.toString());
+        }
+        return importExportEntity;
     }
 
     @Override

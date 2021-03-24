@@ -1,5 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.ItemReceiptDTO;
 import com.haonguyen.ServiceImport.dto.WarehouseCommodityDTO;
 import com.haonguyen.ServiceImport.repository.WarehouseCommodityRepository;
@@ -31,16 +32,17 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
      *
      * @param warehouseCommodityEntityList
      * @param importExportEntityNew
+     * @return warehouseCommodityEntity
      */
     @Override
-    public void save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) {
-
+    public WarehouseCommodityEntity save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) throws SaveException {
+        WarehouseCommodityEntity warehouseCommodityEntity = null;
         for (WarehouseCommodityEntity listWarehouseCommodity : warehouseCommodityEntityList) {
             List<WarehouseCommodityEntity> listWarehouseCommodityByIdImExport
                     = importExportService
                     .findWarehouseCommodityByIdWarehouseIdCommodity(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
             if (listWarehouseCommodityByIdImExport.size() == 0) {
-                warehouseCommodityRepository.save(listWarehouseCommodity);
+                warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
             }
             if (listWarehouseCommodityByIdImExport.size() > 0) {
                 Double ST = 0.0;
@@ -49,9 +51,13 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
                     ST = listWarehouseCommodityTwoId.getInventoryNumber() + listWarehouseCommodity.getInventoryNumber();
                 }
                 listWarehouseCommodity.setInventoryNumber(ST);
-                warehouseCommodityRepository.save(listWarehouseCommodity);
+                warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
             }
         }
+        if (warehouseCommodityEntity == null) {
+            throw new SaveException("Save Error Please Try Again");
+        }
+        return warehouseCommodityEntity;
     }
 
     /**

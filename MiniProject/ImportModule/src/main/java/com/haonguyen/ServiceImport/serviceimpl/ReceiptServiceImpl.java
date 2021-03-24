@@ -1,5 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.*;
 import com.haonguyen.ServiceImport.mapper.*;
 import com.haonguyen.ServiceImport.service.*;
@@ -34,7 +35,7 @@ public class ReceiptServiceImpl implements ReceiptService {
      * recommendWarehouse if Max > warehouse capacity
      */
     @Override
-    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) {
+    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) throws SaveException {
         if (importReceiptDTO == null) {
             return null;
         }
