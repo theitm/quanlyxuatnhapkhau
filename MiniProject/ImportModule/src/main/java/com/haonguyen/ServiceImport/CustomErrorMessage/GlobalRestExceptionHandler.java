@@ -37,5 +37,10 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ErrorMessage(10112, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
     }
 
+    @ExceptionHandler(SaveException.class)
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    public ErrorMessage saveException(Exception ex, WebRequest request){
+        return new ErrorMessage(500, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
+    }
 
 }

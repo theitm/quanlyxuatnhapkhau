@@ -23,7 +23,7 @@ public class DocumentServiceImpl implements DocumentService {
            documentEntity = documentRepository.save(listDocument);
         }
         if(documentEntity == null){
-            throw new SaveException("Save Error Please Try Again");
+            throw new SaveException("Save Error At DocumentEntity Please Try Again");
         }
         return documentEntity;
     }

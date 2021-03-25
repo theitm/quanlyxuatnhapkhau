@@ -24,7 +24,7 @@ public class DetailsImportExportServiceImpl implements DetailsImportExportServic
             detailsImportExportEntity = detailsImportExportRepository.save(listDetails);
         }
         if(detailsImportExportEntity == null){
-            throw new SaveException("Save Error Please Try Again");
+            throw new SaveException("Save Error At DetailsImportExportEntity Please Try Again");
         }
         return detailsImportExportEntity;
     }

@@ -55,7 +55,7 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
             }
         }
         if (warehouseCommodityEntity == null) {
-            throw new SaveException("Save Error Please Try Again");
+            throw new SaveException("Save Error At WarehouseCommodityEntity Please Try Again");
         }
         return warehouseCommodityEntity;
     }
