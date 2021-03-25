@@ -18,15 +18,16 @@ public class DetailsImportExportServiceImpl implements DetailsImportExportServic
 
     @Override
     public DetailsImportExportEntity save(List<DetailsImportExportEntity> detailsIExportEntityList, ImportExportEntity importExportEntity) throws SaveException {
-        DetailsImportExportEntity detailsImportExportEntity = null;
-        for (DetailsImportExportEntity listDetails : detailsIExportEntityList) {
-            listDetails.setIdImportExport(importExportEntity.getId());
-            detailsImportExportEntity = detailsImportExportRepository.save(listDetails);
-        }
-        if(detailsImportExportEntity == null){
+        try {
+            DetailsImportExportEntity detailsImportExportEntity = null;
+            for (DetailsImportExportEntity listDetails : detailsIExportEntityList) {
+                listDetails.setIdImportExport(importExportEntity.getId());
+                detailsImportExportEntity = detailsImportExportRepository.save(listDetails);
+            }
+            return detailsImportExportEntity;
+        } catch (Exception exception) {
             throw new SaveException("Save Error At DetailsImportExportEntity Please Try Again");
         }
-        return detailsImportExportEntity;
     }
 
     @Override

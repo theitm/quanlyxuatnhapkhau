@@ -36,28 +36,29 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService 
      */
     @Override
     public WarehouseCommodityEntity save(List<WarehouseCommodityEntity> warehouseCommodityEntityList, ImportExportEntity importExportEntityNew) throws SaveException {
-        WarehouseCommodityEntity warehouseCommodityEntity = null;
-        for (WarehouseCommodityEntity listWarehouseCommodity : warehouseCommodityEntityList) {
-            List<WarehouseCommodityEntity> listWarehouseCommodityByIdImExport
-                    = importExportService
-                    .findWarehouseCommodityByIdWarehouseIdCommodity(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
-            if (listWarehouseCommodityByIdImExport.size() == 0) {
-                warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
-            }
-            if (listWarehouseCommodityByIdImExport.size() > 0) {
-                Double ST = 0.0;
-                for (WarehouseCommodityEntity listWarehouseCommodityTwoId : listWarehouseCommodityByIdImExport) {
-                    listWarehouseCommodity.setId(listWarehouseCommodityTwoId.getId());
-                    ST = listWarehouseCommodityTwoId.getInventoryNumber() + listWarehouseCommodity.getInventoryNumber();
+        try {
+            WarehouseCommodityEntity warehouseCommodityEntity = null;
+            for (WarehouseCommodityEntity listWarehouseCommodity : warehouseCommodityEntityList) {
+                List<WarehouseCommodityEntity> listWarehouseCommodityByIdImExport
+                        = importExportService
+                        .findWarehouseCommodityByIdWarehouseIdCommodity(listWarehouseCommodity.getIdWarehouse(), listWarehouseCommodity.getIdCommodity());
+                if (listWarehouseCommodityByIdImExport.size() == 0) {
+                    warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
                 }
-                listWarehouseCommodity.setInventoryNumber(ST);
-                warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
+                if (listWarehouseCommodityByIdImExport.size() > 0) {
+                    Double ST = 0.0;
+                    for (WarehouseCommodityEntity listWarehouseCommodityTwoId : listWarehouseCommodityByIdImExport) {
+                        listWarehouseCommodity.setId(listWarehouseCommodityTwoId.getId());
+                        ST = listWarehouseCommodityTwoId.getInventoryNumber() + listWarehouseCommodity.getInventoryNumber();
+                    }
+                    listWarehouseCommodity.setInventoryNumber(ST);
+                    warehouseCommodityEntity = warehouseCommodityRepository.save(listWarehouseCommodity);
+                }
             }
-        }
-        if (warehouseCommodityEntity == null) {
+            return warehouseCommodityEntity;
+        } catch (Exception exception) {
             throw new SaveException("Save Error At WarehouseCommodityEntity Please Try Again");
         }
-        return warehouseCommodityEntity;
     }
 
     /**
