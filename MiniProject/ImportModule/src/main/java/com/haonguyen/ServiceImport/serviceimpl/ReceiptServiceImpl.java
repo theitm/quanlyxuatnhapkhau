@@ -1,5 +1,6 @@
 package com.haonguyen.ServiceImport.serviceimpl;
 
+import com.haonguyen.ServiceImport.CustomErrorMessage.CommodityException;
 import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.*;
 import com.haonguyen.ServiceImport.mapper.*;
@@ -35,7 +36,7 @@ public class ReceiptServiceImpl implements ReceiptService {
      * recommendWarehouse if Max > warehouse capacity
      */
     @Override
-    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) throws SaveException {
+    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) throws SaveException,CommodityException {
         if (importReceiptDTO == null) {
             return null;
         }
@@ -102,12 +103,16 @@ public class ReceiptServiceImpl implements ReceiptService {
      * @return commodityEntity
      */
     @Override
-    public CommodityEntity getCommodityEntityFromCommodityModule(ItemReceiptDTO listItemDto) {
-        String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/";
-        CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + listItemDto.getIdCommodity(), CommodityDTO.class);
-        CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
-        CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);
-        return commodityEntity;
+    public CommodityEntity getCommodityEntityFromCommodityModule(ItemReceiptDTO listItemDto) throws CommodityException {
+        try {
+            String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/";
+            CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + listItemDto.getIdCommodity(), CommodityDTO.class);
+            CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
+            CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);
+            return commodityEntity;
+        } catch (Exception exception) {
+            throw new CommodityException("No response from CommodityService please try again later");
+        }
     }
 
     /**
@@ -118,18 +123,21 @@ public class ReceiptServiceImpl implements ReceiptService {
      * @throws ParseException
      */
     @Override
-    public List<ImportExportEntity> searchReceiptImportExport(KeySearchDTO keySearchDTO) throws ParseException {
-        List<ImportExportEntity> iExportEntityList = new ArrayList<>();
-
-        if (keySearchDTO.getDate() != null) {
-            if (keySearchDTO.getKey() == null) {
-                iExportEntityList.addAll(importExportService.findAllByDate(keySearchDTO.getDate()));
+    public List<ImportExportEntity> searchReceiptImportExport(KeySearchDTO keySearchDTO) throws Exception {
+        try {
+            List<ImportExportEntity> iExportEntityList = new ArrayList<>();
+            if (keySearchDTO.getDate() != null) {
+                if (keySearchDTO.getKey() == null) {
+                    iExportEntityList.addAll(importExportService.findAllByDate(keySearchDTO.getDate()));
+                } else {
+                    iExportEntityList.addAll(importExportService.searchImportExport(keySearchDTO.getKey(), keySearchDTO.getDate()));
+                }
             } else {
                 iExportEntityList.addAll(importExportService.searchImportExport(keySearchDTO.getKey(), keySearchDTO.getDate()));
             }
-        } else {
-            iExportEntityList.addAll(importExportService.searchImportExport(keySearchDTO.getKey(), keySearchDTO.getDate()));
+            return iExportEntityList;
+        } catch (Exception exception) {
+            throw new Exception();
         }
-        return iExportEntityList;
     }
 }

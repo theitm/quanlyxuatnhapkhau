@@ -9,7 +9,12 @@ public class FallBackMethodController {
 
     @GetMapping("/importServiceFallBack")
     public ResponseEntity importServiceFallBackMethod(){
-        return ResponseEntity.ok().body("404 error pls try again");
+        return ResponseEntity.ok().body("No response ImportService, please try again later!");
+    }
+
+    @GetMapping("/commodityServiceFallBack")
+    public ResponseEntity commodityServiceFallBackMethod(){
+        return ResponseEntity.ok().body("No response CommodityService, please try again later!");
     }
 
 

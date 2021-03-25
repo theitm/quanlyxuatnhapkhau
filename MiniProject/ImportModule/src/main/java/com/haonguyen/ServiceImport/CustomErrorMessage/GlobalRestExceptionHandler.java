@@ -30,9 +30,25 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ParseException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
-    public ErrorMessage pareException(Exception ex, WebRequest request){
+    public ErrorMessage pareException(Exception ex, WebRequest request) {
         return new ErrorMessage(10112, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
     }
 
+    @ExceptionHandler(SaveException.class)
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    public ErrorMessage saveException(Exception ex, WebRequest request) {
+        return new ErrorMessage(500, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
+    }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus()
+    public ErrorMessage generalException(Exception ex, WebRequest request) {
+        return new ErrorMessage(1000, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
+    }
+
+    @ExceptionHandler(CommodityException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorMessage commodityException(Exception ex, WebRequest request) {
+        return new ErrorMessage(888, ex.getMessage(), LocalDateTime.now(ZoneOffset.UTC));
+    }
 }
