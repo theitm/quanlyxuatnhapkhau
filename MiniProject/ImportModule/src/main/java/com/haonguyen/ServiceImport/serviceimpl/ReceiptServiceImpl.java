@@ -6,7 +6,6 @@ import com.haonguyen.ServiceImport.dto.*;
 import com.haonguyen.ServiceImport.mapper.*;
 import com.haonguyen.ServiceImport.service.*;
 import com.mini_project.CoreModule.entity.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,16 +16,34 @@ import java.util.List;
 
 @Service
 public class ReceiptServiceImpl implements ReceiptService {
-    @Autowired
-    private ImportExportService importExportService;
-    @Autowired
-    private WarehouseCommodityService warehouseCommodityService;
-    @Autowired
-    private DetailsImportExportService detailsImportExportService;
-    @Autowired
-    private DocumentService documentService;
-    @Autowired
-    private RestTemplate restTemplate;
+
+    private final ImportExportService importExportService;
+    private final WarehouseCommodityService warehouseCommodityService;
+    private final DetailsImportExportService detailsImportExportService;
+    private final DocumentService documentService;
+    private final RestTemplate restTemplate;
+    private final ItemReceiptMapper itemReceiptMapper;
+    private final ImportExportMapper importExportMapper;
+    private final DetailsImportExportMapper detailsImportExportMapper;
+    private final WarehouseCommodityMapper warehouseCommodityMapper;
+    private final CommodityDTOMapper commodityDTOMapper;
+
+    public ReceiptServiceImpl(ImportExportService importExportService, WarehouseCommodityService warehouseCommodityService,
+                              DetailsImportExportService detailsImportExportService,
+                              DocumentService documentService, RestTemplate restTemplate, ItemReceiptMapper itemReceiptMapper,
+                              ImportExportMapper importExportMapper, DetailsImportExportMapper detailsImportExportMapper,
+                              WarehouseCommodityMapper warehouseCommodityMapper, CommodityDTOMapper commodityDTOMapper) {
+        this.importExportService = importExportService;
+        this.warehouseCommodityService = warehouseCommodityService;
+        this.detailsImportExportService = detailsImportExportService;
+        this.documentService = documentService;
+        this.restTemplate = restTemplate;
+        this.itemReceiptMapper = itemReceiptMapper;
+        this.importExportMapper = importExportMapper;
+        this.detailsImportExportMapper = detailsImportExportMapper;
+        this.warehouseCommodityMapper = warehouseCommodityMapper;
+        this.commodityDTOMapper = commodityDTOMapper;
+    }
 
     /**
      * method to save Receipt Import
@@ -36,18 +53,12 @@ public class ReceiptServiceImpl implements ReceiptService {
      * recommendWarehouse if Max > warehouse capacity
      */
     @Override
-    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) throws SaveException,CommodityException {
+    public ResponseEntity getReceipt(ImportReceiptDTO importReceiptDTO) throws SaveException, CommodityException {
         if (importReceiptDTO == null) {
             return null;
         }
 
         List<ItemReceiptDTO> itemReceiptDTOList = importReceiptDTO.getItem();
-
-        ImportExportMapper importExportMapper = new ImportExportMapperImpl();
-
-        ItemReceiptMapper itemReceiptMapper = new ItemReceiptMapperImpl();
-
-        DetailsImportExportMapper detailsImportExportMapper = new DetailsImportExportMapperImpl();
 
         CountryEntity countryEntity = importExportService.findCountryById(importReceiptDTO.getIdCountry());
 
@@ -82,7 +93,6 @@ public class ReceiptServiceImpl implements ReceiptService {
             documentService.save(documentEntityList, importExportEntityNew);
 
             // create warehouseCommodityDTO
-            WarehouseCommodityMapper warehouseCommodityMapper = new WarehouseCommodityMapperImpl();
             WarehouseCommodityDTO warehouseCommodityDTO = warehouseCommodityMapper.ToWarehouseCommodityDto(importExportEntity, importReceiptDTO);
 
             List<WarehouseCommodityEntity> warehouseCommodityEntityList = warehouseCommodityService.getFromWarehouseCommodityDTO(warehouseCommodityDTO);
@@ -107,7 +117,6 @@ public class ReceiptServiceImpl implements ReceiptService {
         try {
             String sourceCommodityURL = "http://COMMODITY-SERVICE/v1/api/commodity/";
             CommodityDTO resultCommodityDto = restTemplate.getForObject(sourceCommodityURL + listItemDto.getIdCommodity(), CommodityDTO.class);
-            CommodityDTOMapper commodityDTOMapper = new CommodityDTOMapperImpl();
             CommodityEntity commodityEntity = commodityDTOMapper.toCommodityEntity(resultCommodityDto);
             return commodityEntity;
         } catch (Exception exception) {

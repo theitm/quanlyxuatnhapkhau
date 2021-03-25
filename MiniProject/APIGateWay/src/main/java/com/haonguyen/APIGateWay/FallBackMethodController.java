@@ -17,5 +17,14 @@ public class FallBackMethodController {
         return ResponseEntity.ok().body("No response CommodityService, please try again later!");
     }
 
+    @GetMapping("/exportServiceFallBack")
+    public ResponseEntity exportServiceFallBackMethod(){
+        return ResponseEntity.ok().body("No response ExportService, please try again later!");
+    }
+
+    @GetMapping("/statementServiceFallBack")
+    public ResponseEntity statementServiceFallBackMethod(){
+        return ResponseEntity.ok().body("No response StatementService, please try again later!");
+    }
 
 }

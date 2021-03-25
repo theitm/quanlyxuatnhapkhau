@@ -1,12 +1,33 @@
 server:
   port: 9000
-
+#id: EXPORT-SERVICE
+#  uri: lb://EXPORT-SERVICE
+#  predicates:
+#    - Path=/v1/api/export/**
 spring:
   application:
     name: API-GATEWAY
   cloud:
     gateway:
       routes:
+        - id: STATEMENT-SERVICE
+          uri: lb://STATEMENT-SERVICE
+          predicates:
+            - Path=v1/api/statement/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: EXPORT-SERVICE
+                fallbackuri: forward:/statementServiceFallBack
+        - id: EXPORT-SERVICE
+          uri: lb://EXPORT-SERVICE
+          predicates:
+            - Path=/v1/api/export/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: EXPORT-SERVICE
+                fallbackuri: forward:/exportServiceFallBack
         - id: COMMODITY-SERVICE
           uri: lb://COMMODITY-SERVICE
           predicates:

@@ -8,11 +8,9 @@ import com.haonguyen.ServiceImport.dto.ExcelReceiptImportDTO;
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.dto.KeySearchDTO;
 import com.haonguyen.ServiceImport.mapper.ExcelReceiptImportMapper;
-import com.haonguyen.ServiceImport.mapper.ExcelReceiptImportMapperImpl;
 import com.haonguyen.ServiceImport.service.ImportExportService;
 import com.haonguyen.ServiceImport.service.ReceiptService;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +22,17 @@ import java.util.UUID;
 
 public class ImportController {
 
-    @Autowired
-    private ImportExportService importExportService;
-    @Autowired
-    private ReceiptService receiptService;
-    @Autowired
-    private GlobalRestExceptionHandler globalRestExceptionHandler;
+    private final ImportExportService importExportService;
+    private final ReceiptService receiptService;
+    private final GlobalRestExceptionHandler globalRestExceptionHandler;
+    private final ExcelReceiptImportMapper excelReceiptImportMapper;
 
-    public ImportController() {
+    public ImportController(ImportExportService importExportService, ReceiptService receiptService,
+                            GlobalRestExceptionHandler globalRestExceptionHandler, ExcelReceiptImportMapper excelReceiptImportMapper) {
+        this.importExportService = importExportService;
+        this.receiptService = receiptService;
+        this.globalRestExceptionHandler = globalRestExceptionHandler;
+        this.excelReceiptImportMapper = excelReceiptImportMapper;
     }
 
     @PostMapping("/addReceipt")
@@ -64,8 +65,6 @@ public class ImportController {
     @GetMapping("/excelReceiptImport/{idReceipt}")
     public ExcelReceiptImportDTO getExcel(@PathVariable(name = "idReceipt") String idReceipt) throws ReceiptImportNotFoundException {
         ImportExportEntity importExportEntity = importExportService.getByIdImportExport(UUID.fromString(idReceipt));
-
-        ExcelReceiptImportMapper excelReceiptImportMapper = new ExcelReceiptImportMapperImpl();
 
         ExcelReceiptImportDTO excelReceiptImportDTO = excelReceiptImportMapper.toExcelReceiptImportDTO(importExportEntity);
 

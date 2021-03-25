@@ -6,15 +6,18 @@ import com.haonguyen.ServiceImport.service.DetailsImportExportService;
 import com.mini_project.CoreModule.entity.CommodityEntity;
 import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class DetailsImportExportServiceImpl implements DetailsImportExportService {
-    @Autowired
-    private DetailsImportExportRepository detailsImportExportRepository;
+
+    private final DetailsImportExportRepository detailsImportExportRepository;
+
+    public DetailsImportExportServiceImpl(DetailsImportExportRepository detailsImportExportRepository) {
+        this.detailsImportExportRepository = detailsImportExportRepository;
+    }
 
     @Override
     public DetailsImportExportEntity save(List<DetailsImportExportEntity> detailsIExportEntityList, ImportExportEntity importExportEntity) throws SaveException {

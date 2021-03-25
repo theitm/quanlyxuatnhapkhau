@@ -26,7 +26,8 @@ public interface ImportExportRepository extends JpaRepository<ImportExportEntity
             "or co.commodityName like trim('%',:key,'%') " +
             "or cou.countryName like trim('%',:key,'%')) " +
             "and (:date is null or ie.date = :date)")
-    List<ImportExportEntity> searchImportExportQueryIgnoreCase(@Param("key") String key, @Param("date") Date date);
+    List<ImportExportEntity> searchImportExportQueryIgnoreCase(@Param("key") String key,
+                                                               @Param("date") Date date);
 
     @Query(value = "SELECT w FROM WarehouseEntity w WHERE w.id = :id")
     WarehouseEntity findByIdWarehouse(@Param("id") UUID id);
@@ -45,7 +46,8 @@ public interface ImportExportRepository extends JpaRepository<ImportExportEntity
             "inner join ImportExportEntity ie on waco.idWarehouse = ie.idWarehouse " +
             "inner join DetailsImportExportEntity de on waco.idCommodity = de.idCommodity " +
             "Where ie.idWarehouse = :idWarehouse and de.idCommodity = :idCommodity")
-    List<WarehouseCommodityEntity> findWarehouseCommodityByIdWarehouseIdCommodity(@Param("idWarehouse") UUID idWarehouse, @Param("idCommodity") UUID idCommodity);
+    List<WarehouseCommodityEntity> findWarehouseCommodityByIdWarehouseIdCommodity(@Param("idWarehouse") UUID idWarehouse,
+                                                                                  @Param("idCommodity") UUID idCommodity);
 
 
 }
