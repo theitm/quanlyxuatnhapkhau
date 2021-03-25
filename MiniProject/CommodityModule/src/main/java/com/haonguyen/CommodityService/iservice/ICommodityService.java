@@ -12,8 +12,8 @@ public interface ICommodityService {
     void deleteCommodity(UUID id) throws SaveException;
     CommodityCreateDto addCommodity(CommodityCreateDto commodityCreateDto);
     List<TypeOfCommodityDto> findCommodityByIdTypeOfCommodity(UUID idTypeOfCommodity);
-    List<CommoditySearchDto> searchCommodity(String key);
+    List<CommoditySearchDto> searchCommodity(String key) throws SaveException;
     CommodityUpdateDto updateCommodity(CommodityUpdateDto commodityUpdateDto, UUID idCommodity) throws SaveException;
     CommodityCreateDto CommodityById(UUID id);
-    TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity);
+    TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity) throws Exception;
 }

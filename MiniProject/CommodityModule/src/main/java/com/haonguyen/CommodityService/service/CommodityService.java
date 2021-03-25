@@ -34,65 +34,67 @@ public class CommodityService implements ICommodityService {
      */
     @Autowired
     RestTemplate restTemplate;
+
     @Override
     public void deleteCommodity(UUID id) throws SaveException {
         Double commodityInWarehouse = iCommodityRepository.checkCommodityInWarehouseById(id).getInventoryNumber();
         String checkIdCommodityURL = "http://localhost:8112/v1/api/export/check-id-commodity/";
-        String ABC = restTemplate.getForObject(checkIdCommodityURL + id,String.class);
-        if(ABC.equals("true") && commodityInWarehouse == 0 )
+        String ABC = restTemplate.getForObject(checkIdCommodityURL + id, String.class);
+        if (ABC.equals("true") && commodityInWarehouse == 0)
             iCommodityRepository.deleteById(id);
-        else{
+        else {
             throw new SaveException("Can not Delete");
         }
 
 
     }
+
     /**
-     *tim kiem da dieu kien
+     * tim kiem da dieu kien
      */
     @Override
-    public List<CommoditySearchDto> searchCommodity(String key) {
-        if (key==null) {
+    public List<CommoditySearchDto> searchCommodity(String key) throws SaveException {
+        if (key == null) {
 
             List<CommoditySearchDto> commoditySearchDtos = iCommodityRepository.findAllSearchCommodity();
             return commoditySearchDtos;
-        }
-        else {
-            List<CommoditySearchDto> commoditySearchDtos =iCommodityRepository.searchCommodity(key);
+        } else {
+            List<CommoditySearchDto> commoditySearchDtos = iCommodityRepository.searchCommodity(key);
+            if (commoditySearchDtos.size() == 0)
+                throw new SaveException("Không tìm thấy hàng cùng loại");
             return commoditySearchDtos;
         }
     }
 
     /**
-     *Them hang
+     * Them hang
      */
     @Override
-      public CommodityCreateDto addCommodity(CommodityCreateDto commodityCreateDto) {
+    public CommodityCreateDto addCommodity(CommodityCreateDto commodityCreateDto) {
         if (commodityCreateDto == null) {
             return null;
         }
 
-            ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
-            CommodityEntity commodityEntity = iCommodityMapper.fromCreateToEntity(commodityCreateDto);
-            iCommodityRepository.saveAndFlush(commodityEntity);
-            CommodityCreateDto commodityCreateDto1 = iCommodityMapper.toCreateDto(commodityEntity);
-            return commodityCreateDto1;
+        ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
+        CommodityEntity commodityEntity = iCommodityMapper.fromCreateToEntity(commodityCreateDto);
+        iCommodityRepository.saveAndFlush(commodityEntity);
+        CommodityCreateDto commodityCreateDto1 = iCommodityMapper.toCreateDto(commodityEntity);
+        return commodityCreateDto1;
     }
 
     /**
-     *Cap nhat hang
+     * Cap nhat hang
      */
     @Override
     public CommodityUpdateDto updateCommodity(CommodityUpdateDto commodityUpdateDto, UUID idCommodity) throws SaveException {
-        if (commodityUpdateDto == null){
+        if (commodityUpdateDto == null) {
             return null;
         }
         commodityUpdateDto.setId(idCommodity);
         CommodityEntity commodityEntities = iCommodityRepository.checkIdCommodity(idCommodity);
-        if(commodityEntities == null) {
+        if (commodityEntities == null) {
             throw new SaveException("không thể update");
-        }
-        else {
+        } else {
             ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
             CommodityEntity commodityEntity = iCommodityMapper.fromUpdateToEntity(commodityUpdateDto);
             iCommodityRepository.save(commodityEntity);
@@ -103,7 +105,7 @@ public class CommodityService implements ICommodityService {
     }
 
     /**
-     *Lay thong tin theo loai hang
+     * Lay thong tin theo loai hang
      */
     @Override
     public List<TypeOfCommodityDto> findCommodityByIdTypeOfCommodity(UUID idTypeOfCommodity) {
@@ -111,25 +113,31 @@ public class CommodityService implements ICommodityService {
         List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityMapper
                 .toFindSectorId(iCommodityRepository.findCommodityByIdTypeOfCommodity(idTypeOfCommodity));
         return typeOfCommodityDto;
-    /**
-     * lay thong tin thue
-     */
+        /**
+         * lay thong tin thue
+         */
     }
+
     @Override
-    public TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity) {
-        if (idCommodity!= null) {
-            TypeAndTaxCommodityAPI typeAndTaxCommodityAPI = iCommodityRepository.getTypeTaxCommodity(idCommodity);
-            return typeAndTaxCommodityAPI;
+    public TypeAndTaxCommodityAPI getTypeTaxCommodity(UUID idCommodity) throws Exception {
+
+        TypeAndTaxCommodityAPI typeAndTaxCommodityAPI = null;
+        if (idCommodity != null) {
+            typeAndTaxCommodityAPI = iCommodityRepository.getTypeTaxCommodity(idCommodity);
         }
-        else
-            return null;
+        if (typeAndTaxCommodityAPI == null) {
+            throw new Exception("khong");
+        }
+        return typeAndTaxCommodityAPI;
+
     }
+
     /**
-     *Lay thong tin theo id
+     * Lay thong tin theo id
      */
     @Override
     public CommodityCreateDto CommodityById(UUID id) {
-        ICommodityMapper iCommodityMapper= new ICommodityMapperImpl();
+        ICommodityMapper iCommodityMapper = new ICommodityMapperImpl();
         CommodityCreateDto commodityCreateDto = iCommodityMapper.toCreateDto(iCommodityRepository.findById(id).get());
         iCommodityRepository.findById(id).get();
         return commodityCreateDto;
