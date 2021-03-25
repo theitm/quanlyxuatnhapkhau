@@ -26,4 +26,3 @@ public class ErrorMessage {
         this.message = message;
     }
 }
-

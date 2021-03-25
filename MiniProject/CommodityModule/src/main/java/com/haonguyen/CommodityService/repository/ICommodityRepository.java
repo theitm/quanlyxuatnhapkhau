@@ -5,6 +5,7 @@ import com.haonguyen.CommodityService.dto.CommodityInWarehouseDto;
 import com.haonguyen.CommodityService.dto.CommoditySearchDto;
 import com.haonguyen.CommodityService.dto.TypeAndTaxCommodityAPI;
 import com.mini_project.CoreModule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.WarehouseCommodityEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,6 +31,7 @@ public interface ICommodityRepository extends JpaRepository<CommodityEntity,UUID
             "from CommodityEntity c " )
     List<CommoditySearchDto> findAllSearchCommodity();
 //
+
     @Query(value = "select new com.haonguyen.CommodityService.dto.CommodityInWarehouseDto(co.commodityName,wa.warehouseName,wc.inventoryNumber) " +
             "from WarehouseCommodityEntity wc " +
             "inner join CommodityEntity co on wc.idCommodity=co.id " +
@@ -50,5 +52,7 @@ public interface ICommodityRepository extends JpaRepository<CommodityEntity,UUID
             " where co.id = :idCommodity" )
     TypeAndTaxCommodityAPI getTypeTaxCommodity(@Param(value = "idCommodity") UUID idCommodity);
 
-
+    @Query(value = "SELECT w FROM WarehouseCommodityEntity w " +
+            "Where w.idCommodity=?1")
+    WarehouseCommodityEntity checkCommodityInWarehouseById(UUID id);
 }

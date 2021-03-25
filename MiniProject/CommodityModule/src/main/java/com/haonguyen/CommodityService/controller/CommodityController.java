@@ -1,6 +1,7 @@
 package com.haonguyen.CommodityService.controller;
 
 
+import com.haonguyen.CommodityService.CustomErrorMessage.SaveException;
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
 import com.haonguyen.CommodityService.iservice.IWarehouseService;
@@ -21,52 +22,57 @@ public class CommodityController {
         this.iCommodityService = iCommodityService;
         this.iWarehouseService = iWarehouseService;
     }
-/**them hang*/
-    @PostMapping("/")
-    public CommodityCreateDto addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
-         CommodityCreateDto commodityCreateDto1= iCommodityService.addCommodity(commodityCreateDto);
-        return commodityCreateDto1;
-    }
-/**xoa hang*/
-    @DeleteMapping("/{id}")
-    public void deleteCommodity(@PathVariable("id") UUID id){
 
-        iCommodityService.deleteCommodity(id);
-    }
-/**tim kiem*/
+    /**tim kiem da  dieu kien*/
     @PostMapping("/search")
     public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) {
         List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(keySearchDto.getKey());
         return commoditySearchDtos;
     }
 
-/**tim hang theo id loai hang*/
+    /**xoa hang*/
+    @DeleteMapping("/{id}")
+    public void deleteCommodity(@PathVariable("id") UUID id) throws SaveException {
+        iCommodityService.deleteCommodity(id);
+    }
+
+    /**tim hang theo id loai hang*/
     @GetMapping("/getIdTypeOfCommodity/{idTypeOfCommodity}")
     public List<TypeOfCommodityDto> getCommodityByIdTypeOfCommodity(@PathVariable("idTypeOfCommodity") UUID idTypeOfCommodity){
 
         List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityService.findCommodityByIdTypeOfCommodity(idTypeOfCommodity);
         return typeOfCommodityDto;
     }
-/**cap nhat*/
-    @PutMapping("/")
-    public CommodityUpdateDto updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto){
-        CommodityUpdateDto commodityUpdateDto1 = iCommodityService.updateCommodity(commodityUpdateDto);
+    /**them hang*/
+    @PostMapping("/")
+    public CommodityCreateDto addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
+         CommodityCreateDto commodityCreateDto1= iCommodityService.addCommodity(commodityCreateDto);
+        return commodityCreateDto1;
+    }
+
+    /**cap nhat*/
+    @PutMapping("/{id}")
+    public CommodityUpdateDto updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto,
+                                              @PathVariable("id") UUID idCommodity ){
+
+        CommodityUpdateDto commodityUpdateDto1 = iCommodityService.updateCommodity(commodityUpdateDto,idCommodity);
         return commodityUpdateDto1;
     }
-/**hang ton kho*/
+
+    /**hang ton kho*/
     @PostMapping("/check")
     public List<CommodityInWarehouseDto> checkCommodityInWarehouse() {
         List<CommodityInWarehouseDto> commodityInWarehouseDtos = iWarehouseService.checkCommodityInWarehouse();
         return commodityInWarehouseDtos;
 
     }
-/**   lay thong tin hang theo id*/
+/**   lay thong tin hang th eo id*/
     @GetMapping("/{id}")
     public CommodityCreateDto getCommodityById(@PathVariable("id") UUID id){
          CommodityCreateDto commodityCreateDto = iCommodityService.CommodityById(id);
         return commodityCreateDto;
     }
-/**thong tin hang cam van*/
+/**thong tin thue*/
     @RequestMapping(value = "/getTypeTax/{id}")
     public TypeAndTaxCommodityAPI getTypeTaxCommodity(@PathVariable("id") UUID idCommodity){
         TypeAndTaxCommodityAPI typeAndTaxCommodityAPI =iCommodityService.getTypeTaxCommodity(idCommodity);
