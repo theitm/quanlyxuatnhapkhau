@@ -1,15 +1,14 @@
 package com.haonguyen.CommodityService.service;
 
-
-
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
 import com.haonguyen.CommodityService.mapper.ICommodityMapper;
 import com.haonguyen.CommodityService.mapper.ICommodityMapperImpl;
 import com.haonguyen.CommodityService.repository.ICommodityRepository;
 import com.mini_project.CoreModule.entity.CommodityEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -21,18 +20,18 @@ import java.util.UUID;
 public class CommodityService implements ICommodityService {
     private final ICommodityRepository iCommodityRepository;
     private final ICommodityMapper commodityMapper;
-    private final RestTemplate restTemplate;
 
-    public CommodityService(ICommodityRepository commodityRepository,
-                            ICommodityMapper commodityMapper, RestTemplate restTemplate) {
-        this.iCommodityRepository = commodityRepository;
+    public CommodityService(ICommodityRepository iCommodityRepository, ICommodityMapper commodityMapper) {
+        this.iCommodityRepository = iCommodityRepository;
         this.commodityMapper = commodityMapper;
-        this.restTemplate = restTemplate;
     }
+
 
     /**
      * xoa hang theo dieu kien,ton kho,khong co tron phieu nhap
      */
+    @Autowired
+    RestTemplate restTemplate;
     @Override
     public void deleteCommodity(UUID id) {
         Double commodityInWarehouse = iCommodityRepository.checkCommodityInWarehouseById(id).getInventoryNumber();
@@ -40,9 +39,8 @@ public class CommodityService implements ICommodityService {
         String ABC = restTemplate.getForObject(checkIdCommodityURL + id,String.class);
         if(ABC.equals("true") && commodityInWarehouse == 0 )
             iCommodityRepository.deleteById(id);
-        else {
 
-        }
+
 
     }
     /**

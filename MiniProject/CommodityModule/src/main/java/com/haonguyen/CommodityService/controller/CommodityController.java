@@ -1,6 +1,7 @@
 package com.haonguyen.CommodityService.controller;
 
 
+import com.haonguyen.CommodityService.CustomErrorMessage.SaveException;
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
 import com.haonguyen.CommodityService.iservice.IWarehouseService;
@@ -31,7 +32,7 @@ public class CommodityController {
 
     /**xoa hang*/
     @DeleteMapping("/{id}")
-    public void deleteCommodity(@PathVariable("id") UUID id){
+    public void deleteCommodity(@PathVariable("id") UUID id) throws SaveException {
         iCommodityService.deleteCommodity(id);
     }
 

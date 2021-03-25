@@ -32,28 +32,34 @@ public class ExportController {
     public List<ImportExportEntity> getExport(){
         return iImportExportService.getExport();
     }
+
     @RequestMapping(value = "/get-export-by-country/{id}")
     public List<ImportExportEntity> getExportByCountry(@PathVariable("id") UUID id){
         return iImportExportService
                 .getExportByCountryId(id);
     }
+
     @RequestMapping(value = "/update-export",method = RequestMethod.PUT)
     public ImportExportEntity updateExport(@RequestBody ImportExportEntity importExportEntity){
         return iImportExportService
                 .updateExport(importExportEntity);
     }
+
     @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public ExportFindByIdDTO findByIdExport(@PathVariable("id") UUID idExport){
         return iImportExportService.findByIdExport(idExport);
     }
+
     @RequestMapping(value = "/list-export-excel/",method = RequestMethod.GET)
     public List<ExcelExportDTO> findByIdExportExcel(){
         return iImportExportService.findAllExport();
     }
+
     @RequestMapping(value = "/get-document/{id}")
     public ExcelDocumentDTO findDocumentByIdExport(@PathVariable("id") UUID idExport){
         return iDocumentService.findDocumentByIdExport(idExport);
     }
+
     @RequestMapping(value = "/get-all-document/{id}")
     public List<ExcelDocumentDTO> findAllDocumentByIdExport(@PathVariable("id") UUID idExport){
         return iDocumentService.findAllDocumentByIdExport(idExport);
@@ -68,6 +74,7 @@ public class ExportController {
     public ShowAddExportDTO infoExport(@RequestBody FormInsertDataExport formInsertDataExport){
         return iImportExportService.infoExport(formInsertDataExport);
     }
+
     @RequestMapping(value = "/check-id-commodity/{id}",method = RequestMethod.GET)
     public String checkIdCommodity(@PathVariable("id") UUID idCommodity){
         return iDetailsImportExportService.checkIdCommodity(idCommodity).toString();
