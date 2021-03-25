@@ -5,8 +5,10 @@ import com.haonguyen.CommodityService.dto.CommodityInWarehouseDto;
 import com.haonguyen.CommodityService.dto.CommoditySearchDto;
 import com.haonguyen.CommodityService.dto.TypeAndTaxCommodityAPI;
 import com.mini_project.CoreModule.entity.CommodityEntity;
+import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
 import com.mini_project.CoreModule.entity.WarehouseCommodityEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -55,4 +57,8 @@ public interface ICommodityRepository extends JpaRepository<CommodityEntity,UUID
     @Query(value = "SELECT w FROM WarehouseCommodityEntity w " +
             "Where w.idCommodity=?1")
     WarehouseCommodityEntity checkCommodityInWarehouseById(UUID id);
+
+    @Query(value = "select e from CommodityEntity e " +
+            " where e.id = :idCommodity ")
+    CommodityEntity checkIdCommodity(@Param("idCommodity") UUID idCommodity);
 }

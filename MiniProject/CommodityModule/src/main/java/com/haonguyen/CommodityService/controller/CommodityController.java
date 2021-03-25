@@ -2,6 +2,10 @@ package com.haonguyen.CommodityService.controller;
 
 
 
+<<<<<<< HEAD
+=======
+import com.haonguyen.CommodityService.apiExceptionHandler.SaveException;
+>>>>>>> 8937508a9ad6b6ca8257bc805155a917c7dded95
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
 import com.haonguyen.CommodityService.iservice.IWarehouseService;
@@ -53,7 +57,7 @@ public class CommodityController {
     /**cap nhat*/
     @PutMapping("/{id}")
     public CommodityUpdateDto updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto,
-                                              @PathVariable("id") UUID idCommodity ){
+                                              @PathVariable("id") UUID idCommodity ) throws SaveException {
 
         CommodityUpdateDto commodityUpdateDto1 = iCommodityService.updateCommodity(commodityUpdateDto,idCommodity);
         return commodityUpdateDto1;
