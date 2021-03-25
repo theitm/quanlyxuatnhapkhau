@@ -38,14 +38,16 @@ public class ImportExportServiceImpl implements ImportExportService {
      */
     @Override
     public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) throws SaveException {
-        ImportExportMapper importExportMapper = new ImportExportMapperImpl();
-        ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
-        ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
-        if(importExportEntity == null){
-            throw new SaveException("Save Error Please Try Again");
+        try {
+            ImportExportMapper importExportMapper = new ImportExportMapperImpl();
+            ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
+            ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
+
+            iExportEntity.setId(importExportEntityNew.getId());
+            return iExportEntity;
+        } catch (Exception exception) {
+            throw new SaveException("Save Error At ImportExportEntity Please Try Again");
         }
-        iExportEntity.setId(importExportEntityNew.getId());
-        return iExportEntity;
     }
 
     @Override
@@ -54,13 +56,12 @@ public class ImportExportServiceImpl implements ImportExportService {
     }
 
     @Override
-    public ImportExportEntity getByIdImportExport(UUID idImportExport) throws ReceiptImportNotFoundException{
-
-        ImportExportEntity importExportEntity = importExportRepository.findById(idImportExport).orElse(null);
-        if(importExportEntity == null){
+    public ImportExportEntity getByIdImportExport(UUID idImportExport) throws ReceiptImportNotFoundException {
+        try {
+            return importExportRepository.findById(idImportExport).get();
+        } catch (Exception exception) {
             throw new ReceiptImportNotFoundException("Not found id:" + idImportExport.toString());
         }
-        return importExportEntity;
     }
 
     @Override

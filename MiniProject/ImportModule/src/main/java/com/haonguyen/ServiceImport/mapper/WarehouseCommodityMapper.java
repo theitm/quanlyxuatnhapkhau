@@ -11,8 +11,8 @@ import org.mapstruct.Mappings;
 public interface WarehouseCommodityMapper {
     @Mappings({
             @Mapping(target = "id", source = "importExportEntity.id"),
-            @Mapping(target = "idWarehouse", source ="importExportEntity.warehouseEntity"),
-            @Mapping(target = "commodityEntities", source ="importExportEntity.detailsImportExportEntities"),
+            @Mapping(target = "idWarehouse", source = "importExportEntity.warehouseEntity"),
+            @Mapping(target = "commodityEntities", source = "importExportEntity.detailsImportExportEntities"),
             @Mapping(target = "itemReceiptDTOS", source = "importReceiptDTO.item")
     })
     WarehouseCommodityDTO ToWarehouseCommodityDto(ImportExportEntity importExportEntity, ImportReceiptDTO importReceiptDTO);

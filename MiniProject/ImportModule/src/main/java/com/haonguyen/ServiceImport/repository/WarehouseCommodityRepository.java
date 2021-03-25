@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface WarehouseCommodityRepository extends JpaRepository<WarehouseCommodityEntity, UUID>{
+public interface WarehouseCommodityRepository extends JpaRepository<WarehouseCommodityEntity, UUID> {
 
 }

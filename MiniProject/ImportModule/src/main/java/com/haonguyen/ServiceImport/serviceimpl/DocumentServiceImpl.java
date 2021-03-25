@@ -17,20 +17,21 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public DocumentEntity save(List<DocumentEntity> documentEntityList, ImportExportEntity iExportEntityNew) throws SaveException {
-        DocumentEntity documentEntity = null;
-        for (DocumentEntity listDocument: documentEntityList){
-            listDocument.setIdImportExport(iExportEntityNew.getId());
-           documentEntity = documentRepository.save(listDocument);
+        try {
+            DocumentEntity documentEntity = null;
+            for (DocumentEntity listDocument : documentEntityList) {
+                listDocument.setIdImportExport(iExportEntityNew.getId());
+                documentEntity = documentRepository.save(listDocument);
+            }
+            return documentEntity;
+        } catch (Exception exception) {
+            throw new SaveException("Save Error At DocumentEntity Please Try Again");
         }
-        if(documentEntity == null){
-            throw new SaveException("Save Error Please Try Again");
-        }
-        return documentEntity;
     }
 
     @Override
     public void setInfoDocument(ImportExportEntity iExportEntity, List<DocumentEntity> documentEntityList) {
-        for (DocumentEntity listDocument: documentEntityList){
+        for (DocumentEntity listDocument : documentEntityList) {
             listDocument.setImportExportEntity(iExportEntity);
             listDocument.setIdImportExport(listDocument.getImportExportEntity().getId());
         }

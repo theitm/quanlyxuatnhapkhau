@@ -7,8 +7,17 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: COMMODITY-SERVICE
+          uri: lb://COMMODITY-SERVICE
+          predicates:
+            - Path=/v1/api/commodity/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: COMMODITY-SERVICE
+                fallbackuri: forward:/commodityServiceFallBack
         - id: IMPORT-SERVICE
-          uri: http://localhost:9001
+          uri: lb://IMPORT-SERVICE
           predicates:
             - Path=/v1/api/import/**
           filters:
