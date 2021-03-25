@@ -26,7 +26,7 @@ public class CommodityController {
 
     /**tim kiem da  dieu kien*/
     @PostMapping("/search")
-    public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) {
+    public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) throws SaveException {
         List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(keySearchDto.getKey());
         return commoditySearchDtos;
     }
@@ -75,7 +75,7 @@ public class CommodityController {
     }
 /**thong tin thue*/
     @RequestMapping(value = "/getTypeTax/{id}")
-    public TypeAndTaxCommodityAPI getTypeTaxCommodity(@PathVariable("id") UUID idCommodity){
+    public TypeAndTaxCommodityAPI getTypeTaxCommodity(@PathVariable("id") UUID idCommodity) throws Exception {
         TypeAndTaxCommodityAPI typeAndTaxCommodityAPI =iCommodityService.getTypeTaxCommodity(idCommodity);
         return typeAndTaxCommodityAPI;
     }
