@@ -4,11 +4,9 @@ import com.haonguyen.ServiceImport.CustomErrorMessage.ReceiptImportNotFoundExcep
 import com.haonguyen.ServiceImport.CustomErrorMessage.SaveException;
 import com.haonguyen.ServiceImport.dto.ImportReceiptDTO;
 import com.haonguyen.ServiceImport.mapper.ImportExportMapper;
-import com.haonguyen.ServiceImport.mapper.ImportExportMapperImpl;
 import com.haonguyen.ServiceImport.repository.ImportExportRepository;
 import com.haonguyen.ServiceImport.service.ImportExportService;
 import com.mini_project.CoreModule.entity.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,15 +17,15 @@ import java.util.UUID;
 @Service
 public class ImportExportServiceImpl implements ImportExportService {
 
-    public ImportExportServiceImpl() {
+
+    private final ImportExportRepository importExportRepository;
+    private final ImportExportMapper importExportMapper;
+
+    public ImportExportServiceImpl(ImportExportRepository importExportRepository, ImportExportMapper importExportMapper) {
+        this.importExportRepository = importExportRepository;
+        this.importExportMapper = importExportMapper;
     }
 
-    ;
-
-    @Autowired
-    private ImportExportRepository importExportRepository;
-    @Autowired
-    private ImportExportService importExportService;
 
     /**
      * method save importExportEntity mapper from ImportReceiptDTO set New id to iExportEntity
@@ -39,7 +37,6 @@ public class ImportExportServiceImpl implements ImportExportService {
     @Override
     public ImportExportEntity saveImportExportEntity(ImportExportEntity iExportEntity, ImportReceiptDTO importReceiptDTO) throws SaveException {
         try {
-            ImportExportMapper importExportMapper = new ImportExportMapperImpl();
             ImportExportEntity importExportEntity = importExportMapper.importReceiptDTOToImportExportEntity(importReceiptDTO);
             ImportExportEntity importExportEntityNew = importExportRepository.save(importExportEntity);
 
@@ -98,7 +95,7 @@ public class ImportExportServiceImpl implements ImportExportService {
 
     @Override
     public List<WarehouseEntity> getWarehouseEntityList(int Max) {
-        List<WarehouseEntity> warehouseEntityList = importExportService.findAllWarehouse();
+        List<WarehouseEntity> warehouseEntityList = findAllWarehouse();
         List<WarehouseEntity> recommendWarehouse = new ArrayList<>();
         for (WarehouseEntity list : warehouseEntityList) {
             if (list.getCapacity() > Max)

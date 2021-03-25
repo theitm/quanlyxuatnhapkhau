@@ -9,7 +9,6 @@ import com.haonguyen.ServiceImport.service.WarehouseCommodityService;
 import com.mini_project.CoreModule.entity.DetailsImportExportEntity;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 import com.mini_project.CoreModule.entity.WarehouseCommodityEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,13 +17,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class WarehouseCommodityServiceImpl implements WarehouseCommodityService {
-    public WarehouseCommodityServiceImpl() {
-    }
 
-    @Autowired
-    private WarehouseCommodityRepository warehouseCommodityRepository;
-    @Autowired
-    private ImportExportService importExportService;
+    private final WarehouseCommodityRepository warehouseCommodityRepository;
+    private final ImportExportService importExportService;
+
+    public WarehouseCommodityServiceImpl(WarehouseCommodityRepository warehouseCommodityRepository,
+                                         ImportExportService importExportService) {
+        this.warehouseCommodityRepository = warehouseCommodityRepository;
+        this.importExportService = importExportService;
+    }
 
     /**
      * Method save into WarehouseCommodityEntity if in database no data
