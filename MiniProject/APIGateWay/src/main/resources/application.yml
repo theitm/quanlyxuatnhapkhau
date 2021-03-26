@@ -1,9 +1,6 @@
 server:
   port: 9000
-#id: EXPORT-SERVICE
-#  uri: lb://EXPORT-SERVICE
-#  predicates:
-#    - Path=/v1/api/export/**
+
 spring:
   application:
     name: API-GATEWAY
@@ -13,11 +10,11 @@ spring:
         - id: STATEMENT-SERVICE
           uri: lb://STATEMENT-SERVICE
           predicates:
-            - Path=v1/api/statement/**
+            - Path=/v1/api/statement/**
           filters:
             - name: CircuitBreaker
               args:
-                name: EXPORT-SERVICE
+                name: STATEMENT-SERVICE
                 fallbackuri: forward:/statementServiceFallBack
         - id: EXPORT-SERVICE
           uri: lb://EXPORT-SERVICE
@@ -53,7 +50,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 10000
+            timeoutInMilliseconds: 200000
 
 management:
   endpoints:

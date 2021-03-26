@@ -29,7 +29,6 @@ public class ExportExcelService implements IExportExcelService{
     private String nameSheetList = "Export";
     private final IStatementService iStatementService;
     public ExportExcelService(IStatementService iStatementService) {
-        workbook = new XSSFWorkbook();
         this.iStatementService = iStatementService;
     }
 
@@ -282,6 +281,7 @@ public class ExportExcelService implements IExportExcelService{
     @Override
     public void export(HttpServletResponse response, String monthAndYear) throws IOException {
 
+        workbook = new XSSFWorkbook();
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss_dd-MM-yyyy");
         String currentDateTime = dateFormatter.format(new Date());
