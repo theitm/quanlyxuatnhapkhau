@@ -6,6 +6,7 @@ import com.haonguyen.CommodityService.apiExceptionHandler.SaveException;
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
 import com.haonguyen.CommodityService.iservice.IWarehouseService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class CommodityController {
         this.iWarehouseService = iWarehouseService;
     }
 
+
     /**tim kiem da  dieu kien*/
     @PostMapping("/search")
     public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) throws SaveException {
@@ -31,11 +33,16 @@ public class CommodityController {
         return commoditySearchDtos;
     }
 
+
+
     /**xoa hang*/
     @DeleteMapping("/{id}")
-    public void deleteCommodity(@PathVariable("id") UUID id) throws SaveException {
+    public ResponseEntity deleteCommodity(@PathVariable("id") UUID id) throws SaveException {
         iCommodityService.deleteCommodity(id);
+        return ResponseEntity.ok().body("success");
     }
+
+
 
     /**tim hang theo id loai hang*/
     @GetMapping("/getIdTypeOfCommodity/{idTypeOfCommodity}")
