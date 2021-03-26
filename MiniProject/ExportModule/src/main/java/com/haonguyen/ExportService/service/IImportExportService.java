@@ -1,9 +1,9 @@
 package com.haonguyen.ExportService.service;
 
-import com.haonguyen.ExportService.dto.excel.ExcelExportDTO;
 import com.haonguyen.ExportService.dto.ExportFindByIdDTO;
-import com.haonguyen.ExportService.dto.FormInsertDataExport;
+import com.haonguyen.ExportService.dto.InsertDataExportDTO;
 import com.haonguyen.ExportService.dto.ShowAddExportDTO;
+import com.haonguyen.ExportService.dto.excel.ExcelExportDTO;
 import com.haonguyen.ExportService.dto.excel.ReturnInfoExportAPI;
 import com.mini_project.CoreModule.entity.ImportExportEntity;
 
@@ -24,7 +24,7 @@ public interface IImportExportService {
 
     List<ExcelExportDTO> findAllExport();
 
-    ShowAddExportDTO infoExport(FormInsertDataExport formInsertDataExport);
+    ShowAddExportDTO infoExport(InsertDataExportDTO insertDataExportDTO);
 
 
     List<ReturnInfoExportAPI> getExcel(String monthAndYear);

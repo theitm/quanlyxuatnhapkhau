@@ -44,17 +44,17 @@ public class DocumentService implements IDocumentService {
 
     /**
      * Lấy thông tin trong danh sách hồ sơ và insert vào CSDL
-     * @param formInsertDataExport
+     * @param insertDataExportDTO
      * @return Danh sách document đã lưu
      */
     @Override
-    public List<DocumentDTO> infoDocument(FormInsertDataExport formInsertDataExport) {
+    public List<DocumentDTO> infoDocument(InsertDataExportDTO insertDataExportDTO) {
         List<DocumentDTO> documentDTO = new ArrayList<>();
-        for(DocumentDTO temp:formInsertDataExport.getDocumentDTOList()){
+        for(DocumentDTO temp: insertDataExportDTO.getDocumentDTOList()){
             documentDTO
                     .add(addExport(DocumentEntity
                             .builder()
-                            .idImportExport(formInsertDataExport.getId())
+                            .idImportExport(insertDataExportDTO.getId())
                             .imageUrl(temp.getImageUrl())
                             .build()));
         }

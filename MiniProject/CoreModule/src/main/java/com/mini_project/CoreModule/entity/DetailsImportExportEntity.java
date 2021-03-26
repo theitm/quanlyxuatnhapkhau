@@ -1,11 +1,15 @@
 package com.mini_project.CoreModule.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -45,7 +49,6 @@ public class DetailsImportExportEntity {
     @Type( type = "uuid-char")
     private UUID idCommodity;
 
-
     @Column(name = "description")
     private String description;
 
@@ -54,6 +57,31 @@ public class DetailsImportExportEntity {
 
     @Column(name = "total")
     private Double total;
+
+    @Column(name = "ref_id_export")
+    @Type(type = "uuid-char")
+    private UUID refIdExport;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ref_id_export" ,insertable = false,updatable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
+    private DetailsImportExportEntity detailsImportExportEntity;
+
+    @OneToMany(
+            mappedBy = "detailsImportExportEntity",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonManagedReference
+    @JsonIgnore
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities
+            = new ArrayList<DetailsImportExportEntity>();
+
+
 
 }
 
