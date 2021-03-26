@@ -34,7 +34,7 @@ public class CommodityService implements ICommodityService {
     @Override
     public void deleteCommodity(UUID id) throws SaveException {
         Double commodityInWarehouse = iCommodityRepository.checkCommodityInWarehouseById(id).getInventoryNumber();
-        String checkIdCommodityURL = "http://localhost:8112/v1/api/export/check-id-commodity/";
+        String checkIdCommodityURL = "http://localhost:8112/v1/api/export/checkIdCommodity/";
         String sourceCheck = restTemplate.getForObject(checkIdCommodityURL + id, String.class);
         if (sourceCheck.equals("true") && commodityInWarehouse == 0)
             iCommodityRepository.deleteById(id);

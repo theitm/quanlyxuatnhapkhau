@@ -18,7 +18,7 @@ public class StatementService implements IStatementService{
     @Override
     public InfoExportAPI[] getInfoExportAPI(String monthAndYear){
         return  restTemplate
-                .getForObject("http://localhost:8112/v1/api/export/get-excel/"+ monthAndYear,
+                .getForObject("http://localhost:8112/v1/api/export/getExcel/"+ monthAndYear,
                 InfoExportAPI[].class);
     }
     public List<InfoExportAPI> test(){
