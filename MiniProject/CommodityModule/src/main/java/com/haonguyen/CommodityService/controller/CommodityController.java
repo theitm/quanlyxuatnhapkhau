@@ -1,7 +1,6 @@
 package com.haonguyen.CommodityService.controller;
 
 
-
 import com.haonguyen.CommodityService.apiExceptionHandler.SaveException;
 import com.haonguyen.CommodityService.dto.*;
 import com.haonguyen.CommodityService.iservice.ICommodityService;
@@ -19,14 +18,16 @@ public class CommodityController {
     private final ICommodityService iCommodityService;
     private final IWarehouseService iWarehouseService;
 
-       public CommodityController(ICommodityService iCommodityService, IWarehouseService iWarehouseService) {
+    public CommodityController(ICommodityService iCommodityService, IWarehouseService iWarehouseService) {
 
         this.iCommodityService = iCommodityService;
         this.iWarehouseService = iWarehouseService;
     }
 
 
-    /**tim kiem da  dieu kien*/
+    /**
+     * tim kiem da  dieu kien
+     */
     @PostMapping("/search")
     public List<CommoditySearchDto> searchCommodity(@RequestBody keySearchDto keySearchDto) throws SaveException {
         List<CommoditySearchDto> commoditySearchDtos = iCommodityService.searchCommodity(keySearchDto.getKey());
@@ -34,8 +35,9 @@ public class CommodityController {
     }
 
 
-
-    /**xoa hang*/
+    /**
+     * xoa hang
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCommodity(@PathVariable("id") UUID id) throws SaveException {
         iCommodityService.deleteCommodity(id);
@@ -43,47 +45,61 @@ public class CommodityController {
     }
 
 
-
-    /**tim hang theo id loai hang*/
+    /**
+     * tim hang theo id loai hang
+     */
     @GetMapping("/getIdTypeOfCommodity/{idTypeOfCommodity}")
-    public List<TypeOfCommodityDto> getCommodityByIdTypeOfCommodity(@PathVariable("idTypeOfCommodity") UUID idTypeOfCommodity){
+    public List<TypeOfCommodityDto> getCommodityByIdTypeOfCommodity(@PathVariable("idTypeOfCommodity") UUID idTypeOfCommodity) {
 
         List<TypeOfCommodityDto> typeOfCommodityDto = iCommodityService.findCommodityByIdTypeOfCommodity(idTypeOfCommodity);
         return typeOfCommodityDto;
     }
-    /**them hang*/
+
+    /**
+     * them hang
+     */
     @PostMapping("/")
     public CommodityCreateDto addCommodity(@RequestBody CommodityCreateDto commodityCreateDto) {
-         CommodityCreateDto commodityCreateDto1= iCommodityService.addCommodity(commodityCreateDto);
+        CommodityCreateDto commodityCreateDto1 = iCommodityService.addCommodity(commodityCreateDto);
         return commodityCreateDto1;
     }
 
-    /**cap nhat*/
+    /**
+     * cap nhat
+     */
     @PutMapping("/{id}")
     public CommodityUpdateDto updateCommodity(@RequestBody CommodityUpdateDto commodityUpdateDto,
-                                              @PathVariable("id") UUID idCommodity ) throws SaveException {
+                                              @PathVariable("id") UUID idCommodity) throws SaveException {
 
-        CommodityUpdateDto commodityUpdateDto1 = iCommodityService.updateCommodity(commodityUpdateDto,idCommodity);
+        CommodityUpdateDto commodityUpdateDto1 = iCommodityService.updateCommodity(commodityUpdateDto, idCommodity);
         return commodityUpdateDto1;
     }
 
-    /**hang ton kho*/
+    /**
+     * hang ton kho
+     */
     @PostMapping("/check")
     public List<CommodityInWarehouseDto> checkCommodityInWarehouse() {
         List<CommodityInWarehouseDto> commodityInWarehouseDtos = iWarehouseService.checkCommodityInWarehouse();
         return commodityInWarehouseDtos;
 
     }
-/**   lay thong tin hang th eo id*/
+
+    /**
+     * lay thong tin hang th eo id
+     */
     @GetMapping("/{id}")
-    public CommodityCreateDto getCommodityById(@PathVariable("id") UUID id){
-         CommodityCreateDto commodityCreateDto = iCommodityService.CommodityById(id);
+    public CommodityCreateDto getCommodityById(@PathVariable("id") UUID id) {
+        CommodityCreateDto commodityCreateDto = iCommodityService.CommodityById(id);
         return commodityCreateDto;
     }
-/**thong tin thue*/
+
+    /**
+     * thong tin thue
+     */
     @RequestMapping(value = "/getTypeTax/{id}")
     public TypeAndTaxCommodityAPI getTypeTaxCommodity(@PathVariable("id") UUID idCommodity) throws Exception {
-        TypeAndTaxCommodityAPI typeAndTaxCommodityAPI =iCommodityService.getTypeTaxCommodity(idCommodity);
+        TypeAndTaxCommodityAPI typeAndTaxCommodityAPI = iCommodityService.getTypeTaxCommodity(idCommodity);
         return typeAndTaxCommodityAPI;
     }
 

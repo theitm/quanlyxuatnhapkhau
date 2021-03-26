@@ -10,13 +10,14 @@ import org.springframework.web.client.RestTemplate;
 @EntityScan("com.mini_project.CoreModule.entity")
 @SpringBootApplication
 public class CommodityServiceApplication {
-	@Bean
+    @Bean
 
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-	public static void main(String[] args) {
-		SpringApplication.run(CommodityServiceApplication.class, args);
-	}
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(CommodityServiceApplication.class, args);
+    }
 
 }
