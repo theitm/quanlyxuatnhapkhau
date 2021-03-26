@@ -13,7 +13,7 @@ import java.util.UUID;
 public class CommodityCreateDto {
 
     @Type(type = "uuid-char")
-    private  UUID id;
+    private UUID id;
     private String commodityName;
     private String description;
     private Float price;
@@ -62,6 +62,7 @@ public class CommodityCreateDto {
     public void setIdTypeOfCommodity(UUID idTypeOfCommodity) {
         this.idTypeOfCommodity = idTypeOfCommodity;
     }
+
     public UUID getId() {
         return id;
     }

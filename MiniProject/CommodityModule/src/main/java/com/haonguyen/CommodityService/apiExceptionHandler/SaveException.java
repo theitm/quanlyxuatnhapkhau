@@ -6,6 +6,4 @@ public class SaveException extends Exception {
         super(message);
     }
 
-
-
 }

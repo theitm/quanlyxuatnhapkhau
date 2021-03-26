@@ -21,7 +21,9 @@ public class TypeAndTaxCommodityAPI {
     private UUID idTaxBracket;
     private String taxBracketName;
     private Float coefficient;
-    public TypeAndTaxCommodityAPI(){}
+
+    public TypeAndTaxCommodityAPI() {
+    }
 
     public TypeAndTaxCommodityAPI(UUID idTypeOfCommodity,
                                   String typeOfCommodityName,

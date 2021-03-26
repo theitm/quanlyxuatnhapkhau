@@ -12,7 +12,7 @@ public class CommoditySearchDto {
     private String description;
     private Float price;
     private String unit;
-    @Type( type = "uuid-char")
+    @Type(type = "uuid-char")
     private UUID idTypeOfCommodity;
 
     public CommoditySearchDto(String commodityName, String description, Float price, String unit, UUID idTypeOfCommodity) {
