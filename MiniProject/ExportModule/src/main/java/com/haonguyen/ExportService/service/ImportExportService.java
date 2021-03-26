@@ -77,41 +77,40 @@ public class ImportExportService implements IImportExportService {
      * @param idCommodity
      * @return
      */
-    public ApiAllCommodityInfo getApiAllCommodityInfo(UUID idCommodity){
+    public ApiInfoCommodity getApiAllCommodityInfo(UUID idCommodity){
        return restTemplate
                .getForObject("http://localhost:9002/v1/api/commodity/getTypeTax/" + idCommodity
-               ,ApiAllCommodityInfo.class);
+               , ApiInfoCommodity.class);
     }
 
     /**
      * Tách dữ liệu từ form nhập người dùng tính toán và đẩy vào csdl
-     * @param formInsertDataExport
+     * @param insertDataExportDTO
      * @return return lại all thông tin ra postman
      */
     @Override
-    public ShowAddExportDTO infoExport(FormInsertDataExport formInsertDataExport) {
+    public ShowAddExportDTO infoExport(InsertDataExportDTO insertDataExportDTO) {
 
         ExportDTO exportDTO = addExport(ImportExportEntity
                 .builder()
-                .idCountry(formInsertDataExport.getCountryId())
-                .idWarehouse(formInsertDataExport.getWarehouseId())
-                .date(formInsertDataExport.getDate())
-                .type(1)
+                .idCountry(insertDataExportDTO.getCountryId())
+                .idWarehouse(insertDataExportDTO.getWarehouseId())
+                .date(insertDataExportDTO.getDate())
+                .type(0)
                 .build());
 
-        formInsertDataExport.setId(exportDTO.getId());
-        List<DocumentDTO> documentDTOList
-                = iDocumentService.infoDocument(formInsertDataExport);
+        insertDataExportDTO.setId(exportDTO.getId());
+        List<DocumentDTO> documentDTOList = iDocumentService.infoDocument(insertDataExportDTO);
 
-        List<DetailsExportDTO> detailsExportDTOList
-                = iDetailsImportExportService.infoDetailsExport(formInsertDataExport);
-        double sumTotal = 0;
+        List<DetailsExportDTO> detailsExportDTOList = iDetailsImportExportService.infoDetailsExport(insertDataExportDTO);
+        double sumTotal = 0.0;
         for(DetailsExportDTO temp: detailsExportDTOList){
             sumTotal = sumTotal + temp.getTotal();
         }
 
-        WarehouseEntity warehouseEntity = iImportExportRepository.getWarehouseByID(formInsertDataExport.getWarehouseId());
-        CountryEntity countryEntity = iImportExportRepository.getCountryById(formInsertDataExport.getCountryId());
+        WarehouseEntity warehouseEntity = iImportExportRepository.getWarehouseByID(insertDataExportDTO.getWarehouseId());
+        CountryEntity countryEntity = iImportExportRepository.getCountryById(insertDataExportDTO.getCountryId());
+        Double transportationCosts = 1000000.0;
 
         return ShowAddExportDTO.builder()
                         .idImportExport(exportDTO.getId())
@@ -121,8 +120,8 @@ public class ImportExportService implements IImportExportService {
                         .countryName(countryEntity.getCountryName())
                         .documentDTOList(documentDTOList)
                         .detailsExportDTOList(detailsExportDTOList)
-                        .transportationCosts(1000000.0)
-                        .subTotal(sumTotal * (sumTotal * countryEntity.getTax()%100))
+                        .transportationCosts(transportationCosts)
+                        .subTotal(sumTotal + (sumTotal * (countryEntity.getTax()%100))+ transportationCosts)
                         .build();
     }
 
@@ -142,18 +141,15 @@ public class ImportExportService implements IImportExportService {
                 = iImportExportRepository.getByMonthAndYear(month,year);
 
         List<ReturnInfoExportAPI> returnInfoExportAPIS = new ArrayList<>();
-        List<ExcelDocumentDTO> excelDocumentDTOS = new ArrayList<>();
-        List<ExcelDetailsExportDTO> excelDetailsExportDTOS = new ArrayList<>();
+        List<ExcelDocumentDTO> excelDocumentDTOS;
+        List<ExcelDetailsExportDTO> excelDetailsExportDTOS;
         for(ImportExportEntity tempFor: importExportEntityList){
 
             ExcelExportDTO excelExportDTO = iImportExportMapper.toExcelExportDTO(tempFor);
 
+            excelDocumentDTOS = iDocumentService.findByIdImportExport(tempFor.getId());
 
-            excelDocumentDTOS
-                       = iDocumentService.findByIdImportExport(tempFor.getId());
-
-            excelDetailsExportDTOS
-                        =  iDetailsImportExportService.findByIdImportExport(tempFor.getId());
+            excelDetailsExportDTOS =  iDetailsImportExportService.findByIdImportExport(tempFor.getId());
 
             returnInfoExportAPIS.add(
                     ReturnInfoExportAPI
@@ -161,8 +157,7 @@ public class ImportExportService implements IImportExportService {
                             .excelExportDTO(excelExportDTO)
                             .excelDetailsExportDTOS(excelDetailsExportDTOS)
                             .excelDocumentDTOS(excelDocumentDTOS)
-                            .build()
-            );
+                            .build());
         }
         return returnInfoExportAPIS;
     }

@@ -3,12 +3,10 @@ package com.haonguyen.ExportService.controller;
 
 import com.haonguyen.ExportService.dto.*;
 import com.haonguyen.ExportService.dto.excel.ExcelDocumentDTO;
-import com.haonguyen.ExportService.dto.excel.ExcelExportDTO;
 import com.haonguyen.ExportService.dto.excel.ReturnInfoExportAPI;
 import com.haonguyen.ExportService.service.IDetailsImportExportService;
 import com.haonguyen.ExportService.service.IDocumentService;
 import com.haonguyen.ExportService.service.IImportExportService;
-import com.mini_project.CoreModule.entity.ImportExportEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,61 +25,67 @@ public class ExportController {
         this.iImportExportService = iImportExportService;
         this.iDetailsImportExportService = iDetailsImportExportService;
     }
-    //Test
-    @RequestMapping(value = "/get-export",method = RequestMethod.GET)
-    public List<ImportExportEntity> getExport(){
-        return iImportExportService.getExport();
-    }
 
-    @RequestMapping(value = "/get-export-by-country/{id}")
-    public List<ImportExportEntity> getExportByCountry(@PathVariable("id") UUID id){
-        return iImportExportService
-                .getExportByCountryId(id);
-    }
-
-    @RequestMapping(value = "/update-export",method = RequestMethod.PUT)
-    public ImportExportEntity updateExport(@RequestBody ImportExportEntity importExportEntity){
-        return iImportExportService
-                .updateExport(importExportEntity);
-    }
-
-    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
-    public ExportFindByIdDTO findByIdExport(@PathVariable("id") UUID idExport){
+    /**
+     * Tìm kiếm một phiếu nhập theo ID
+     * @param idExport
+     * @return Trả về thông tin phiếu nhập hàng
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ExportFindByIdDTO findByIdExport(@PathVariable("id") UUID idExport) {
         return iImportExportService.findByIdExport(idExport);
     }
 
-    @RequestMapping(value = "/list-export-excel/",method = RequestMethod.GET)
-    public List<ExcelExportDTO> findByIdExportExcel(){
-        return iImportExportService.findAllExport();
-    }
-
-    @RequestMapping(value = "/get-document/{id}")
-    public ExcelDocumentDTO findDocumentByIdExport(@PathVariable("id") UUID idExport){
+    /**
+     * Tìm kiếm tất cả hồ sơ liên quan theo Id của phiếu nhâp
+     * @param idExport
+     * @return danh sách hồ sơ liên quan
+     */
+    @RequestMapping(value = "/getDocument/{id}")
+    public ExcelDocumentDTO findDocumentByIdExport(@PathVariable("id") UUID idExport) {
         return iDocumentService.findDocumentByIdExport(idExport);
-    }
-
-    @RequestMapping(value = "/get-all-document/{id}")
-    public List<ExcelDocumentDTO> findAllDocumentByIdExport(@PathVariable("id") UUID idExport){
-        return iDocumentService.findAllDocumentByIdExport(idExport);
     }
 
     /**
      * Thêm một phiếu xuất hàng vào cơ sở dữ liệu để quản lý
-     * @param formInsertDataExport
+     * @param insertDataExportDTO
      * @return thông tin vừa nhập hàng + chi phí vận chuyển + tổng tiền hóa đơn
      */
-    @RequestMapping(value = "/info-export", method = RequestMethod.POST)
-    public ShowAddExportDTO infoExport(@RequestBody FormInsertDataExport formInsertDataExport){
-        return iImportExportService.infoExport(formInsertDataExport);
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ShowAddExportDTO infoExport(@RequestBody InsertDataExportDTO insertDataExportDTO) {
+        return iImportExportService.infoExport(insertDataExportDTO);
     }
 
-    @RequestMapping(value = "/check-id-commodity/{id}",method = RequestMethod.GET)
-    public String checkIdCommodity(@PathVariable("id") UUID idCommodity){
+    /**
+     * Kiểm tra xem hàng hóa có tồn tại trong bất kỳ phiếu nhập nào hat ko
+     *
+     * @param idCommodity
+     * @return True = Không có or False = nếu có
+     */
+    @RequestMapping(value = "/checkIdCommodity/{id}", method = RequestMethod.GET)
+    public String checkIdCommodity(@PathVariable("id") UUID idCommodity) {
         return iDetailsImportExportService.checkIdCommodity(idCommodity).toString();
     }
 
-    @RequestMapping(value = "/get-excel/{monthAndYear}",method = RequestMethod.GET)
-    public List<ReturnInfoExportAPI> getExcel(@PathVariable("monthAndYear") String monthAndYear){
+    /**
+     * Lấy thông tin tất cả phiếu nhập theo tháng và năm
+     * @param monthAndYear
+     * @return Thông tin được truy vấn
+     */
+    @RequestMapping(value = "/getExcel/{monthAndYear}", method = RequestMethod.GET)
+    public List<ReturnInfoExportAPI> getExcel(@PathVariable("monthAndYear") String monthAndYear) {
         return iImportExportService.getExcel(monthAndYear);
     }
+
+    /**
+     * Tìm kiếm những hàng xuất được lấy từ nguồn hàng nào ( phiếu nhập thông tin)
+     * @param idExport
+     * @return danh sách
+     */
+    @RequestMapping(value = "/sourceExport/{id}", method = RequestMethod.GET)
+    public List<SourceExportDTO> sourceExport(@PathVariable("id") UUID idExport) {
+        return iDetailsImportExportService.sourceExport(idExport);
+    }
+
+
 }
