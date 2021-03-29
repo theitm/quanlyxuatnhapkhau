@@ -42,7 +42,7 @@ public interface IDetailsImportExportRepository extends JpaRepository<DetailsImp
             " ie.id , die.idCommodity , die.quantity, " +
             " cou.countryName , wa.warehouseName)" +
             " from ImportExportEntity as ie" +
-            " inner join CountryEntity coun" +
+            " inner join CountryEntity cou" +
             " on cou.id = ie.idCountry" +
             " inner join WarehouseEntity as wa" +
             " on wa.id = ie.idWarehouse" +

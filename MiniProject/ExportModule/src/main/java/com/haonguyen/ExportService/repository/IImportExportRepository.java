@@ -31,7 +31,7 @@ public interface IImportExportRepository extends JpaRepository<ImportExportEntit
     @Query(value = "select e from ImportExportEntity e where" +
             " month(e.date) = :month" +
             " and year(e.date) = :year" +
-            " and e.type = 1")
+            " and e.type = 0")
     List<ImportExportEntity> getByMonthAndYear(@Param("month") Integer month,
                                                @Param("year") Integer year);
 }
