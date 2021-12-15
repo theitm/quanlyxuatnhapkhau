@@ -1,4 +1,4 @@
-# Dự án thực tập Java
+# Dự án thực tập Java Batch 8 - DG5-ext
 TMA Innovation Park
 Quy Nhơn
 
@@ -13,5 +13,5 @@ Xây dựng một hệ thống API cơ bản để quản lý việc xuất nh�
 - Quản lý việc xuất hàng (ước tính chi phí vận chuyển, các loại thuế, các quốc gia đang cấm vận theo loại hàng,..).
 - Xuất excel bảng sao kê thông tin hàng hóa đang có, hàng hóa nhập, xuất kho.
 # Lưu ý:
-- Xây dựng hệ thống dựa trên Microservices, Java Spring Boot
-- Database MySQL, sử dụng Migration.
+- Xây dựng hệ thống dựa trên Java Spring Boot
+- Database sử dụng MySQL.
