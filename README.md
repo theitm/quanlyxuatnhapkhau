@@ -14,4 +14,4 @@ Xây dựng một hệ thống API cơ bản để quản lý việc xuất nh�
 - Xuất excel bảng sao kê thông tin hàng hóa đang có, hàng hóa nhập, xuất kho.
 # Lưu ý:
 - Xây dựng hệ thống dựa trên Java Spring Boot
-- Database sử dụng MySQL.
+- Database sử dụng MySQL..
