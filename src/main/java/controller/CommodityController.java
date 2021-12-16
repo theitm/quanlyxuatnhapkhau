@@ -38,12 +38,13 @@ public class CommodityController {
         service.save(commodity);
         return ResponseEntity.ok().body(commodity);
     }
-    @PutMapping("/tb_commodity/{id}")
+    @PutMapping("/commodity/{id}")
     public ResponseEntity<?> update(@RequestBody Commodity commodity, @PathVariable UUID id) {
         try {
-            Commodity existProduct = service.get(id);
+            Commodity existCommodity = service.get(id);
             service.save(commodity);
             return new ResponseEntity<>(HttpStatus.OK);
+
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

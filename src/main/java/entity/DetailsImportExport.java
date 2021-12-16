@@ -13,20 +13,18 @@ import java.util.UUID;
 @Data
 @Builder
 @Entity
-public class Commodity {
+public class DetailsImportExport {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     public UUID id;
-    public String idTypeOfCommodity;
-    public String commodityName;
-    public float price;
-    public String unit;
+    public String idImportExport;
+    public String idCommodity;
     public String description;
-
+    public Double quantity;
+    public Integer total;
 
 
 }
-
