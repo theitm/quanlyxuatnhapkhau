@@ -8,7 +8,8 @@ import entity.Commodity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.CommodityRepository;
-
+@Service
+@Transactional
 public class CommodityService {
 
     @Autowired
