@@ -41,7 +41,7 @@ public class DetailsImportExportController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/details/{id} ")
+    @DeleteMapping("/details/{id}")
     public void delete(@PathVariable UUID id) {
         service.delete(id);
     }

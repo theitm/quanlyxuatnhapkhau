@@ -39,7 +39,7 @@ public class TypeOfCommodityController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/type/{id} ")
+    @DeleteMapping("/type/{id}")
     public void delete(@PathVariable UUID id) {
         service.delete(id);
     }

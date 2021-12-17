@@ -38,7 +38,7 @@ public class ImportExportController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/import_export/{id} ")
+    @DeleteMapping("/import_export/{id}")
     public void delete(@PathVariable UUID id) {
         service.delete(id);
     }
