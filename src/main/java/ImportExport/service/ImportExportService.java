@@ -1,9 +1,9 @@
-package service;
+package ImportExport.service;
 
-import entity.DetailsImportExport;
+import ImportExport.entity.ImportExport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.DetailsImportExportRepository;
+import ImportExport.repository.ImportExportRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -11,19 +11,19 @@ import java.util.UUID;
 @Service
 @Transactional
 
-public class DetailsImportExportService {
+public class ImportExportService {
     @Autowired
-    private DetailsImportExportRepository repo;
+    private ImportExportRepository repo;
 
-    public List<DetailsImportExport> listAll() {
+    public List<ImportExport> listAll() {
         return repo.findAll();
     }
 
-    public void save(DetailsImportExport detailsImportExport) {
-        repo.save(detailsImportExport);
+    public void save(ImportExport importExport) {
+        repo.save(importExport);
     }
 
-    public DetailsImportExport get(UUID id) {
+    public ImportExport get(UUID id) {
         return repo.findById(id).get();
     }
 

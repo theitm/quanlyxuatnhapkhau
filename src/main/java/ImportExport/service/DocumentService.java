@@ -1,29 +1,29 @@
-package service;
+package ImportExport.service;
 import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import entity.TypeOfCommodity;
+import ImportExport.entity.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.TypeOfCommodityRepository;
+import ImportExport.repository.DocumentRepository;
 
 @Service
 @Transactional
-public class TypeOfCommodityService {
+public class DocumentService {
     @Autowired
-    private TypeOfCommodityRepository repo;
+    private DocumentRepository repo;
 
-    public List<TypeOfCommodity> listAll() {
+    public List<Document> listAll() {
         return repo.findAll();
     }
 
-    public void save(TypeOfCommodity typeOfCommodity) {
-        repo.save(typeOfCommodity);
+    public void save(Document document) {
+        repo.save(document);
     }
 
-    public TypeOfCommodity get(UUID id) {
+    public Document get(UUID id) {
         return repo.findById(id).get();
     }
 

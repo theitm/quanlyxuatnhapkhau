@@ -1,4 +1,4 @@
-package entity;
+package ImportExport.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +13,7 @@ import java.util.UUID;
 @Data
 @Builder
 @Entity
+@Table(name = "tb_details_import_export")
 public class DetailsImportExport {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
