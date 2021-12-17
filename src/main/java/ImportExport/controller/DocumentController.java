@@ -34,7 +34,7 @@ public class DocumentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/document/{id} ")
+    @DeleteMapping("/document/{id}")
     public void delete(@PathVariable UUID id) {
         service.delete(id);
     }
