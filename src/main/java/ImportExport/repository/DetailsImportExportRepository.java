@@ -1,6 +1,6 @@
-package repository;
+package ImportExport.repository;
 
-import entity.DetailsImportExport;
+import ImportExport.entity.DetailsImportExport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 

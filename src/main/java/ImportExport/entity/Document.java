@@ -1,4 +1,4 @@
-package entity;
+package ImportExport.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,15 +13,15 @@ import java.util.UUID;
 @Data
 @Builder
 @Entity
-public class TypeOfCommodity {
+@Table(name = "tb_document")
+public class Document {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     public UUID id;
-    public String idTaxBracket;
-    public String typeOfCommodityName;
-    public String description;
+    public String idImportExport;
+    public String imageUrl;
 
 }

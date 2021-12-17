@@ -1,12 +1,12 @@
-package controller;
+package ImportExport.controller;
 
 
-import entity.TypeOfCommodity;
+import ImportExport.entity.TypeOfCommodity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.TypeOfCommodityService;
+import ImportExport.service.TypeOfCommodityService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;

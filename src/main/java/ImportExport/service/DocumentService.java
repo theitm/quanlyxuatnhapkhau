@@ -1,13 +1,13 @@
-package service;
+package ImportExport.service;
 import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import entity.Document;
+import ImportExport.entity.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.DocumentRepository;
+import ImportExport.repository.DocumentRepository;
 
 @Service
 @Transactional
