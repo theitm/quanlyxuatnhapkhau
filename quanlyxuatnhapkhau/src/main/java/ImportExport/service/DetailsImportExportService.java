@@ -1,13 +1,10 @@
 package ImportExport.service;
 
 import ImportExport.entity.DetailsImportExport;
+import ImportExport.repository.DetailsImportExportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD:src/main/java/service/DetailsImportExportService.java
-import repository.DetailsImportExportRepository;
-=======
-import ImportExport.repository.DetailsImportExportRepository;
->>>>>>> develop-batch-8-nghia:src/main/java/ImportExport/service/DetailsImportExportService.java
+
 
 import javax.transaction.Transactional;
 import java.util.List;

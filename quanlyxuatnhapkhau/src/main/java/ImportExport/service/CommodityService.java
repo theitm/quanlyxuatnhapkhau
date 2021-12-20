@@ -5,13 +5,10 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import ImportExport.entity.Commodity;
+import ImportExport.repository.CommodityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD:src/main/java/service/CommodityService.java
-import repository.CommodityRepository;
-=======
-import ImportExport.repository.CommodityRepository;
->>>>>>> develop-batch-8-nghia:src/main/java/ImportExport/service/CommodityService.java
+
 @Service
 @Transactional
 public class CommodityService {
