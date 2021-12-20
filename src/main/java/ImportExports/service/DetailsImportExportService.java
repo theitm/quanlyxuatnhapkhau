@@ -1,6 +1,6 @@
-package ImportExport.service;
-import ImportExport.entity.DetailsImportExport;
-import ImportExport.repository.DetailsImportExportRepository;
+package ImportExports.service;
+import ImportExports.entity.DetailsImportExport;
+import ImportExports.repository.DetailsImportExportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
