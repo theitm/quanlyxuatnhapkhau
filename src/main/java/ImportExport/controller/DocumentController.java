@@ -1,12 +1,12 @@
-package ImportExports.controller;
+package ImportExport.controller;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-import ImportExports.entity.Document;
+import ImportExport.entity.Document;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 
 import org.springframework.web.bind.annotation.*;
-import ImportExports.service.DocumentService;
+import ImportExport.service.DocumentService;
 @RestController
 public class DocumentController {
     @Autowired

@@ -1,5 +1,5 @@
-package ImportExports.repository;
-import ImportExports.entity.Document;
+package ImportExport.repository;
+import ImportExport.entity.Document;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
