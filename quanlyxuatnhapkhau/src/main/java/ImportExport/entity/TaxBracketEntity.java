@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -26,4 +27,7 @@ public class TaxBracketEntity {
     private String tax_bracket_name;
     private String description;
     private Float coefficient;
+
+    @ManyToMany(mappedBy = "taxBracketEntities")
+    public List<TypeOfCommodity> typeOfCommodities;
 }

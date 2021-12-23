@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -26,4 +27,10 @@ public class CountryEntity {
     private String country_name;
     private float tax;
     private float transport_fee;
+
+    @ManyToMany(mappedBy = "countryEntities")
+    public List<ImportExport> importExports;
+
+    @ManyToMany(mappedBy = "countryEntities")
+    public List<EmbargoEntity> embargoEntities;
 }

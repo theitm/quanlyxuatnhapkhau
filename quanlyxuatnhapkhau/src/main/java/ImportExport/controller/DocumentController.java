@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DocumentService;
+import ImportExport.service.DocumentServiceImpl;
 @RestController
 public class DocumentController {
     @Autowired
-    private DocumentService service;
+    private DocumentServiceImpl service;
     @GetMapping("/document")
     public List<Document> list() {
         return service.listAll();

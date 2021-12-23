@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +25,6 @@ public class Document {
     public String idImportExport;
     public String imageUrl;
 
+    @ManyToMany
+    private List<ImportExport> importExports;
 }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +26,12 @@ public class TypeOfCommodity {
     public String typeOfCommodityName;
     public String description;
 
+    @ManyToMany(mappedBy = "typeOfCommodities")
+    public List<Commodity> commodities;
+
+    @ManyToMany(mappedBy = "typeOfCommodities")
+    public List<EmbargoEntity> embargoEntities;
+
+    @ManyToMany
+    private List<TaxBracketEntity> taxBracketEntities;
 }

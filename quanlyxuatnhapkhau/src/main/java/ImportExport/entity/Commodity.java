@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +28,13 @@ public class Commodity {
     public String unit;
     public String description;
 
+    @ManyToMany(mappedBy = "commodities")
+    public List<WareHouseCommodityEntity> wareHouseCommodityEntities;
 
+    @ManyToMany(mappedBy = "commodities")
+    public List<DetailsImportExport> detailsImportExports;
 
+    @ManyToMany
+    private List<TypeOfCommodity> typeOfCommodities;
 }
 

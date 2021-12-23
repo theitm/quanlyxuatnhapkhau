@@ -10,6 +10,7 @@ import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -30,4 +31,15 @@ public class ImportExport {
     public Date date;
     public TinyIntTypeDescriptor type;
 
+    @ManyToMany
+    private List<CountryEntity> countryEntities;
+
+    @ManyToMany
+    private List<WareHouseEntity> wareHouseEntities;
+
+    @ManyToMany(mappedBy = "importExports")
+    public List<Document> documents;
+
+    @ManyToMany(mappedBy = "importExports")
+    public List<DetailsImportExport> detailsImportExports;
 }

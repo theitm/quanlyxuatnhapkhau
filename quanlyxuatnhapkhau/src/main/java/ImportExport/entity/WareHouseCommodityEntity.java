@@ -8,6 +8,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -26,4 +28,11 @@ public class WareHouseCommodityEntity {
     private String id_warehouse;
     private String id_commodity;
     private double inventory_number;
+
+    @ManyToMany
+    private List<WareHouseEntity> wareHouseEntities;
+
+    @ManyToMany
+    private List<Commodity> commodities;
+
 }

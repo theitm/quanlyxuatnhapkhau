@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -29,4 +30,10 @@ public class EmbargoEntity {
     @Column(name = "activate",columnDefinition = "tinyint")
     private int activate;
     private Integer active;
+
+    @ManyToMany
+    private List<TypeOfCommodity> typeOfCommodities;
+
+    @ManyToMany
+    private List<CountryEntity> countryEntities;
 }
