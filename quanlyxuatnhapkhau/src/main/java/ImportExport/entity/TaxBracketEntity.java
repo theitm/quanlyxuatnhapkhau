@@ -28,6 +28,6 @@ public class TaxBracketEntity {
     private String description;
     private Float coefficient;
 
-    @ManyToMany(mappedBy = "taxBracketEntities")
+    @OneToMany(mappedBy = "taxBracketEntities")
     public List<TypeOfCommodity> typeOfCommodities;
 }

@@ -31,9 +31,9 @@ public class EmbargoEntity {
     private int activate;
     private Integer active;
 
-    @ManyToMany
+    @OneToMany
     private List<TypeOfCommodity> typeOfCommodities;
 
-    @ManyToMany
+    @OneToMany
     private List<CountryEntity> countryEntities;
 }

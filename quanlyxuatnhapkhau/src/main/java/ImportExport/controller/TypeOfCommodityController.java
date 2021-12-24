@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.TypeOfCommodityServiceImpl;
+import ImportExport.service.TypeOfCommodityService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RestController
 public class TypeOfCommodityController {
     @Autowired
-    private TypeOfCommodityServiceImpl service;
+    private TypeOfCommodityService service;
     @GetMapping("/type")
     public List<TypeOfCommodity> list() {
         return service.listAll();

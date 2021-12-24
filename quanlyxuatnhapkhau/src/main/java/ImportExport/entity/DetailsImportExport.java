@@ -28,9 +28,9 @@ public class DetailsImportExport {
     public Double quantity;
     public Integer total;
 
-    @ManyToMany
+    @OneToMany
     private List<ImportExport> importExports;
 
-    @ManyToMany
+    @OneToMany
     private List<Commodity> commodities;
 }

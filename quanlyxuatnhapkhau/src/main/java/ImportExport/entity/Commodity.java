@@ -28,13 +28,13 @@ public class Commodity {
     public String unit;
     public String description;
 
-    @ManyToMany(mappedBy = "commodities")
+    @OneToMany(mappedBy = "commodities")
     public List<WareHouseCommodityEntity> wareHouseCommodityEntities;
 
-    @ManyToMany(mappedBy = "commodities")
+    @OneToMany(mappedBy = "commodities")
     public List<DetailsImportExport> detailsImportExports;
 
-    @ManyToMany
+    @OneToMany
     private List<TypeOfCommodity> typeOfCommodities;
 }
 

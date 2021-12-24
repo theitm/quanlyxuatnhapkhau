@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.EmbargoEntity;
-import ImportExport.service.EmbargoServiceImpl;
+import ImportExport.service.EmbargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RestController
 public class EmbargoController {
     @Autowired
-    private EmbargoServiceImpl service;
+    private EmbargoService service;
 
-    public EmbargoController(EmbargoServiceImpl service) {
+    public EmbargoController(EmbargoService service) {
         this.service = service;
     }
     @GetMapping("/embargo")

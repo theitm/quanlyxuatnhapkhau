@@ -10,5 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class WareHouseDTO implements Serializable {
     private UUID id;
-    private String  a;
+    private String warehouse_name;
+    private String description;
+    private double capacity;
 }

@@ -26,12 +26,12 @@ public class TypeOfCommodity {
     public String typeOfCommodityName;
     public String description;
 
-    @ManyToMany(mappedBy = "typeOfCommodities")
+    @OneToMany(mappedBy = "typeOfCommodities")
     public List<Commodity> commodities;
 
-    @ManyToMany(mappedBy = "typeOfCommodities")
+    @OneToMany(mappedBy = "typeOfCommodities")
     public List<EmbargoEntity> embargoEntities;
 
-    @ManyToMany
+    @OneToMany
     private List<TaxBracketEntity> taxBracketEntities;
 }

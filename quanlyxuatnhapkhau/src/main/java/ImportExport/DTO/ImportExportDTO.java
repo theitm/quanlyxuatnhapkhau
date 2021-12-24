@@ -22,4 +22,7 @@ public class ImportExportDTO implements Serializable {
     public Date date;
     public TinyIntTypeDescriptor type;
     private List<CountryDTO> country;
+
+    private List<UUID> countryEntities;
+    private List<UUID> wareHouseEntities;
 }

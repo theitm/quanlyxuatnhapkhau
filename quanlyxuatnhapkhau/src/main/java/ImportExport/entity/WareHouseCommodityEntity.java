@@ -29,10 +29,10 @@ public class WareHouseCommodityEntity {
     private String id_commodity;
     private double inventory_number;
 
-    @ManyToMany
+    @OneToMany
     private List<WareHouseEntity> wareHouseEntities;
 
-    @ManyToMany
+    @OneToMany
     private List<Commodity> commodities;
 
 }

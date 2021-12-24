@@ -28,9 +28,9 @@ public class CountryEntity {
     private float tax;
     private float transport_fee;
 
-    @ManyToMany(mappedBy = "countryEntities")
+    @OneToMany(mappedBy = "countryEntities")
     public List<ImportExport> importExports;
 
-    @ManyToMany(mappedBy = "countryEntities")
+    @OneToMany(mappedBy = "countryEntities")
     public List<EmbargoEntity> embargoEntities;
 }

@@ -29,9 +29,9 @@ public class WareHouseEntity {
     private String description;
     private double capacity;
 
-    @ManyToMany(mappedBy = "wareHouseEntities")
+    @OneToMany(mappedBy = "wareHouseEntities")
     public List<ImportExport> importExports;
 
-    @ManyToMany(mappedBy = "wareHouseEntities")
+    @OneToMany(mappedBy = "wareHouseEntities")
     public List<WareHouseCommodityEntity> wareHouseCommodityEntities;
 }

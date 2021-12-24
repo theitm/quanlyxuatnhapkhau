@@ -25,6 +25,6 @@ public class Document {
     public String idImportExport;
     public String imageUrl;
 
-    @ManyToMany
+    @OneToMany
     private List<ImportExport> importExports;
 }

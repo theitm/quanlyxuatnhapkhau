@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.WareHouseEntity;
-import ImportExport.service.WareHouseServiceImpl;
+import ImportExport.service.WareHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RequestMapping
 public class WareHouseController {
     @Autowired
-    private WareHouseServiceImpl service;
+    private WareHouseService service;
 
-    public WareHouseServiceImpl getService() {
+    public WareHouseService getService() {
         return service;
     }
-    public WareHouseController(WareHouseServiceImpl service){this.service = service;}
+    public WareHouseController(WareHouseService service){this.service = service;}
     @GetMapping("/warehouses")
     public List<WareHouseEntity> list(){
         return service.list();

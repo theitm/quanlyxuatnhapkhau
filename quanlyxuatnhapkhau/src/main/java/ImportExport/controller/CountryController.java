@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.CountryEntity;
-import ImportExport.service.CountryServiceImpl;
+import ImportExport.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RestController
 public class CountryController {
     @Autowired
-    private CountryServiceImpl service;
+    private CountryService service;
 
-    public CountryController(CountryServiceImpl service) {
+    public CountryController(CountryService service) {
         this.service = service;
     }
     @GetMapping("/country")

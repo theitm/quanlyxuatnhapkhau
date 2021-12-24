@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.TaxBracketEntity;
-import ImportExport.service.TaxBracketServiceImpl;
+import ImportExport.service.TaxBracketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RequestMapping
 public class TaxBracketController {
     @Autowired
-    private TaxBracketServiceImpl service;
+    private TaxBracketService service;
 
-    public TaxBracketController(TaxBracketServiceImpl service) {
+    public TaxBracketController(TaxBracketService service) {
         this.service = service;
     }
-    public TaxBracketServiceImpl getService(){return service;}
+    public TaxBracketService getService(){return service;}
     @GetMapping("/TaxBracket")
     public List<TaxBracketEntity> list(){return service.list();}
     @GetMapping("/TaxBracket/{id}")
