@@ -20,9 +20,9 @@ public class TypeOfCommodity {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idTaxBracket;
-    public String typeOfCommodityName;
-    public String description;
+    private UUID id;
+    private String idTaxBracket;
+    private String typeOfCommodityName;
+    private String description;
 
 }

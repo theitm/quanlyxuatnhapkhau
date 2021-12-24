@@ -21,10 +21,10 @@ public class ImportExport {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idCountry;
-    public String idWarehouse;
-    public Date date;
-    public byte type;
+    private UUID id;
+    private String idCountry;
+    private String idWarehouse;
+    private Date date;
+    private byte type;
 
 }

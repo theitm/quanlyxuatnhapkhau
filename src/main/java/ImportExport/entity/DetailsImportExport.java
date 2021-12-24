@@ -20,12 +20,12 @@ public class DetailsImportExport {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idImportExport;
-    public String idCommodity;
-    public String description;
-    public Double quantity;
-    public Integer total;
+    private UUID id;
+    private String idImportExport;
+    private String idCommodity;
+    private String description;
+    private Double quantity;
+    private Integer total;
 
 
 }

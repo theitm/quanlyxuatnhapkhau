@@ -20,12 +20,14 @@ public class Commodity {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idTypeOfCommodity;
-    public String commodityName;
-    public float price;
-    public String unit;
-    public String description;
+    private UUID id;
+    private String idTypeOfCommodity;
+    private String commodityName;
+    private float price;
+    private String unit;
+    private String description;
+
+
 
 
 

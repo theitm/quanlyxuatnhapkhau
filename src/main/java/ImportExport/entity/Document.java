@@ -20,8 +20,8 @@ public class Document {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idImportExport;
-    public String imageUrl;
+    private UUID id;
+    private String idImportExport;
+    private String imageUrl;
 
 }
