@@ -1,13 +1,11 @@
 package ImportExport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,9 +26,11 @@ public class CountryEntity {
     private float tax;
     private float transport_fee;
 
-    @OneToMany(mappedBy = "countryEntities")
-    public List<ImportExport> importExports;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "countryEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<ImportExportEntity> importExportEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "countryEntities")
-    public List<EmbargoEntity> embargoEntities;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "countryEntity",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<EmbargoEntity> embargoEntities= new ArrayList<>();
 }

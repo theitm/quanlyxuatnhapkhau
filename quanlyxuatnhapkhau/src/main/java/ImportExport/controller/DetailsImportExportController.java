@@ -1,11 +1,11 @@
 package ImportExport.controller;
 
-import ImportExport.entity.DetailsImportExport;
+import ImportExport.entity.DetailsImportExportEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DetailsImportExportService;
+import ImportExport.service.DetailsImportExportServiceImpl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,25 +16,25 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RestController
 public class DetailsImportExportController {
     @Autowired
-    private DetailsImportExportService service;
+    private DetailsImportExportServiceImpl service;
     @GetMapping("/details")
-    public List<DetailsImportExport> list() {
+    public List<DetailsImportExportEntity> list() {
         return service.listAll();
     }
 
-    List<DetailsImportExport> todoList = new CopyOnWriteArrayList<>();
+    List<DetailsImportExportEntity> todoList = new CopyOnWriteArrayList<>();
 
     @PostMapping("/details")
-    public ResponseEntity<DetailsImportExport> add(@RequestBody DetailsImportExport detailsImportExport) {
-        todoList.add(detailsImportExport);
-        service.save(detailsImportExport);
-        return ResponseEntity.ok().body(detailsImportExport);
+    public ResponseEntity<DetailsImportExportEntity> add(@RequestBody DetailsImportExportEntity detailsImportExportEntity) {
+        todoList.add(detailsImportExportEntity);
+        service.save(detailsImportExportEntity);
+        return ResponseEntity.ok().body(detailsImportExportEntity);
     }
     @PutMapping("/details/{id}")
-    public ResponseEntity<?> update(@RequestBody DetailsImportExport detailsImportExport, @PathVariable UUID id) {
+    public ResponseEntity<?> update(@RequestBody DetailsImportExportEntity detailsImportExportEntity, @PathVariable UUID id) {
         try {
-            DetailsImportExport existDetailsImportExport = service.get(id);
-            service.save(existDetailsImportExport);
+            DetailsImportExportEntity existDetailsImportExportEntity = service.get(id);
+            service.save(existDetailsImportExportEntity);
             return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (NoSuchElementException e) {

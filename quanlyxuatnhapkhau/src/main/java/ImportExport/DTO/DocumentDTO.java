@@ -14,7 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocumentDTO implements Serializable {
-    public UUID id;
     public String idImportExport;
     public String imageUrl;
 

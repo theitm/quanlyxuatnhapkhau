@@ -1,12 +1,12 @@
 package ImportExport.controller;
 
 
-import ImportExport.entity.TypeOfCommodity;
+import ImportExport.entity.TypeOfCommodityEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.TypeOfCommodityService;
+import ImportExport.service.TypeOfCommodityServiceImpl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -15,25 +15,25 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RestController
 public class TypeOfCommodityController {
     @Autowired
-    private TypeOfCommodityService service;
+    private TypeOfCommodityServiceImpl service;
     @GetMapping("/type")
-    public List<TypeOfCommodity> list() {
+    public List<TypeOfCommodityEntity> list() {
         return service.listAll();
     }
 
-    List<TypeOfCommodity> todoList = new CopyOnWriteArrayList<>();
+    List<TypeOfCommodityEntity> todoList = new CopyOnWriteArrayList<>();
 
     @PostMapping("/type")
-    public ResponseEntity<TypeOfCommodity> add(@RequestBody TypeOfCommodity typeOfCommodity) {
-        todoList.add(typeOfCommodity);
-        service.save(typeOfCommodity);
-        return ResponseEntity.ok().body(typeOfCommodity);
+    public ResponseEntity<TypeOfCommodityEntity> add(@RequestBody TypeOfCommodityEntity typeOfCommodityEntity) {
+        todoList.add(typeOfCommodityEntity);
+        service.save(typeOfCommodityEntity);
+        return ResponseEntity.ok().body(typeOfCommodityEntity);
     }
     @PutMapping("/type/{id}")
-    public ResponseEntity<?> update(@RequestBody TypeOfCommodity typeOfCommodity, @PathVariable UUID id) {
+    public ResponseEntity<?> update(@RequestBody TypeOfCommodityEntity typeOfCommodityEntity, @PathVariable UUID id) {
         try {
-            TypeOfCommodity existProduct = service.get(id);
-            service.save(typeOfCommodity);
+            TypeOfCommodityEntity existProduct = service.get(id);
+            service.save(typeOfCommodityEntity);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

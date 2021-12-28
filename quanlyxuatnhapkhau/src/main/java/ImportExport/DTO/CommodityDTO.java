@@ -12,8 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommodityDTO {
-    public UUID id;
-    public String idTypeOfCommodity;
+
     public String commodityName;
     public float price;
     public String unit;

@@ -13,7 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetailsImportExportDTO {
-    public UUID id;
     public String idImportExport;
     public String idCommodity;
     public String description;

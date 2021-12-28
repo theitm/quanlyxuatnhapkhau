@@ -1,10 +1,7 @@
 package ImportExport.Mapper;
 
 import ImportExport.DTO.CommodityDTO;
-import ImportExport.DTO.CountryDTO;
-import ImportExport.entity.Commodity;
-import ImportExport.entity.CountryEntity;
-import ImportExport.entity.TypeOfCommodity;
+import ImportExport.entity.CommodityEntity;
 
 public class CommodityMapper {
     private static CommodityMapper INSTANCE;
@@ -14,22 +11,20 @@ public class CommodityMapper {
         }
         return  INSTANCE;
     }
-    public Commodity toEntity(CommodityDTO commodityDTO){
-        Commodity commodity =new Commodity();
-        commodity.setIdTypeOfCommodity(commodityDTO.getIdTypeOfCommodity());
-        commodity.setCommodityName(commodityDTO.getCommodityName());
-        commodity.setPrice(commodityDTO.getPrice());
-        commodity.setUnit(commodityDTO.getUnit());
-        commodity.setDescription(commodityDTO.getDescription());
-        return commodity;
+    public CommodityEntity toEntity(CommodityDTO commodityDTO){
+        CommodityEntity commodityEntity =new CommodityEntity();
+        commodityEntity.setCommodityName(commodityDTO.getCommodityName());
+        commodityEntity.setPrice(commodityDTO.getPrice());
+        commodityEntity.setUnit(commodityDTO.getUnit());
+        commodityEntity.setDescription(commodityDTO.getDescription());
+        return commodityEntity;
     }
-    public CommodityDTO toDTO(Commodity commodity){
+    public CommodityDTO toDTO(CommodityEntity commodityEntity){
         CommodityDTO dto = new CommodityDTO();
-        dto.setIdTypeOfCommodity(commodity.getIdTypeOfCommodity());
-        dto.setCommodityName(commodity.getCommodityName());
-        dto.setPrice(commodity.getPrice());
-        dto.setUnit(commodity.getUnit());
-        dto.setDescription(commodity.getDescription());
+        dto.setCommodityName(commodityEntity.getCommodityName());
+        dto.setPrice(commodityEntity.getPrice());
+        dto.setUnit(commodityEntity.getUnit());
+        dto.setDescription(commodityEntity.getDescription());
         return dto;
     }
    /* public CommodityDTO toDTO(Commodity commodity) {

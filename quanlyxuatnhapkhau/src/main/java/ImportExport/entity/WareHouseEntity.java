@@ -1,13 +1,11 @@
 package ImportExport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,9 +27,11 @@ public class WareHouseEntity {
     private String description;
     private double capacity;
 
-    @OneToMany(mappedBy = "wareHouseEntities")
-    public List<ImportExport> importExports;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "wareHouseEntity",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<ImportExportEntity> importExportEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "wareHouseEntities")
-    public List<WareHouseCommodityEntity> wareHouseCommodityEntities;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "wareHouseEntity", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public List<WareHouseCommodityEntity> wareHouseCommodityEntities = new ArrayList<>();
 }

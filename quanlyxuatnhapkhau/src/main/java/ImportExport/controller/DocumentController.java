@@ -1,34 +1,34 @@
 package ImportExport.controller;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-import ImportExport.entity.Document;
+import ImportExport.entity.DocumentEntity;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DocumentService;
+import ImportExport.service.DocumentServiceImpl;
 @RestController
 public class DocumentController {
     @Autowired
-    private DocumentService service;
+    private DocumentServiceImpl service;
     @GetMapping("/document")
-    public List<Document> list() {
+    public List<DocumentEntity> list() {
         return service.listAll();
     }
 
-    List<Document> todoList = new CopyOnWriteArrayList<>();
+    List<DocumentEntity> todoList = new CopyOnWriteArrayList<>();
 
     @PostMapping("/document")
-    public ResponseEntity<Document> add(@RequestBody Document document) {
-        todoList.add(document);
-        service.save(document);
-        return ResponseEntity.ok().body(document);
+    public ResponseEntity<DocumentEntity> add(@RequestBody DocumentEntity documentEntity) {
+        todoList.add(documentEntity);
+        service.save(documentEntity);
+        return ResponseEntity.ok().body(documentEntity);
     }
     @PutMapping("/document/{id}")
-    public ResponseEntity<?> update(@RequestBody Document document, @PathVariable UUID id) {
+    public ResponseEntity<?> update(@RequestBody DocumentEntity documentEntity, @PathVariable UUID id) {
         try {
-            Document existProduct = service.get(id);
-            service.save(document);
+            DocumentEntity existProduct = service.get(id);
+            service.save(documentEntity);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

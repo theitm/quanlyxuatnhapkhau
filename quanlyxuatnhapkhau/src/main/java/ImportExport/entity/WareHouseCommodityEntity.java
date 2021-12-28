@@ -1,15 +1,10 @@
 package ImportExport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -29,10 +24,16 @@ public class WareHouseCommodityEntity {
     private String id_commodity;
     private double inventory_number;
 
-    @OneToMany
-    private List<WareHouseEntity> wareHouseEntities;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "wareHouseEntity_id",nullable = false)
+    private WareHouseEntity wareHouseEntity;
 
-    @OneToMany
-    private List<Commodity> commodities;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "commodityEntity_id",nullable = false)
+    private CommodityEntity commodityEntity;
 
 }

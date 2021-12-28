@@ -1,6 +1,6 @@
 package ImportExport.DTO;
 
-import lombok.AllArgsConstructor;
+/*import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor*/
 public class CommodityCreationDTO {
     public String idTypeOfCommodity;
     public String commodityName;

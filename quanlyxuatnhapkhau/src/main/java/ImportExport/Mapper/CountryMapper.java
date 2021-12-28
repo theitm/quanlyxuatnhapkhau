@@ -1,7 +1,7 @@
 package ImportExport.Mapper;
 
 import ImportExport.DTO.CommodityDTO;
-import ImportExport.entity.Commodity;
+import ImportExport.entity.CommodityEntity;
 
 public class CountryMapper {
     private static CountryMapper INSTANCE;
@@ -11,15 +11,14 @@ public class CountryMapper {
         }
         return  INSTANCE;
     }
-    public Commodity toEntity(CommodityDTO commodityDTO){
-        Commodity commodity =new Commodity();
-        commodity.setCommodityName(commodityDTO.getCommodityName());
-        return commodity;
+    public CommodityEntity toEntity(CommodityDTO commodityDTO){
+        CommodityEntity commodityEntity =new CommodityEntity();
+        commodityEntity.setCommodityName(commodityDTO.getCommodityName());
+        return commodityEntity;
     }
-    public CommodityDTO toDTO(Commodity commodity){
+    public CommodityDTO toDTO(CommodityEntity commodityEntity){
         CommodityDTO dto = new CommodityDTO();
-        dto.setCommodityName(commodity.getCommodityName());
-        dto.setId(commodity.getId());
+        dto.setCommodityName(commodityEntity.getCommodityName());
         return dto;
     }
 }
