@@ -1,12 +1,11 @@
 package ImportExport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +13,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "tb_details_import_export")
+
 public class DetailsImportExport {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
@@ -26,6 +26,13 @@ public class DetailsImportExport {
     private String description;
     private Double quantity;
     private Integer total;
+    @ManyToOne
+    @JoinColumn(name = "id_commodity")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Commodity commodity;
+    private List<Commodity> commodities;
+
 
 
 }

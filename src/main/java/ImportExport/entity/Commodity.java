@@ -1,12 +1,11 @@
 package ImportExport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +25,10 @@ public class Commodity {
     private float price;
     private String unit;
     private String description;
+    @OneToMany(mappedBy = "idCommodity", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<DetailsImportExport> detailsImportExports;
 
 
 
