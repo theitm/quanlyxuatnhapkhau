@@ -1,3 +1,4 @@
+
 package ImportExport.repository;
 
 import ImportExport.entity.TypeOfCommodity;
@@ -8,3 +9,5 @@ import java.util.UUID;
 public interface TypeOfCommodityRepository extends JpaRepository<TypeOfCommodity, UUID> {
 
 }
+
+

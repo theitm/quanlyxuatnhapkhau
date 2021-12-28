@@ -95,7 +95,7 @@ public class CommodityController {
     @PutMapping
     public ResponseEntity<CommodityDTO> update(@PathVariable UUID id ,@RequestBody CommodityDTO commodityDTO) {
         Commodity commodity = commodityMapper.toCommodity(commodityDTO);
-        commodity.setId(id);
+        commodity.setId( id);
         commodityService.save(commodity);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDTO);
     }
