@@ -31,8 +31,6 @@ public class DetailsImportExport {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Commodity commodity;
-    private List<Commodity> commodities;
-
-
+   // private List<Commodity> commodities;
 
 }

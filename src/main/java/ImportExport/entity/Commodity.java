@@ -28,7 +28,8 @@ public class Commodity {
     @OneToMany(mappedBy = "idCommodity", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<DetailsImportExport> detailsImportExports;
+    private  DetailsImportExport detailsImportExport;
+    //private List<DetailsImportExport> detailsImportExports;
 
 
 

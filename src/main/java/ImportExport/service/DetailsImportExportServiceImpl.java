@@ -1,4 +1,8 @@
 package ImportExport.service;
+
+
+/*
+
 import ImportExport.dto.DetailsImportExportDTO;
 import ImportExport.entity.DetailsImportExport;
 import ImportExport.repository.DetailsImportExportRepository;
@@ -18,5 +22,34 @@ public class DetailsImportExportServiceImpl implements  DetailsImportExportServi
     public DetailsImportExportDTO create(DetailsImportExportDTO dto) {
         DetailsImportExport detailsImportExport = new DetailsImportExport();
         return null;
+    }
+}
+*/
+
+import ImportExport.entity.DetailsImportExport;
+import ImportExport.repository.DetailsImportExportRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@RequiredArgsConstructor
+@Service
+public class DetailsImportExportServiceImpl {
+    private final DetailsImportExportRepository detailsImportExportRepository;
+    public List<DetailsImportExport> findAll() {
+        return detailsImportExportRepository.findAll();
+    }
+    public Optional<DetailsImportExport> findById(UUID id) {
+        return detailsImportExportRepository.findById(id);
+
+    }
+    public DetailsImportExport save(DetailsImportExport stock) {
+        return detailsImportExportRepository.save(stock);
+    }
+    public void deleteById(UUID id) {
+        detailsImportExportRepository.deleteById(id);
     }
 }

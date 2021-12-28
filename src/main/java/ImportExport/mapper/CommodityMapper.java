@@ -1,7 +1,7 @@
 package ImportExport.mapper;
 
 
-import ImportExport.dto.CommodityDTO;
+/*import ImportExport.dto.CommodityDTO;
 import ImportExport.entity.Commodity;
 import ImportExport.entity.DetailsImportExport;
 
@@ -35,5 +35,21 @@ public class CommodityMapper {
         commodity.setDescription(commodityDTO.getDescription());
         return commodity;
     }
+
+}
+*/
+
+import ImportExport.dto.CommodityDTO;
+import ImportExport.entity.Commodity;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+@Mapper
+public interface CommodityMapper {
+    CommodityDTO toCommodityDTO(Commodity commodity);
+    List<CommodityDTO> toCommodityDTOs (List<Commodity> commodities);
+    Commodity toCommodity(CommodityDTO commodityDTO);
+
 
 }

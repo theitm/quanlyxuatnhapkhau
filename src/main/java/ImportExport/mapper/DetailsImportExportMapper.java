@@ -1,6 +1,12 @@
 package ImportExport.mapper;
 
 import ImportExport.dto.DetailsImportExportDTO;
+import ImportExport.entity.DetailsImportExport;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+/*import ImportExport.dto.DetailsImportExportDTO;
 import ImportExport.entity.Commodity;
 import ImportExport.entity.DetailsImportExport;
 
@@ -40,7 +46,14 @@ public class DetailsImportExportMapper {
         return dto;
 
         }
-    }
+    }*/
+@Mapper
+public interface DetailsImportExportMapper {
+    DetailsImportExportDTO toDetailsImportExportDTO (DetailsImportExport detailsImportExport);
+    List<DetailsImportExportDTO> toDetailsImportExportDTOs(List<DetailsImportExport> detailsImportExports);
+    DetailsImportExport toDetailsImportExport(DetailsImportExportDTO detailsImportExportDTO);
+
+}
 
 
 

@@ -1,5 +1,5 @@
 package ImportExport.controller;
-
+/*
 import ImportExport.entity.Commodity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,3 +55,56 @@ public class CommodityController {
 
 
 }
+
+ */
+
+import ImportExport.dto.CommodityDTO;
+import ImportExport.entity.Commodity;
+import ImportExport.mapper.CommodityMapper;
+import ImportExport.service.CommodityServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@RequiredArgsConstructor
+
+@RestController
+@RequestMapping
+public class CommodityController {
+    private final CommodityServiceImpl commodityService ;
+    private final CommodityMapper commodityMapper;
+    @GetMapping
+    public ResponseEntity<List<CommodityDTO>>   findAll() {
+        return ResponseEntity.ok(commodityMapper.toCommodityDTOs(commodityService.findAll()));
+    }
+    @PostMapping
+    public ResponseEntity<CommodityDTO> create(@RequestBody CommodityDTO commodityDTO) {
+        commodityService.save(commodityMapper.toCommodity(commodityDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(commodityDTO);
+    }
+    @GetMapping
+    public ResponseEntity<CommodityDTO> findAll(@PathVariable UUID id) {
+        Optional<Commodity> commodity = commodityService.findById(id);
+        return ResponseEntity.ok(commodityMapper.toCommodityDTO(commodity.get()));
+    }
+    @PutMapping
+    public ResponseEntity<CommodityDTO> update(@PathVariable UUID id ,@RequestBody CommodityDTO commodityDTO) {
+        Commodity commodity = commodityMapper.toCommodity(commodityDTO);
+        commodity.setId(id);
+        commodityService.save(commodity);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDTO);
+    }
+    @DeleteMapping
+    public  ResponseEntity delete(@PathVariable UUID id) {
+        commodityService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
+
+}
+
