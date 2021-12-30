@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.EmbargoEntity;
-import ImportExport.service.EmbargoServiceImpl;
+import ImportExport.ServiceImpl.EmbargoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,21 +1,21 @@
 package ImportExport.DTO;
 
+
+import java.io.Serializable;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.UUID;
-
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocumentDTO implements Serializable {
-    public String idImportExport;
-    public String imageUrl;
+    private UUID id;
+    private String idImportExport;
+    private String imageUrl;
 
-    private List<UUID> importExports;
+//    private UUID importExportEntityId;
 }

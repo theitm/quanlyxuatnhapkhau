@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,20 +15,33 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "tb_commodity")
-public class CommodityEntity {
+public class CommodityEntity implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idTypeOfCommodity;
-    public String commodityName;
-    public float price;
-    public String unit;
-    public String description;
+    private UUID id;
 
-    @EqualsAndHashCode.Exclude
+    @Column( name = "id_type_of_commodity")
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
+
+    @Column(name = "commodity_name")
+    private String commodityName;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price")
+    private float price;
+
+    @Column(name = "unit")
+    private String unit;
+
+
+
+   /* @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "commodityEntity",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<WareHouseCommodityEntity> wareHouseCommodityEntities = new ArrayList<>();
 
@@ -39,6 +53,6 @@ public class CommodityEntity {
     @ToString.Exclude
     @ManyToOne(optional=false)
     @JoinColumn(name = "typeOfCommodityEntity_id",nullable = false)
-    private TypeOfCommodityEntity typeOfCommodityEntity;
+    private TypeOfCommodityEntity typeOfCommodityEntity;*/
 }
 

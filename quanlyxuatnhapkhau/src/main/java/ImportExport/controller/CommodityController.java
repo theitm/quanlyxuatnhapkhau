@@ -1,7 +1,9 @@
 package ImportExport.controller;
 
+import ImportExport.DTO.Commodity.CommodityCreateDto;
+import ImportExport.DTO.Commodity.CommodityDTO;
 import ImportExport.entity.CommodityEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import ImportExport.service.CommodityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,45 +15,41 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 @RestController
+@RequestMapping
 public class CommodityController {
-    @Autowired
-    private CommodityService service;
+    private final CommodityService commodityService;
+
+    public CommodityController(CommodityService commodityService) {
+        this.commodityService = commodityService;
+    }
+
     @GetMapping("/commodity")
-    public List<CommodityEntity> list() {
-        return service.listAll();
+    public List<CommodityDTO> list() {
+        return null;
     }
+
     @GetMapping("/commodity/{id}")
-    public ResponseEntity<CommodityEntity> get(@PathVariable UUID id) {
-        try {
-            CommodityEntity commodityEntity = service.get(id);
-            return new ResponseEntity<CommodityEntity>(commodityEntity, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<CommodityEntity>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<CommodityDTO> findById(@PathVariable UUID id) {
+        return null;
     }
+
     List<CommodityEntity> todoList = new CopyOnWriteArrayList<>();
-
     @PostMapping("/commodity")
-    public ResponseEntity<CommodityEntity> add(@RequestBody CommodityEntity commodityEntity) {
-        todoList.add(commodityEntity);
-        service.save(commodityEntity);
-        return ResponseEntity.ok().body(commodityEntity);
+    public ResponseEntity<CommodityDTO> create(@RequestBody CommodityCreateDto createDto) {
+       return ResponseEntity.status(HttpStatus.ACCEPTED).body
+                (commodityService.createCommodity(createDto));
     }
-    @PutMapping("/commodity/{id}")
-    public ResponseEntity<?> update(@RequestBody CommodityEntity commodityEntity, @PathVariable UUID id) {
-        try {
-            CommodityEntity existCommodityEntity = service.get(id);
-            service.save(commodityEntity);
-            return new ResponseEntity<>(HttpStatus.OK);
 
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PutMapping("/commodity/{id}")
+    public ResponseEntity<CommodityDTO> update(@RequestBody CommodityEntity commodityEntity,
+                                               @PathVariable UUID id) {
+       return null;
     }
-    @DeleteMapping("/commodity/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
-    }
+
+//    @DeleteMapping("/commodity/{id}")
+//    public void delete(@PathVariable UUID id) {
+//        commodityService.delete(id);
+//    }
 
 
 }

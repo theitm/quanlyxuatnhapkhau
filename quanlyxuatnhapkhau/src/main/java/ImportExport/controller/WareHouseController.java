@@ -1,7 +1,7 @@
 package ImportExport.controller;
 
 import ImportExport.entity.WareHouseEntity;
-import ImportExport.service.WareHouseServiceImpl;
+import ImportExport.ServiceImpl.WareHouseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

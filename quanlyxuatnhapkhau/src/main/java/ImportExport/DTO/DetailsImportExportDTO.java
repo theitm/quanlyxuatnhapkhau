@@ -5,19 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.UUID;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetailsImportExportDTO {
-    public String idImportExport;
-    public String idCommodity;
-    public String description;
-    public Double quantity;
-    public Integer total;
-    private List<UUID> importExports;
-    private List<UUID> commodities;
+public class DetailsImportExportDTO implements Serializable {
+    private UUID id;
+    private String idImportExport;
+    private String idCommodity;
+    private String description;
+    private Double quantity;
+    private Integer total;
+
+//    private UUID importExportEntityId;
+//    private UUID commodityEntityId;
 }

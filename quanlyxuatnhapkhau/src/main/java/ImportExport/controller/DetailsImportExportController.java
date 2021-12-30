@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DetailsImportExportServiceImpl;
+import ImportExport.ServiceImpl.DetailsImportExportServiceImpl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -19,7 +19,7 @@ public class DetailsImportExportController {
     private DetailsImportExportServiceImpl service;
     @GetMapping("/details")
     public List<DetailsImportExportEntity> list() {
-        return service.listAll();
+        return service.list();
     }
 
     List<DetailsImportExportEntity> todoList = new CopyOnWriteArrayList<>();

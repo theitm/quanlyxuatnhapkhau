@@ -4,27 +4,36 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Data
 @Builder
 @Entity
 @Table(name = "tb_type_of_commodity")
-public class TypeOfCommodityEntity {
+public class TypeOfCommodityEntity implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
-    public UUID id;
-    public String idTaxBracket;
-    public String typeOfCommodityName;
-    public String description;
+    private UUID id;
 
-    @EqualsAndHashCode.Exclude
+    @Column( name = "id_tax_bracket")
+    @Type( type = "uuid-char")
+    private UUID idTaxBracket;
+
+    @Column(name = "type_of_commodity_name")
+    private String typeOfCommodityName;
+
+    @Column(name = "description")
+    private String description;
+
+    /*@EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "typeOfCommodityEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<CommodityEntity> commodityEntities = new ArrayList<>();
 
@@ -37,5 +46,5 @@ public class TypeOfCommodityEntity {
     @ToString.Exclude
     @ManyToOne(optional = false)
     @JoinColumn(name = "taxBracketEntity",nullable = false)
-    private TaxBracketEntity taxBracketEntity;
+    private TaxBracketEntity taxBracketEntity;*/
 }

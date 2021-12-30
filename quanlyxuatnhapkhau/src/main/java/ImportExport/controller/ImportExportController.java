@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.ImportExportServiceImpl;
+import ImportExport.ServiceImpl.ImportExportServiceImpl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -18,7 +18,7 @@ public class ImportExportController {
     private ImportExportServiceImpl service;
     @GetMapping("/import_export")
     public List<ImportExportEntity> list() {
-        return service.listAll();
+        return service.list();
     }
 
     List<ImportExportEntity> todoList = new CopyOnWriteArrayList<>();

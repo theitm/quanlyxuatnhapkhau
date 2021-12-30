@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DocumentServiceImpl;
+import ImportExport.ServiceImpl.DocumentServiceImpl;
 @RestController
 public class DocumentController {
     @Autowired
     private DocumentServiceImpl service;
     @GetMapping("/document")
     public List<DocumentEntity> list() {
-        return service.listAll();
+        return service.list();
     }
 
     List<DocumentEntity> todoList = new CopyOnWriteArrayList<>();
