@@ -1,45 +1,48 @@
 package ImportExport.controller;
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-import ImportExport.entity.Document;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
-
+import ImportExport.dto.document.DocumentCreateDto;
+import ImportExport.dto.document.DocumentDetailDto;
+import ImportExport.service.document.DocumentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.DocumentService;
+
+import java.util.UUID;
+
 @RestController
+@RequestMapping("v1/api/document")
+
 public class DocumentController {
-    @Autowired
-    private DocumentService service;
-    @GetMapping("/document")
-    public List<Document> list() {
-        return service.listAll();
+    private final DocumentService documentService;
+
+    public DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
     }
-
-    List<Document> todoList = new CopyOnWriteArrayList<>();
-
-    @PostMapping("/document")
-    public ResponseEntity<Document> add(@RequestBody Document document) {
-        todoList.add(document);
-        service.save(document);
-        return ResponseEntity.ok().body(document);
+    @PostMapping
+    public ResponseEntity<DocumentDetailDto> create(@RequestBody DocumentCreateDto documentCreateDto){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(documentService.createDocument(documentCreateDto));
     }
-    @PutMapping("/document/{id}")
-    public ResponseEntity<?> update(@RequestBody Document document, @PathVariable UUID id) {
-        try {
-            Document existProduct = service.get(id);
-            service.save(document);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<DocumentDetailDto> findById(@PathVariable UUID id){
+        return null;
     }
-    @DeleteMapping("/document/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
-    }
-
-
-
-
 }
+
+//    @PutMapping("/document/{id}")
+//    public ResponseEntity<?> update(@RequestBody Document document, @PathVariable UUID id) {
+//        try {
+//            Document existProduct = service.get(id);
+//            service.save(document);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (NoSuchElementException e) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//    @DeleteMapping("/document/{id}")
+//    public void delete(@PathVariable UUID id) {
+//        service.delete(id);
+//    }
+//
+//
+//
+//
+//}

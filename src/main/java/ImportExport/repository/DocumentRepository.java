@@ -1,11 +1,10 @@
 package ImportExport.repository;
-import ImportExport.entity.Document;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import ImportExport.entity.DocumentEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
-public interface DocumentRepository extends JpaRepository<Document, UUID> {
-
+@Repository
+public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> {
 }
-
-

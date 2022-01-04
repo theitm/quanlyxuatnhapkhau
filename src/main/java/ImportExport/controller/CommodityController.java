@@ -1,109 +1,48 @@
 package ImportExport.controller;
-/*
-import ImportExport.entity.Commodity;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import ImportExport.dto.commodity.CommodityCreateDto;
+import ImportExport.dto.commodity.CommodityDetailDto;
+import ImportExport.service.commodity.CommodityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.CommodityServiceImpl;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-
-@RestController
-public class CommodityController {
-    @Autowired
-    private CommodityServiceImpl service;
-    @GetMapping("/commodity")
-    public List<Commodity> list() {
-        return service.listAll();
-    }
-    @GetMapping("/commodity/{id}")
-    public ResponseEntity<Commodity> get(@PathVariable UUID id) {
-        try {
-            Commodity commodity = service.get(id);
-            return new ResponseEntity<Commodity>(commodity, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<Commodity>(HttpStatus.NOT_FOUND);
-        }
-    }
-    List<Commodity> todoList = new CopyOnWriteArrayList<>();
-
-    @PostMapping("/commodity")
-    public ResponseEntity<Commodity> add(@RequestBody Commodity commodity) {
-        todoList.add(commodity);
-        service.save(commodity);
-        return ResponseEntity.ok().body(commodity);
-    }
-    @PutMapping("/commodity/{id}")
-    public ResponseEntity<?> update(@RequestBody Commodity commodity, @PathVariable UUID id) {
-        try {
-            Commodity existCommodity = service.get(id);
-            service.save(commodity);
-            return new ResponseEntity<>(HttpStatus.OK);
-
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-    @DeleteMapping("/commodity/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
-    }
-
-
-}
-
- */
-
-import ImportExport.dto.CommodityDTO;
-import ImportExport.entity.Commodity;
-import ImportExport.mapper.CommodityMapper;
-import ImportExport.service.CommodityServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-@RequiredArgsConstructor
-
 @RestController
-@RequestMapping
+@RequestMapping("v1/api/commodity")
+
 public class CommodityController {
-    private final CommodityServiceImpl commodityService ;
-    private final CommodityMapper commodityMapper;
-    @GetMapping
-    public ResponseEntity<List<CommodityDTO>>   findAll() {
-        return ResponseEntity.ok(commodityMapper.toCommodityDTOs(commodityService.findAll()));
+    private final CommodityService commodityService ;
+
+    public CommodityController(CommodityService commodityService) {
+        this.commodityService = commodityService;
     }
+
+
     @PostMapping
-    public ResponseEntity<CommodityDTO> create(@RequestBody CommodityDTO commodityDTO) {
-        commodityService.save(commodityMapper.toCommodity(commodityDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).body(commodityDTO);
+    public ResponseEntity<CommodityDetailDto> create(@RequestBody CommodityCreateDto createDto) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityService.createCommodity(createDto));
+    //        return null;
     }
-    @GetMapping
-    public ResponseEntity<CommodityDTO> findAll(@PathVariable UUID id) {
-        Optional<Commodity> commodity = commodityService.findById(id);
-        return ResponseEntity.ok(commodityMapper.toCommodityDTO(commodity.get()));
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CommodityDetailDto> findById(@PathVariable UUID id) {
+     //   Optional<Commodity> commodity = commodityService.findById(id);
+     //   return ResponseEntity.ok(commodityMapper.toCommodityDTO(commodity.get()));
+        return null;
     }
-    @PutMapping
-    public ResponseEntity<CommodityDTO> update(@PathVariable UUID id ,@RequestBody CommodityDTO commodityDTO) {
-        Commodity commodity = commodityMapper.toCommodity(commodityDTO);
-        commodity.setId( id);
-        commodityService.save(commodity);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDTO);
-    }
-    @DeleteMapping
-    public  ResponseEntity delete(@PathVariable UUID id) {
-        commodityService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CommodityDTO> update(@PathVariable UUID id ,@RequestBody CommodityDTO commodityDTO) {
+//        Commodity commodity = commodityMapper.toCommodity(commodityDTO);
+//        commodity.setId(id);
+//        commodityService.save(commodity);
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDTO);
+//    }
+//    @DeleteMapping("/{id}")
+//    public  ResponseEntity delete(@PathVariable UUID id) {
+//        commodityService.deleteById(id);
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+//    }
 
 
 }

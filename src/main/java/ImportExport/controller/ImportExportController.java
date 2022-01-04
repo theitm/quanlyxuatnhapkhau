@@ -1,47 +1,30 @@
 package ImportExport.controller;
 
-import ImportExport.entity.ImportExport;
-import org.springframework.beans.factory.annotation.Autowired;
+import ImportExport.dto.importExport.ImportExportCreateDto;
+import ImportExport.dto.importExport.ImportExportDetailDto;
+import ImportExport.service.importExport.ImportExportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.ImportExportService;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+import java.util.UUID;
 
 @RestController
+@RequestMapping("v1/api/importExport")
+
 public class ImportExportController {
-    @Autowired
-    private ImportExportService service;
-    @GetMapping("/import_export")
-    public List<ImportExport> list() {
-        return service.listAll();
-    }
+    private final ImportExportService importExportService;
 
-    List<ImportExport> todoList = new CopyOnWriteArrayList<>();
+    public ImportExportController(ImportExportService importExportService) {
+        this.importExportService = importExportService;
+    }
+    @PostMapping
+    public ResponseEntity<ImportExportDetailDto> create(@RequestBody ImportExportCreateDto importExportCreateDto){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(importExportService.createImportExport(importExportCreateDto));
 
-    @PostMapping("/import_export")
-    public ResponseEntity<ImportExport> add(@RequestBody ImportExport importExport) {
-        todoList.add(importExport);
-        service.save(importExport);
-        return ResponseEntity.ok().body(importExport);
     }
-    @PutMapping("/import_export/{id}")
-    public ResponseEntity<?> update(@RequestBody ImportExport importExport, @PathVariable UUID id) {
-        try {
-            ImportExport existImportExport = service.get(id);
-            service.save(importExport);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<ImportExportDetailDto> findById(@PathVariable UUID id) {
+        return null;
     }
-    @DeleteMapping("/import_export/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
-    }
-
 }

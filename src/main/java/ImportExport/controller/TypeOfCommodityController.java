@@ -1,49 +1,29 @@
 package ImportExport.controller;
 
-
-import ImportExport.entity.TypeOfCommodity;
-import org.springframework.beans.factory.annotation.Autowired;
+import ImportExport.dto.typeOfCommodity.TypeOfCommodityCreateDto;
+import ImportExport.dto.typeOfCommodity.TypeOfCommodityDetailDto;
+import ImportExport.service.typeOfCommodity.TypeOfCommodityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ImportExport.service.TypeOfCommodityService;
-import java.util.List;
-import java.util.NoSuchElementException;
+
 import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
+@RequestMapping("v1/api/typeOfCommodity")
+
 public class TypeOfCommodityController {
-    @Autowired
-    private TypeOfCommodityService service;
-    @GetMapping("/type")
-    public List<TypeOfCommodity> list() {
-        return service.listAll();
-    }
+    private final TypeOfCommodityService typeOfCommodityService;
 
-    List<TypeOfCommodity> todoList = new CopyOnWriteArrayList<>();
-
-    @PostMapping("/type")
-    public ResponseEntity<TypeOfCommodity> add(@RequestBody TypeOfCommodity typeOfCommodity) {
-        todoList.add(typeOfCommodity);
-        service.save(typeOfCommodity);
-        return ResponseEntity.ok().body(typeOfCommodity);
+    public TypeOfCommodityController(TypeOfCommodityService typeOfCommodityService) {
+        this.typeOfCommodityService = typeOfCommodityService;
     }
-    @PutMapping("/type/{id}")
-    public ResponseEntity<?> update(@RequestBody TypeOfCommodity typeOfCommodity, @PathVariable UUID id) {
-        try {
-            TypeOfCommodity existProduct = service.get(id);
-            service.save(typeOfCommodity);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PostMapping
+    public ResponseEntity<TypeOfCommodityDetailDto> create(@RequestBody TypeOfCommodityCreateDto typeOfCommodityCreateDto) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(typeOfCommodityService.createTypeOfCommodity(typeOfCommodityCreateDto));
     }
-    @DeleteMapping("/type/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<TypeOfCommodityDetailDto> findById(@PathVariable UUID id) {
+        return null;
     }
-
-
 }
-
