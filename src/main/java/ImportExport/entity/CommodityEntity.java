@@ -1,19 +1,23 @@
 package ImportExport.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
-@Entity
 @Table(name = "tb_commodity")
-
 public class CommodityEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
@@ -21,17 +25,54 @@ public class CommodityEntity {
     @Column(name = "id", columnDefinition = "CHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
-    private String idTypeOfCommodity;
+
+    @Column(name = "commodity_name")
     private String commodityName;
-    private float price;
-    private String unit;
+
+    @Column(name = "description")
     private String description;
 
-//        @OneToMany(mappedBy = "idCommodity", cascade = CascadeType.ALL)
-//        @EqualsAndHashCode.Exclude
-//        @ToString.Exclude
-//        private  DetailsImportExportEntity detailsImportExportEntity;
-//    private List<DetailsImportExportEntity> detailsImportExportEntities;
+    @Column(name = "price")
+    private Float price;
+
+    @Column(name = "unit")
+    private String unit;
+
+    @Column( name = "id_type_of_commodity")
+    @Type( type = "uuid-char")
+    private UUID idTypeOfCommodity;
+
+    @OneToMany(
+            mappedBy = "commodityEntity",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonManagedReference
+    @JsonIgnore
+    private Collection<DetailsImportExportEntity> detailsImportExportEntities
+            = new ArrayList<DetailsImportExportEntity>();
+
+
+    @OneToMany(
+            mappedBy = "commodityEntity",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonManagedReference
+    @JsonIgnore
+    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities
+            = new ArrayList<WarehouseCommodityEntity>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_of_commodity",insertable = false,updatable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private TypeOfCommodityEntity   typeOfCommodityEntity;
 
 
 

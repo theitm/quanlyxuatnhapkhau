@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class TypeOfCommodityDetailDto implements Serializable {
     private UUID id;
-    private String idTaxBracket;
+    private UUID idTaxBracket;
     private String typeOfCommodityName;
     private String description;
 }

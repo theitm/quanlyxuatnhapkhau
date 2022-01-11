@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 
 public class TypeOfCommodityCreateDto implements Serializable {
-    private String idTaxBracket;
+    private UUID idTaxBracket;
     private String typeOfCommodityName;
     private String description;
 }

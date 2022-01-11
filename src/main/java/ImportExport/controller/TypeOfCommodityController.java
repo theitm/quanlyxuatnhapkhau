@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,6 +25,15 @@ public class TypeOfCommodityController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<TypeOfCommodityDetailDto> findById(@PathVariable UUID id) {
-        return null;
+        return ResponseEntity.ok(typeOfCommodityService.findById(id));
+    }
+    @GetMapping
+    public List<TypeOfCommodityDetailDto> findAll() {
+        return typeOfCommodityService.findAll();
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable UUID id) {
+        typeOfCommodityService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }

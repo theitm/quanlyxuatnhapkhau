@@ -2,12 +2,14 @@ package ImportExport.service.warehouseCommodity;
 
 import ImportExport.dto.warehouseCommodity.WarehouseCommodityCreateDto;
 import ImportExport.dto.warehouseCommodity.WarehouseCommodityDetailDto;
-import ImportExport.entity.WarehouseCommodityEntity;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 public interface WarehouseCommodityService {
     WarehouseCommodityDetailDto createWarehouseCommodity(WarehouseCommodityCreateDto warehouseCommodityCreateDto);
-    Optional<WarehouseCommodityEntity> findById(UUID id);
+    WarehouseCommodityDetailDto findById(UUID id);
+    void deleteById(UUID id);
+    WarehouseCommodityDetailDto updateWarehouseCommodity (UUID id,WarehouseCommodityCreateDto warehouseCommodityCreateDto);
+    List<WarehouseCommodityDetailDto> findAll();
 }

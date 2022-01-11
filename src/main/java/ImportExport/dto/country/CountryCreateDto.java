@@ -13,6 +13,6 @@ import java.io.Serializable;
 
 public class CountryCreateDto implements Serializable {
     private String countryName;
-    private float tax;
-    private float transportFee;
+    private Double tax;
+    private Double transportFee;
 }

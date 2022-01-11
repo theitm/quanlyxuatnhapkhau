@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CountryDetailDto implements Serializable {
     private UUID id;
     private String countryName;
-    private float tax;
-    private float transportFee;
+    private Double tax;
+    private Double transportFee;
 
 }

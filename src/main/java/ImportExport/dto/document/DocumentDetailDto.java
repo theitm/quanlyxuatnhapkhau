@@ -14,6 +14,6 @@ import java.util.UUID;
 
 public class DocumentDetailDto implements Serializable {
     private UUID id;
-    private String idImportExport;
+    private UUID idImportExport;
     private String imageUrl;
 }

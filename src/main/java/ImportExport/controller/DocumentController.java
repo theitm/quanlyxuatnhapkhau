@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,26 +24,23 @@ public class DocumentController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<DocumentDetailDto> findById(@PathVariable UUID id){
-        return null;
+        return ResponseEntity.ok(documentService.findById(id));
+    }
+    @GetMapping
+    public List<DocumentDetailDto> findAll(){
+        return documentService.findAll();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<DocumentDetailDto> update(@PathVariable UUID id,
+                                                    @RequestBody DocumentCreateDto documentCreateDto) {
+        DocumentDetailDto documentDetailDto = documentService.updateDocument(id, documentCreateDto);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(documentDetailDto);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable UUID id){
+        documentService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }
 
-//    @PutMapping("/document/{id}")
-//    public ResponseEntity<?> update(@RequestBody Document document, @PathVariable UUID id) {
-//        try {
-//            Document existProduct = service.get(id);
-//            service.save(document);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } catch (NoSuchElementException e) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//    @DeleteMapping("/document/{id}")
-//    public void delete(@PathVariable UUID id) {
-//        service.delete(id);
-//    }
-//
-//
-//
-//
-//}
+

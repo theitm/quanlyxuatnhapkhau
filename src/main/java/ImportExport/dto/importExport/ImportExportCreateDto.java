@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -13,8 +14,8 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class ImportExportCreateDto implements Serializable {
-    private String idCountry;
-    private String idWarehouse;
+    private UUID idCountry;
+    private UUID idWarehouse;
     private Date date;
     private int type;
 }

@@ -2,11 +2,15 @@ package ImportExport.service.commodity;
 
 import ImportExport.dto.commodity.CommodityCreateDto;
 import ImportExport.dto.commodity.CommodityDetailDto;
-import ImportExport.entity.CommodityEntity;
-import java.util.Optional;
+
+import java.util.List;
 import java.util.UUID;
 
 public interface CommodityService {
     CommodityDetailDto createCommodity(CommodityCreateDto createDto);
-    Optional<CommodityEntity> findById(UUID id);
+    CommodityDetailDto findById(UUID id);
+    List<CommodityDetailDto> findAll();
+    CommodityDetailDto updateCommodity(UUID id , CommodityCreateDto commodityCreateDto);
+    void deleteById(UUID id);
+
 }

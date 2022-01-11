@@ -1,5 +1,6 @@
 package ImportExport.dto.commodity;
 
+import ImportExport.dto.typeOfCommodity.TypeOfCommodityBasicDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +14,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CommodityDetailDto implements Serializable {
     private UUID id;
-    private String idTypeOfCommodity;
+    private UUID idTypeOfCommodity;
     private String commodityName;
     private float price;
     private String unit;
     private String description;
+    private TypeOfCommodityBasicDto typeOfCommodityBasicDto;
+
 
 
 }

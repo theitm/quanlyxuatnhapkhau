@@ -6,8 +6,7 @@ import ImportExport.entity.TaxBracketEntity;
 import ImportExport.mapper.TaxBracketMapper;
 import ImportExport.repository.TaxBracketRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,9 +18,30 @@ public class TaxBracketServiceImpl implements TaxBracketService {
         this.taxBracketRepository = taxBracketRepository;
         this.taxBracketMapper = taxBracketMapper;
     }
-    public Optional<TaxBracketEntity> findById(UUID id) {
-        return taxBracketRepository.findById(id);
+
+    /**
+     * Hiện khung thuế theo ID
+     * @param id
+     * @return
+     */
+    public TaxBracketDetailDto findById(UUID id) {
+        TaxBracketDetailDto taxBracketDetailDto = taxBracketMapper.fromEntityToDto(taxBracketRepository.getById(id));
+        return taxBracketDetailDto;
     }
+
+    /**
+     * Hiện danh sách khung thuế
+     * @return
+     */
+    public List<TaxBracketDetailDto> findAll() {
+        return taxBracketMapper.fromListEntityToDto(taxBracketRepository.findAll());
+    }
+
+    /**
+     * Tạo khung thuế
+     * @param taxBracketCreateDto
+     * @return
+     */
     public TaxBracketDetailDto createTaxBracket (TaxBracketCreateDto taxBracketCreateDto) {
         TaxBracketEntity taxBracketEntity = taxBracketMapper.fromTaxBracketCreateDto(taxBracketCreateDto);
         TaxBracketEntity taxBracketEntityCreate = taxBracketRepository.save(taxBracketEntity);
@@ -30,5 +50,27 @@ public class TaxBracketServiceImpl implements TaxBracketService {
             taxBracketDetailDto = taxBracketMapper.fromEntityToDto(taxBracketEntityCreate);
         }
         return taxBracketDetailDto;
+    }
+
+    /**
+     * Cập nhập khung thuế
+     * @param id
+     * @param taxBracketCreateDto
+     * @return
+     */
+    public TaxBracketDetailDto updateTaxBracket (UUID id, TaxBracketCreateDto taxBracketCreateDto) {
+        TaxBracketEntity taxBracketEntity = taxBracketMapper.fromTaxBracketCreateDto(taxBracketCreateDto);
+        taxBracketEntity.setId(id);
+        taxBracketRepository.save(taxBracketEntity);
+        TaxBracketDetailDto taxBracketDetailDto = taxBracketMapper.fromEntityToDto(taxBracketEntity);
+        return taxBracketDetailDto;
+    }
+
+    /**
+     * Xóa khung thuế theo ID
+     * @param id
+     */
+    public void deleteById(UUID id) {
+        taxBracketRepository.deleteById(id);
     }
 }

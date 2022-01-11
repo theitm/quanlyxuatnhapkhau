@@ -13,10 +13,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class DetailsImportExportDto implements Serializable {
     private UUID id;
-    private String idImportExport;
-    private String idCommodity;
+    private UUID idImportExport;
+    private UUID idCommodity;
     private String description;
     private Double quantity;
-    private Integer total;
+    private Double total;
 
 }

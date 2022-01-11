@@ -3,9 +3,12 @@ package ImportExport.controller;
 import ImportExport.dto.commodity.CommodityCreateDto;
 import ImportExport.dto.commodity.CommodityDetailDto;
 import ImportExport.service.commodity.CommodityService;
+import ImportExport.service.warehouse.WarehouseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -13,9 +16,11 @@ import java.util.UUID;
 
 public class CommodityController {
     private final CommodityService commodityService ;
+    private final WarehouseService warehouseService;
 
-    public CommodityController(CommodityService commodityService) {
+    public CommodityController(CommodityService commodityService, WarehouseService warehouseService) {
         this.commodityService = commodityService;
+        this.warehouseService = warehouseService;
     }
 
 
@@ -27,23 +32,23 @@ public class CommodityController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CommodityDetailDto> findById(@PathVariable UUID id) {
-     //   Optional<Commodity> commodity = commodityService.findById(id);
-     //   return ResponseEntity.ok(commodityMapper.toCommodityDTO(commodity.get()));
-        return null;
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityService.findById(id));
     }
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CommodityDTO> update(@PathVariable UUID id ,@RequestBody CommodityDTO commodityDTO) {
-//        Commodity commodity = commodityMapper.toCommodity(commodityDTO);
-//        commodity.setId(id);
-//        commodityService.save(commodity);
-//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDTO);
-//    }
-//    @DeleteMapping("/{id}")
-//    public  ResponseEntity delete(@PathVariable UUID id) {
-//        commodityService.deleteById(id);
-//        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-//    }
-
+    @GetMapping
+    public List<CommodityDetailDto> findAll() {
+        return commodityService.findAll();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<CommodityDetailDto> update(@PathVariable UUID id ,
+                                                     @RequestBody CommodityCreateDto commodityCreateDto) {
+        CommodityDetailDto commodityDetailDto = commodityService.updateCommodity(id, commodityCreateDto);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityDetailDto);
+    }
+    @DeleteMapping("/{id}")
+    public  ResponseEntity delete(@PathVariable UUID id) {
+        commodityService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 
 }
 

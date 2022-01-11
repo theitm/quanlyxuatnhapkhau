@@ -6,7 +6,8 @@ import ImportExport.entity.WarehouseCommodityEntity;
 import ImportExport.mapper.WarehouseCommodityMapper;
 import ImportExport.repository.WarehouseCommodityRepository;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,9 +19,30 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService{
         this.warehouseCommodityRepository = warehouseCommodityRepository;
         this.warehouseCommodityMapper = warehouseCommodityMapper;
     }
-    public Optional<WarehouseCommodityEntity> findById(UUID id) {
-        return warehouseCommodityRepository.findById(id);
+
+    /**
+     * Hiện nhà kho hàng hóa theo ID
+     * @param id
+     * @return
+     */
+    public WarehouseCommodityDetailDto findById(UUID id) {
+        WarehouseCommodityDetailDto warehouseCommodityDetailDto = warehouseCommodityMapper.fromEntityToDto(warehouseCommodityRepository.getById(id));
+        return warehouseCommodityDetailDto;
     }
+
+    /**
+     * Hiện danh sách nhà kho hàng hóa
+     * @return
+     */
+    public List<WarehouseCommodityDetailDto> findAll() {
+        return warehouseCommodityMapper.fromListEntityToDto(warehouseCommodityRepository.findAll());
+    }
+
+    /**
+     * Tạo nhà kho hàng hóa
+     * @param warehouseCommodityCreateDto
+     * @return
+     */
     public WarehouseCommodityDetailDto createWarehouseCommodity(WarehouseCommodityCreateDto warehouseCommodityCreateDto) {
         WarehouseCommodityEntity warehouseCommodityEntity = warehouseCommodityMapper.fromWarehouseCreateDto(warehouseCommodityCreateDto);
         WarehouseCommodityEntity warehouseCommodityEntityCreate = warehouseCommodityRepository.save(warehouseCommodityEntity);
@@ -30,4 +52,27 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService{
         }
         return warehouseCommodityDetailDto;
     }
+
+    /**
+     * Cập nhật nhà kho hàng hóa
+     * @param id
+     * @param warehouseCommodityCreateDto
+     * @return
+     */
+    public WarehouseCommodityDetailDto updateWarehouseCommodity (UUID id,WarehouseCommodityCreateDto warehouseCommodityCreateDto) {
+        WarehouseCommodityEntity warehouseCommodityEntity = warehouseCommodityMapper.fromWarehouseCreateDto(warehouseCommodityCreateDto);
+        warehouseCommodityEntity.setId(id);
+        warehouseCommodityRepository.save(warehouseCommodityEntity);
+        WarehouseCommodityDetailDto warehouseCommodityDetailDto = warehouseCommodityMapper.fromEntityToDto(warehouseCommodityEntity);
+        return warehouseCommodityDetailDto;
+    }
+
+    /**
+     * Xóa nhà kho hàng hóa theo ID
+     * @param id
+     */
+    public void deleteById(UUID id) {
+        warehouseCommodityRepository.deleteById(id);
+    }
+
 }
