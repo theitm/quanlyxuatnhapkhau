@@ -15,4 +15,5 @@ public interface WarehouseCommodityMapper {
     WarehouseCommodityDetailDto fromEntityToDto (WarehouseCommodityEntity warehouseCommodityEntity);
     List<WarehouseCommodityDetailDto> fromListEntityToDto (List<WarehouseCommodityEntity> warehouseCommodityEntities);
     WarehouseCommodityBasicDto fromEntityToBasicDto (WarehouseCommodityEntity warehouseCommodityEntity);
+    List<WarehouseCommodityBasicDto> fromListBasicEntityToDto ( List<WarehouseCommodityEntity> warehouseCommodityEntities);
 }

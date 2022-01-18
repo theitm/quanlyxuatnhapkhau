@@ -4,10 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,15 +38,17 @@ public class ImportExportEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private WarehouseEntity warehouseEntity;
-    @OneToMany(mappedBy = "importExportEntity",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_import_export", referencedColumnName = "id", insertable=false, updatable=false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Collection<DocumentEntity> documentEntities
+    private List<DocumentEntity> documents
             = new ArrayList<DocumentEntity>();
-    @OneToMany(mappedBy = "importExportEntity",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_import_export", referencedColumnName = "id", insertable=false, updatable=false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Collection<DetailsImportExportEntity> detailsImportExportEntities
+    private List<DetailsImportExportEntity> detailsImportExports
             =new ArrayList<DetailsImportExportEntity>();
 
 }

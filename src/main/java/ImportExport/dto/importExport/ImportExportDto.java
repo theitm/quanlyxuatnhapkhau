@@ -16,8 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ImportExportDetailDto implements Serializable {
-    private UUID id;
+public class ImportExportDto implements Serializable {
     private UUID idCountry;
     private UUID idWarehouse;
     private Date date;

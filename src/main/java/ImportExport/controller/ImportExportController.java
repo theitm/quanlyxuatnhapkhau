@@ -1,7 +1,10 @@
 package ImportExport.controller;
 
+import ImportExport.dto.importExport.ImportExportAddDto;
+import ImportExport.dto.importExport.ImportExportDto;
 import ImportExport.dto.importExport.ImportExportCreateDto;
 import ImportExport.dto.importExport.ImportExportDetailDto;
+import ImportExport.service.detailsImportExport.DetailsImportExportService;
 import ImportExport.service.importExport.ImportExportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +18,24 @@ import java.util.UUID;
 
 public class ImportExportController {
     private final ImportExportService importExportService;
+    private final DetailsImportExportService detailsImportExportService;
 
-    public ImportExportController(ImportExportService importExportService) {
+    public ImportExportController(ImportExportService importExportService, DetailsImportExportService detailsImportExportService) {
         this.importExportService = importExportService;
+        this.detailsImportExportService = detailsImportExportService;
     }
+//    @PostMapping
+//    public ResponseEntity<ImportExportDetailDto> create(@RequestBody ImportExportCreateDto importExportCreateDto ){
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(importExportService.createImportExport(importExportCreateDto));
+//
+//
+//    }
     @PostMapping
-    public ResponseEntity<ImportExportDetailDto> create(@RequestBody ImportExportCreateDto importExportCreateDto){
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(importExportService.createImportExport(importExportCreateDto));
-
+    public ResponseEntity<ImportExportDto> addIE(@RequestBody ImportExportAddDto importExportAddDto) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(importExportService.addIE(importExportAddDto));
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<ImportExportDetailDto> findById(@PathVariable UUID id) {
         return ResponseEntity.ok(importExportService.findById(id));

@@ -1,5 +1,6 @@
 package ImportExport.service.warehouseCommodity;
 
+import ImportExport.dto.warehouseCommodity.WarehouseCommodityBasicDto;
 import ImportExport.dto.warehouseCommodity.WarehouseCommodityCreateDto;
 import ImportExport.dto.warehouseCommodity.WarehouseCommodityDetailDto;
 import ImportExport.entity.WarehouseCommodityEntity;
@@ -74,5 +75,4 @@ public class WarehouseCommodityServiceImpl implements WarehouseCommodityService{
     public void deleteById(UUID id) {
         warehouseCommodityRepository.deleteById(id);
     }
-
 }

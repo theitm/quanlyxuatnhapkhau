@@ -3,11 +3,9 @@ package ImportExport.controller;
 import ImportExport.dto.commodity.CommodityCreateDto;
 import ImportExport.dto.commodity.CommodityDetailDto;
 import ImportExport.service.commodity.CommodityService;
-import ImportExport.service.warehouse.WarehouseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -16,24 +14,23 @@ import java.util.UUID;
 
 public class CommodityController {
     private final CommodityService commodityService ;
-    private final WarehouseService warehouseService;
 
-    public CommodityController(CommodityService commodityService, WarehouseService warehouseService) {
+    public CommodityController(CommodityService commodityService) {
         this.commodityService = commodityService;
-        this.warehouseService = warehouseService;
-    }
 
+    }
 
     @PostMapping
     public ResponseEntity<CommodityDetailDto> create(@RequestBody CommodityCreateDto createDto) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityService.createCommodity(createDto));
-    //        return null;
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommodityDetailDto> findById(@PathVariable UUID id) {
+    public ResponseEntity<CommodityDetailDto > findById(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(commodityService.findById(id));
     }
+
     @GetMapping
     public List<CommodityDetailDto> findAll() {
         return commodityService.findAll();

@@ -79,7 +79,7 @@ public class TypeOfCommodityEntity {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "typeOfCommodityEntity"
+            mappedBy = "typeOfCommodity"
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

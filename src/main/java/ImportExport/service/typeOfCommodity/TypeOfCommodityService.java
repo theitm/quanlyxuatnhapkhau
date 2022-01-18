@@ -4,9 +4,7 @@ import ImportExport.dto.typeOfCommodity.TypeOfCommodityBasicDto;
 import ImportExport.dto.typeOfCommodity.TypeOfCommodityCreateDto;
 import ImportExport.dto.typeOfCommodity.TypeOfCommodityDetailDto;
 import ImportExport.entity.TypeOfCommodityEntity;
-
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface TypeOfCommodityService {
@@ -15,5 +13,5 @@ public interface TypeOfCommodityService {
     void deleteById(UUID id);
     TypeOfCommodityDetailDto updateType(UUID id, TypeOfCommodityCreateDto typeOfCommodityCreateDto);
     List<TypeOfCommodityDetailDto> findAll();
-    List<TypeOfCommodityBasicDto> findAllTypeOfCommodity();
+
 }

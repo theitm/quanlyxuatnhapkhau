@@ -1,10 +1,13 @@
 package ImportExport.service.importExport;
 
-import ImportExport.dto.importExport.ImportExportCreateDto;
-import ImportExport.dto.importExport.ImportExportDetailDto;
+import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
+import ImportExport.dto.document.DocumentCreateDto;
+import ImportExport.dto.importExport.*;
 import ImportExport.entity.ImportExportEntity;
 import ImportExport.mapper.ImportExportMapper;
 import ImportExport.repository.ImportExportRepository;
+import ImportExport.service.detailsImportExport.DetailsImportExportService;
+import ImportExport.service.document.DocumentService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
@@ -13,10 +16,14 @@ import java.util.UUID;
 public class ImportExportServiceImpl implements ImportExportService {
     private final ImportExportRepository importExportRepository;
     private final ImportExportMapper importExportMapper;
+    private final DetailsImportExportService detailsImportExportService;
+    private final DocumentService documentService;
 
-    public ImportExportServiceImpl(ImportExportRepository importExportRepository, ImportExportMapper importExportMapper) {
+    public ImportExportServiceImpl(ImportExportRepository importExportRepository, ImportExportMapper importExportMapper, DetailsImportExportService detailsImportExportService, DocumentService documentService) {
         this.importExportRepository = importExportRepository;
         this.importExportMapper = importExportMapper;
+        this.detailsImportExportService = detailsImportExportService;
+        this.documentService = documentService;
     }
 
     /**
@@ -74,6 +81,26 @@ public class ImportExportServiceImpl implements ImportExportService {
         importExportRepository.deleteById(id);
     }
 
+    /**
+     * ImportCommodity
+     * @param importExportAddDto
+     * @return
+     */
 
+    public ImportExportDto addIE(ImportExportAddDto importExportAddDto) {
+        ImportExportEntity importExportEntity = importExportMapper.fromAddDtoToEntity(importExportAddDto);
+        importExportEntity.setDetailsImportExports(null);
+        importExportEntity.setDocuments(null);
+        ImportExportEntity importExportCreatedEntity = importExportRepository.save(importExportEntity);
+        for (DetailsImportExportCreateDto detailsImportExportCreateDto : importExportAddDto.getDetailsImportExports() ) {
+            detailsImportExportCreateDto.setIdImportExport(importExportCreatedEntity.getId());
+             detailsImportExportService.createDetailsImportExport(detailsImportExportCreateDto);
+        }
+        for (DocumentCreateDto documentCreateDto : importExportAddDto.getDocuments()) {
+            documentCreateDto.setIdImportExport(importExportCreatedEntity.getId());
+            documentService.createDocument(documentCreateDto);
+        }
+        return null;
+    }
 }
 

@@ -1,6 +1,5 @@
 package ImportExport.service.detailsImportExport;
 
-import ImportExport.dto.detailsImportExport.DetailsIEBasicDto;
 import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
 import ImportExport.dto.detailsImportExport.DetailsImportExportDto;
 import ImportExport.entity.DetailsImportExportEntity;
@@ -53,6 +52,7 @@ public class DetailsImportExportServiceImpl implements DetailsImportExportServic
         }
         return detailsImportExportDto;
     }
+
 
     /**
      * Cập nhật chi tiết hàng hóa

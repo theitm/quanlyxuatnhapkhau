@@ -13,6 +13,7 @@ public interface TypeOfCommodityMapper {
     TypeOfCommodityEntity fromTypeOfCommodityCreateDto(TypeOfCommodityCreateDto typeOfCommodityCreateDto);
     TypeOfCommodityDetailDto fromEntityToDto (TypeOfCommodityEntity typeOfCommodityEntity);
     List<TypeOfCommodityDetailDto> fromListEntityToDto (List<TypeOfCommodityEntity> typeOfCommodityEntities);
+
     TypeOfCommodityBasicDto fromEntityBasicToDto (TypeOfCommodityEntity typeOfCommodityEntity);
     List<TypeOfCommodityBasicDto> fromEntityListBasicDto (List<TypeOfCommodityEntity> typeOfCommodityEntities);
 

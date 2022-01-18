@@ -6,10 +6,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -43,7 +42,7 @@ public class CommodityEntity {
     private UUID idTypeOfCommodity;
 
     @OneToMany(
-            mappedBy = "commodityEntity",
+            mappedBy = "commodity",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -51,7 +50,7 @@ public class CommodityEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     @JsonIgnore
-    private Collection<DetailsImportExportEntity> detailsImportExportEntities
+    private List<DetailsImportExportEntity> detailsImportExports
             = new ArrayList<DetailsImportExportEntity>();
 
 
@@ -64,7 +63,7 @@ public class CommodityEntity {
     @EqualsAndHashCode.Exclude
     @JsonManagedReference
     @JsonIgnore
-    private Collection<WarehouseCommodityEntity> warehouseCommodityEntities
+    private List<WarehouseCommodityEntity> warehouseCommodities
             = new ArrayList<WarehouseCommodityEntity>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -72,8 +71,6 @@ public class CommodityEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
-    private TypeOfCommodityEntity   typeOfCommodityEntity;
-
-
+    private TypeOfCommodityEntity  typeOfCommodity;
 
 }

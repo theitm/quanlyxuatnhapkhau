@@ -39,7 +39,7 @@ public class DetailsImportExportEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
-    private CommodityEntity commodityEntity;
+    private CommodityEntity commodity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_import_export",insertable = false,updatable = false)

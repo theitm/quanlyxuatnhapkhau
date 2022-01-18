@@ -76,8 +76,9 @@ public class TypeOfCommodityServiceImpl implements TypeOfCommodityService {
         typeOfCommodityRepository.deleteById(id);
     }
 
-    public List<TypeOfCommodityBasicDto> findAllTypeOfCommodity() {
-       return typeOfCommodityMapper.fromEntityListBasicDto(typeOfCommodityRepository.findAll());
     }
 
-}
+
+
+
+

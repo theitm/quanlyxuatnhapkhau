@@ -1,6 +1,6 @@
 package ImportExport.mapper;
 
-import ImportExport.dto.detailsImportExport.DetailsIEBasicDto;
+import ImportExport.dto.detailsImportExport.DetailsImportExportBasicDto;
 import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
 import ImportExport.dto.detailsImportExport.DetailsImportExportDto;
 import ImportExport.entity.DetailsImportExportEntity;
@@ -12,5 +12,7 @@ public interface DetailsImportExportMapper {
     DetailsImportExportEntity fromDetailsImportExportCreateDto(DetailsImportExportCreateDto detailsImportExportCreateDto);
     DetailsImportExportDto fromEntityToDto (DetailsImportExportEntity detailsImportExportEntity);
     List<DetailsImportExportDto> fromListEntityToDto (List<DetailsImportExportEntity> detailsImportExportEntities);
-    DetailsIEBasicDto fromEntityToDtoBasic (DetailsImportExportEntity detailsImportExportEntity);
+    DetailsImportExportBasicDto fromEntityToDtoBasic (DetailsImportExportEntity detailsImportExportEntity);
+    List<DetailsImportExportBasicDto> fromListEntityBasicToDto(List<DetailsImportExportEntity> detailsImportExportEntities);
+
 }

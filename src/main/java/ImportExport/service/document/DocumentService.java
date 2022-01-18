@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface DocumentService {
-    DocumentDetailDto createDocument(DocumentCreateDto createDto);
+    DocumentDetailDto createDocument(DocumentCreateDto documentCreateDto);
     DocumentDetailDto findById(UUID id);
     List<DocumentDetailDto> findAll();
     DocumentDetailDto updateDocument(UUID id, DocumentCreateDto documentCreateDto);

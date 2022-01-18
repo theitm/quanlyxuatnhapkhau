@@ -1,7 +1,8 @@
 package ImportExport.dto.importExport;
 
-import ImportExport.dto.detailsImportExport.DetailsImportExportBasicDto;
+import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
 import ImportExport.dto.document.DocumentCreateDto;
+import ImportExport.entity.DocumentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +17,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ImportExportDetailDto implements Serializable {
-    private UUID id;
+public class ImportExportAddDto implements Serializable {
     private UUID idCountry;
     private UUID idWarehouse;
     private Date date;
     private int type;
-    private List<DetailsImportExportBasicDto> detailsImportExports;
+    private List<DetailsImportExportCreateDto> detailsImportExports;
     private List<DocumentCreateDto> documents;
 }
