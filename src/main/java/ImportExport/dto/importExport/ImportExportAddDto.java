@@ -2,7 +2,9 @@ package ImportExport.dto.importExport;
 
 import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
 import ImportExport.dto.document.DocumentCreateDto;
+import ImportExport.dto.warehouse.WarehouseCreateDto;
 import ImportExport.entity.DocumentEntity;
+import ImportExport.entity.WarehouseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +26,5 @@ public class ImportExportAddDto implements Serializable {
     private int type;
     private List<DetailsImportExportCreateDto> detailsImportExports;
     private List<DocumentCreateDto> documents;
+    private WarehouseCreateDto warehouse;
 }

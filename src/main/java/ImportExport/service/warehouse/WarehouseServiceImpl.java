@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class WarehouseServiceImpl implements WarehouseService{
+public class WarehouseServiceImpl implements WarehouseService {
     private final WarehouseRepository warehouseRepository;
     private final WarehouseMapper warehouseMapper;
 
@@ -22,6 +22,7 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     /**
      * Hiện nhà kho theo ID
+     *
      * @param id
      * @return
      */
@@ -32,6 +33,7 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     /**
      * Hiện danh sách nhà kho
+     *
      * @return
      */
     public List<WarehouseDetailDto> findAll() {
@@ -40,6 +42,7 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     /**
      * Tạo nhà kho
+     *
      * @param warehouseCreateDto
      * @return
      */
@@ -47,7 +50,7 @@ public class WarehouseServiceImpl implements WarehouseService{
         WarehouseEntity warehouseEntity = warehouseMapper.fromWarehouseCreateDto(warehouseCreateDto);
         WarehouseEntity warehouseEntityCreate = warehouseRepository.save(warehouseEntity);
         WarehouseDetailDto warehouseDetailDto = null;
-        if(warehouseEntityCreate !=null) {
+        if (warehouseEntityCreate != null) {
             warehouseDetailDto = warehouseMapper.fromEntityToDto(warehouseEntityCreate);
         }
         return warehouseDetailDto;
@@ -55,6 +58,7 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     /**
      * Cập nhật nhà kho
+     *
      * @param id
      * @param warehouseCreateDto
      * @return
@@ -69,6 +73,7 @@ public class WarehouseServiceImpl implements WarehouseService{
 
     /**
      * Xóa nhà kho theo ID
+     *
      * @param id
      */
     public void deleteById(UUID id) {
@@ -76,4 +81,13 @@ public class WarehouseServiceImpl implements WarehouseService{
     }
 
 
+
+
+
+
 }
+
+
+
+
+

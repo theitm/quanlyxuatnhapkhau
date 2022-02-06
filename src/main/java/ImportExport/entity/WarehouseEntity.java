@@ -32,7 +32,7 @@ public class WarehouseEntity {
     @ToString.Exclude
     private Collection<WarehouseCommodityEntity> warehouseCommodityEntities
             =new ArrayList<WarehouseCommodityEntity>();
-    @OneToMany(mappedBy = "warehouseEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "warehouse",cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Collection<ImportExportEntity> importExportEntities

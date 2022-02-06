@@ -2,7 +2,10 @@ package ImportExport.service.detailsImportExport;
 
 import ImportExport.dto.detailsImportExport.DetailsImportExportCreateDto;
 import ImportExport.dto.detailsImportExport.DetailsImportExportDto;
+import ImportExport.dto.importExport.ImportExportAddDto;
+import ImportExport.entity.CommodityEntity;
 import ImportExport.entity.DetailsImportExportEntity;
+import ImportExport.entity.ImportExportEntity;
 import ImportExport.mapper.DetailsImportExportMapper;
 import ImportExport.repository.DetailsImportExportRepository;
 import org.springframework.stereotype.Service;
@@ -74,6 +77,26 @@ public class DetailsImportExportServiceImpl implements DetailsImportExportServic
      */
     public void deleteById(UUID id) {
         detailsImportExportRepository.deleteById(id);
+    }
+    public void setInfoDetailsImportExport(ImportExportEntity importExportEntity, List<DetailsImportExportEntity> detailsImportExportEntityList, List<CommodityEntity> commodityEntityList){
+        for (DetailsImportExportEntity listDetails : detailsImportExportEntityList) {
+            for (CommodityEntity listCommodity : commodityEntityList) {
+                Double total = listDetails.getQuantity() *listCommodity.getPrice();
+                listDetails.setCommodity(listCommodity);
+                listDetails.setImportExportEntity(importExportEntity);
+                listDetails.setTotal(total);
+                commodityEntityList.remove(listCommodity);
+                break;
+            }
+        }
+    }
+    public DetailsImportExportEntity save(List<DetailsImportExportEntity> detailsImportExportEntityList,ImportExportEntity importExportEntity) {
+        DetailsImportExportEntity detailsImportExportEntity = null;
+        for(DetailsImportExportEntity listDetails : detailsImportExportEntityList) {
+            listDetails.setIdImportExport(importExportEntity.getId());
+            detailsImportExportEntity = detailsImportExportRepository.save(listDetails);
+        }
+        return detailsImportExportEntity;
     }
 
 

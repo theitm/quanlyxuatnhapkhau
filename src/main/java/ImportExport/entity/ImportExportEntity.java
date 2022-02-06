@@ -37,13 +37,14 @@ public class ImportExportEntity {
     @JoinColumn(name = "id_warehouse",insertable = false,updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private WarehouseEntity warehouseEntity;
+    private WarehouseEntity warehouse;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_import_export", referencedColumnName = "id", insertable=false, updatable=false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<DocumentEntity> documents
             = new ArrayList<DocumentEntity>();
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_import_export", referencedColumnName = "id", insertable=false, updatable=false)
     @EqualsAndHashCode.Exclude

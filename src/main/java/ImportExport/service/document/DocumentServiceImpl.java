@@ -3,6 +3,7 @@ package ImportExport.service.document;
 import ImportExport.dto.document.DocumentCreateDto;
 import ImportExport.dto.document.DocumentDetailDto;
 import ImportExport.entity.DocumentEntity;
+import ImportExport.entity.ImportExportEntity;
 import ImportExport.mapper.DocumentMapper;
 import ImportExport.repository.DocumentRepository;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,13 @@ public class DocumentServiceImpl implements DocumentService {
     }
     public List<DocumentDetailDto> findAll() {
         return documentMapper.fromListEntityToDto(documentRepository.findAll());
+    }
+    public DocumentEntity save(List<DocumentEntity> documentEntityList, ImportExportEntity importExportEntity) {
+        DocumentEntity documentEntity = null;
+        for (DocumentEntity listDocument : documentEntityList) {
+            listDocument.setIdImportExport(importExportEntity.getId());
+            documentEntity = documentRepository.save(listDocument);
+        }
+        return documentEntity;
     }
 }
